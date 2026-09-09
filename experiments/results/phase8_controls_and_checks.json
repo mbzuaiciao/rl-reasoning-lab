@@ -1,0 +1,41 @@
+{
+  "manifest": {
+    "name": "phase8_controls_and_checks",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Experimental_Controls",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "controls",
+      "checkpoint_bias",
+      "simpsons_paradox"
+    ],
+    "metadata": {}
+  },
+  "run_id": "experimental_controls-checkpoint_bias-controls-phase8-simpsons_paradox-s42-87bcde",
+  "metrics": {
+    "neg_control_delta": 0.0005473104801262174,
+    "neg_control_d": 0.020574720869645836,
+    "pos_control_delta": 0.22113530996416914,
+    "pos_control_d": 8.601652219668935,
+    "final_checkpoint_acc": 0.8471386174570682,
+    "best_val_checkpoint_acc": 0.8428028642823826,
+    "best_test_checkpoint_acc": 0.9192258094081912,
+    "checkpoint_selection_bias": 0.0764229451258086,
+    "simpson_r_depth1": -0.07030242383611708,
+    "simpson_r_depth2": -0.15945340855210927,
+    "simpson_r_depth3": -0.26298502297577175,
+    "simpson_r_aggregate": -0.212673921456448
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:28:38.369968+00:00",
+  "duration_seconds": 0.03565382957458496
+}

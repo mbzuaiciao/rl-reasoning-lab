@@ -1,0 +1,34 @@
+{
+  "manifest": {
+    "name": "phase8_reproducibility_audit",
+    "seed": 42,
+    "env_seed": 42,
+    "method": "Determinism_Audit",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "determinism",
+      "bit_for_bit",
+      "seed_hygiene"
+    ],
+    "metadata": {}
+  },
+  "run_id": "determinism_audit-bit_for_bit-determinism-phase8-seed_hygiene-s42-0b6ec9",
+  "metrics": {
+    "max_parameter_difference": 0.0,
+    "loss_1": 1.3622469902038574,
+    "loss_2": 1.3622469902038574,
+    "bit_for_bit_identical": 1.0,
+    "unseeded_discrepancy": 0.03717517852783203
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:29:27.417122+00:00",
+  "duration_seconds": 0.6151087284088135
+}

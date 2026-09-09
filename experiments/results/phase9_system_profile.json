@@ -1,0 +1,39 @@
+{
+  "manifest": {
+    "name": "phase9_system_profile",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "System_Profile_Benchmark",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase9",
+      "system_profile",
+      "memory",
+      "timing"
+    ],
+    "metadata": {}
+  },
+  "run_id": "system_profile_benchmark-memory-phase9-system_profile-timing-s42-7a456f",
+  "metrics": {
+    "rollout_time_s": 0.14254679367877543,
+    "verifier_time_s": 0.03648958285339177,
+    "training_time_s": 0.059975917218253016,
+    "evaluation_time_s": 0.006630710209719837,
+    "checkpoint_logging_overhead_s": 0.005687625613063574,
+    "total_stage_time_s": 0.2513306295732036,
+    "tokens_per_sec": 6366.11622991211,
+    "peak_memory_kb": 67560.27734375,
+    "bottleneck_stage": "rollout_time",
+    "batched_rollout_speedup": 5.465608827577201
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:49:53.865862+00:00",
+  "duration_seconds": 3.048642158508301
+}

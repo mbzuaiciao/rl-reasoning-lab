@@ -1,0 +1,36 @@
+{
+  "manifest": {
+    "name": "phase8_compute_matching",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Compute_Accounting",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "compute_matching",
+      "pareto_frontier"
+    ],
+    "metadata": {}
+  },
+  "run_id": "compute_accounting-compute_matching-pareto_frontier-phase8-s42-0c20b5",
+  "metrics": {
+    "acc_a_under_env_budget": 0.3692073526965442,
+    "acc_b_under_env_budget": 0.6489410075926431,
+    "acc_a_under_opt_budget": 0.8763681966766388,
+    "acc_b_under_opt_budget": 0.10903067696221999,
+    "sample_winner": "Method B",
+    "optimizer_winner": "Method A",
+    "adaptive_bon_efficiency_tokens": 57.6,
+    "fixed_bon_8_tokens": 144.0
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:27:38.900488+00:00",
+  "duration_seconds": 6.4849853515625e-05
+}

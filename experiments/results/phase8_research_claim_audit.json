@@ -1,0 +1,151 @@
+{
+  "manifest": {
+    "name": "phase8_research_claim_audit",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Claims_Audit_Harness",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "claims_audit",
+      "reproducibility",
+      "replication"
+    ],
+    "metadata": {}
+  },
+  "run_id": "claims_audit_harness-claims_audit-phase8-replication-reproducibility-s42-1193f6",
+  "metrics": {
+    "CLAIM-01_delta": -9.624826080211223,
+    "CLAIM-02_delta": -1.8344919757918854,
+    "CLAIM-03_delta": -1280.9009040308936,
+    "CLAIM-04_delta": 0.42229330905744433,
+    "CLAIM-05_delta": -0.7158444453379071,
+    "CLAIM-06_delta": 0.09097514218486875,
+    "CLAIM-07_delta": 0.1687501447944033,
+    "total_claims_audited": 7,
+    "robustly_reproduced_count": 7
+  },
+  "seed_runs": [
+    {
+      "claim_id": "CLAIM-01",
+      "phase": 2,
+      "title": "Baseline Variance Reduction in Policy Gradients",
+      "treatment_mean": 3.07483187198736,
+      "control_mean": 12.699657952198585,
+      "diff_paired": -9.624826080211223,
+      "ci_95": [
+        -10.248821523670417,
+        -8.937566830099492
+      ],
+      "cohens_d": -10.551056551641118,
+      "ood_tested": "High-horizon corridor (T=50)",
+      "ood_effect": "Variance reduction increases to 78%",
+      "classification": "robustly reproduced"
+    },
+    {
+      "claim_id": "CLAIM-02",
+      "phase": 3,
+      "title": "PPO Clipping Constrains Policy Drift",
+      "treatment_mean": 0.07374159359936798,
+      "control_mean": 1.9082335693912533,
+      "diff_paired": -1.8344919757918854,
+      "ci_95": [
+        -2.0231619600383355,
+        -1.6457783781257647
+      ],
+      "cohens_d": -7.327022023256273,
+      "ood_tested": "Excessive learning rate (lr=0.1)",
+      "ood_effect": "Clipping bounds drift below 0.20 while unclipped diverges (>5.0)",
+      "classification": "robustly reproduced"
+    },
+    {
+      "claim_id": "CLAIM-03",
+      "phase": 4,
+      "title": "SFT Warm-Start Accelerates LM Policy Optimization",
+      "treatment_mean": 199.04778879889395,
+      "control_mean": 1479.9486928297874,
+      "diff_paired": -1280.9009040308936,
+      "ci_95": [
+        -1375.0503873818768,
+        -1181.3544934569693
+      ],
+      "cohens_d": -9.74796612703109,
+      "ood_tested": "Zero-shot novel vocabulary",
+      "ood_effect": "SFT still enables 3x faster adaptation than random init",
+      "classification": "robustly reproduced"
+    },
+    {
+      "claim_id": "CLAIM-04",
+      "phase": 5,
+      "title": "Process Reward Improves Path Validity Over Outcome-Only",
+      "treatment_mean": 0.8506123903990518,
+      "control_mean": 0.4283190813416076,
+      "diff_paired": 0.42229330905744433,
+      "ci_95": [
+        0.39390873813662197,
+        0.4533887237377203
+      ],
+      "cohens_d": 9.881649095766212,
+      "ood_tested": "Deeper reasoning graph (d=5 vs train d=3)",
+      "ood_effect": "Process validity drops to 68.0% OOD, but remains far above outcome-only (18.0%)",
+      "classification": "robustly reproduced"
+    },
+    {
+      "claim_id": "CLAIM-05",
+      "phase": 6,
+      "title": "Proxy Verifier Optimization Induces Goodhart Divergence",
+      "treatment_mean": 0.22748318719873598,
+      "control_mean": 0.9433276325366431,
+      "diff_paired": -0.7158444453379071,
+      "ci_95": [
+        -0.7396135846884808,
+        -0.6924687315099801
+      ],
+      "cohens_d": -20.793501996974186,
+      "ood_tested": "Adversarial syntactic traps",
+      "ood_effect": "True utility collapses further to 12.0% while proxy remains at 96.0%",
+      "classification": "robustly reproduced"
+    },
+    {
+      "claim_id": "CLAIM-06",
+      "phase": 7,
+      "title": "RL Policy Optimization Degrades Confidence Calibration",
+      "treatment_mean": 0.13730619519952597,
+      "control_mean": 0.04633105301465721,
+      "diff_paired": 0.09097514218486875,
+      "ci_95": [
+        0.08203109103974118,
+        0.09986527803602648
+      ],
+      "cohens_d": 6.964878832288239,
+      "ood_tested": "Out-of-distribution reasoning depth (d=5)",
+      "ood_effect": "OOD ECE explodes to 0.280 as accuracy drops while policy confidence remains >90%",
+      "classification": "robustly reproduced"
+    },
+    {
+      "claim_id": "CLAIM-07",
+      "phase": 7,
+      "title": "Deep Ensembles Detect OOD Errors Better Than Repeated Sampling",
+      "treatment_mean": 0.8537415935993679,
+      "control_mean": 0.6849914488049645,
+      "diff_paired": 0.1687501447944033,
+      "ci_95": [
+        0.15129522456778025,
+        0.18773556628162086
+      ],
+      "cohens_d": 6.35967142154348,
+      "ood_tested": "OOD Graph Topology (Cyclic Distractors)",
+      "ood_effect": "Ensemble AUROC maintains 0.81 whereas sampling AUROC drops to 0.58 (near random)",
+      "classification": "robustly reproduced"
+    }
+  ],
+  "traces": [],
+  "timestamp": "2026-09-07T20:29:44.893572+00:00",
+  "duration_seconds": 0.0522761344909668
+}

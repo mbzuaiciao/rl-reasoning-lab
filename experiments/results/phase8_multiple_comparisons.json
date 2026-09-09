@@ -1,0 +1,36 @@
+{
+  "manifest": {
+    "name": "phase8_multiple_comparisons",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Hypothesis_Correction",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "multiple_testing",
+      "fwer",
+      "fdr"
+    ],
+    "metadata": {}
+  },
+  "run_id": "hypothesis_correction-fdr-fwer-multiple_testing-phase8-s42-88001f",
+  "metrics": {
+    "false_positives_naive": 0.0,
+    "false_positives_bonf": 0.0,
+    "false_positives_bh": 0.0,
+    "true_positives_naive": 2.0,
+    "true_positives_bonf": 1.0,
+    "true_positives_bh": 1.0,
+    "bonferroni_corrected_alpha": 0.0025
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:28:15.488732+00:00",
+  "duration_seconds": 0.02077198028564453
+}

@@ -1,0 +1,35 @@
+{
+  "manifest": {
+    "name": "phase8_scaling_curves",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Scaling_Analysis",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "scaling",
+      "sft_data",
+      "rollout_budget",
+      "verifier_threshold"
+    ],
+    "metadata": {}
+  },
+  "run_id": "scaling_analysis-phase8-rollout_budget-scaling-sft_data-verifier_threshold-s42-072955",
+  "metrics": {
+    "tiny_model_acc": 0.58,
+    "large_model_acc": 0.89,
+    "sparse_data_rl_delta": 0.28,
+    "dense_data_rl_delta": 0.07999999999999996,
+    "verifier_tipping_point": 0.72
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:28:49.364920+00:00",
+  "duration_seconds": 0.0001392364501953125
+}

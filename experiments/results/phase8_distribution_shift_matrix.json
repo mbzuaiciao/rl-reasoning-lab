@@ -1,0 +1,35 @@
+{
+  "manifest": {
+    "name": "phase8_distribution_shift_matrix",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "OOD_Matrix_Evaluation",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "ood_matrix",
+      "worst_subgroup",
+      "pareto_frontier"
+    ],
+    "metadata": {}
+  },
+  "run_id": "ood_matrix_evaluation-ood_matrix-pareto_frontier-phase8-worst_subgroup-s42-f8fa92",
+  "metrics": {
+    "sft_worst_acc": 0.4,
+    "outcome_ppo_worst_acc": 0.12,
+    "process_ppo_worst_acc": 0.65,
+    "routed_ensemble_worst_acc": 0.8,
+    "outcome_ppo_iid": 0.88,
+    "outcome_ppo_mean_ood": 0.26399999999999996
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:29:00.016430+00:00",
+  "duration_seconds": 0.0044329166412353516
+}

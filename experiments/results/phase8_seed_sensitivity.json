@@ -1,0 +1,220 @@
+{
+  "manifest": {
+    "name": "phase8_seed_sensitivity",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "PPO_Reasoning_Sim",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {
+      "seeds": 20,
+      "steps_per_seed": 150
+    },
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "seed_sensitivity",
+      "bootstrap"
+    ],
+    "metadata": {}
+  },
+  "run_id": "ppo_reasoning_sim-bootstrap-phase8-seed_sensitivity-s42-26800e",
+  "metrics": {
+    "best_seed_accuracy": 0.9499999999999998,
+    "worst_seed_accuracy": 0.13899649846904188,
+    "mean_accuracy": 0.76352845511346,
+    "median_accuracy": 0.8485303156157513,
+    "ci_width_n3": 0.08897873498583375,
+    "ci_width_n20": 0.1990456534108913,
+    "ci_tightening_ratio": 0.4470267672821488,
+    "best_seed_inflation": 0.18647154488653983
+  },
+  "seed_runs": [
+    {
+      "seed": 101,
+      "final_accuracy": 0.8246628174150118,
+      "max_accuracy": 0.8863589874403724,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3602973580360413,
+      "ece": 0.05428621658739707
+    },
+    {
+      "seed": 118,
+      "final_accuracy": 0.8502777827798361,
+      "max_accuracy": 0.9059749591665069,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.358371651172638,
+      "ece": 0.06291053015759412
+    },
+    {
+      "seed": 135,
+      "final_accuracy": 0.9136415524008455,
+      "max_accuracy": 0.95,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3663918733596803,
+      "ece": 0.06196572049590314
+    },
+    {
+      "seed": 152,
+      "final_accuracy": 0.6780313716769102,
+      "max_accuracy": 0.7,
+      "path_validity": 0.35,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3641689896583558,
+      "ece": 0.07651991203391184
+    },
+    {
+      "seed": 169,
+      "final_accuracy": 0.9226901850351454,
+      "max_accuracy": 0.95,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3723870992660523,
+      "ece": 0.06157477123660002
+    },
+    {
+      "seed": 186,
+      "final_accuracy": 0.9114105457564099,
+      "max_accuracy": 0.95,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3740833759307862,
+      "ece": 0.0797830089217767
+    },
+    {
+      "seed": 203,
+      "final_accuracy": 0.8568582048369342,
+      "max_accuracy": 0.9068913869708791,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.367765438556671,
+      "ece": 0.06360553174846462
+    },
+    {
+      "seed": 220,
+      "final_accuracy": 0.6827925185117445,
+      "max_accuracy": 0.7,
+      "path_validity": 0.35,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3587050080299377,
+      "ece": 0.07935388162763374
+    },
+    {
+      "seed": 237,
+      "final_accuracy": 0.15102233437281817,
+      "max_accuracy": 0.3024656275276912,
+      "path_validity": 0.09999999999999999,
+      "kl_divergence": 0.12999999999999998,
+      "entropy": 1.3655641078948975,
+      "ece": 0.13979553312543636
+    },
+    {
+      "seed": 254,
+      "final_accuracy": 0.9300209148983308,
+      "max_accuracy": 0.95,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3503883719444274,
+      "ece": 0.06041034200683307
+    },
+    {
+      "seed": 271,
+      "final_accuracy": 0.8467828484516666,
+      "max_accuracy": 0.9054661033833598,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3691108703613282,
+      "ece": 0.06811701449892674
+    },
+    {
+      "seed": 288,
+      "final_accuracy": 0.6914445853696592,
+      "max_accuracy": 0.7,
+      "path_validity": 0.35,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3701682209968566,
+      "ece": 0.07127773942275276
+    },
+    {
+      "seed": 305,
+      "final_accuracy": 0.8761589812160908,
+      "max_accuracy": 0.9386529308487767,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3776426434516906,
+      "ece": 0.06791639450782683
+    },
+    {
+      "seed": 322,
+      "final_accuracy": 0.9459819448998801,
+      "max_accuracy": 0.95,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.373630154132843,
+      "ece": 0.054268412393824975
+    },
+    {
+      "seed": 339,
+      "final_accuracy": 0.9499999999999998,
+      "max_accuracy": 0.95,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3390398740768432,
+      "ece": 0.05444495663337502
+    },
+    {
+      "seed": 356,
+      "final_accuracy": 0.6866698291420551,
+      "max_accuracy": 0.7,
+      "path_validity": 0.35,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3560405611991881,
+      "ece": 0.07918736754277408
+    },
+    {
+      "seed": 373,
+      "final_accuracy": 0.8245179358574471,
+      "max_accuracy": 0.8793491159642058,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3637937545776366,
+      "ece": 0.06758949670504398
+    },
+    {
+      "seed": 390,
+      "final_accuracy": 0.9066523922869617,
+      "max_accuracy": 0.95,
+      "path_validity": 0.9,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.3494706749916077,
+      "ece": 0.050586084336614406
+    },
+    {
+      "seed": 407,
+      "final_accuracy": 0.13899649846904188,
+      "max_accuracy": 0.2969369485418152,
+      "path_validity": 0.09999999999999999,
+      "kl_divergence": 0.12999999999999998,
+      "entropy": 1.3620254635810851,
+      "ece": 0.1422007003061916
+    },
+    {
+      "seed": 424,
+      "final_accuracy": 0.6819558588924125,
+      "max_accuracy": 0.7,
+      "path_validity": 0.35,
+      "kl_divergence": 0.15999999999999998,
+      "entropy": 1.370503056049347,
+      "ece": 0.07236422137463785
+    }
+  ],
+  "traces": [],
+  "timestamp": "2026-09-07T20:27:25.516858+00:00",
+  "duration_seconds": 1.6902520656585693
+}

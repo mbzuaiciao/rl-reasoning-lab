@@ -1,0 +1,32 @@
+{
+  "manifest": {
+    "name": "phase9_trajectory_replay",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Lineage_and_Replay",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase9",
+      "lineage",
+      "replayability",
+      "forensics"
+    ],
+    "metadata": {}
+  },
+  "run_id": "lineage_and_replay-forensics-lineage-phase9-replayability-s42-27a28b",
+  "metrics": {
+    "trajectories_audited": 3,
+    "exact_replay_matches": 3,
+    "replay_fidelity_ratio": 1.0
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:49:50.078725+00:00",
+  "duration_seconds": 0.054492950439453125
+}

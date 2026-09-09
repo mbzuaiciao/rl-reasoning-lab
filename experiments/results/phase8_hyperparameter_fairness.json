@@ -1,0 +1,35 @@
+{
+  "manifest": {
+    "name": "phase8_hyperparameter_fairness",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Hyperparameter_Auditing",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "selection_bias",
+      "winners_curse",
+      "test_leakage"
+    ],
+    "metadata": {}
+  },
+  "run_id": "hyperparameter_auditing-phase8-selection_bias-test_leakage-winners_curse-s42-aa8018",
+  "metrics": {
+    "unequal_search_apparent_gain": 0.06546715511045864,
+    "matched_search_gain": -0.00046474028670762113,
+    "validation_winner_score": 0.7812089947580598,
+    "fresh_test_score": 0.7008283550377858,
+    "winners_curse_gap": 0.08038063972027398,
+    "test_contamination_inflation": 0.0471735425252473
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:27:55.498734+00:00",
+  "duration_seconds": 0.0485079288482666
+}

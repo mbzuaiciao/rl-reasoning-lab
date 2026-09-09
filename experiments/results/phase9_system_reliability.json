@@ -1,0 +1,64 @@
+{
+  "manifest": {
+    "name": "phase9_system_reliability",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "System_Reliability_Integration",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase9",
+      "fault_injection",
+      "health_monitors",
+      "crash_recovery"
+    ],
+    "metadata": {}
+  },
+  "run_id": "system_reliability_integration-crash_recovery-fault_injection-health_monitors-phase9-s42-f411ef",
+  "metrics": {
+    "faults_injected": 6,
+    "faults_detected": 6,
+    "detection_rate": 1.0,
+    "recovery_successful": 1.0
+  },
+  "seed_runs": [
+    {
+      "fault": "Silent Reward Corruption",
+      "detected": true,
+      "action": "Flagged by MetricSemanticRegistry: Metric 'reward' value -999.0000 is outside expected range [-10.0, 10.0]"
+    },
+    {
+      "fault": "Unfrozen Reference Model",
+      "detected": true,
+      "action": "Hard guard caught requires_grad=True parameter; dumped diagnostic JSON bundle."
+    },
+    {
+      "fault": "NaN / Non-Finite Loss",
+      "detected": true,
+      "action": "Hard invariant triggered immediately; saved failure artifact."
+    },
+    {
+      "fault": "Zero Action Tokens in Batch",
+      "detected": true,
+      "action": "Hard invariant caught empty mask, preventing 0/0 undefined gradients."
+    },
+    {
+      "fault": "Advantage Shape Broadcasting Distortion",
+      "detected": true,
+      "action": "Shape assertion caught [8] != [8, 16] prior to loss computation."
+    },
+    {
+      "fault": "Stale Rollout Worker Lag",
+      "detected": true,
+      "action": "HealthMonitor detected KL divergence spike >5x historical median."
+    }
+  ],
+  "traces": [],
+  "timestamp": "2026-09-07T20:49:55.342413+00:00",
+  "duration_seconds": 0.5445530414581299
+}

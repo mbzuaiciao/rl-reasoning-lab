@@ -1,0 +1,35 @@
+{
+  "manifest": {
+    "name": "phase9_batching_and_memory",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Batching_and_Memory_Auditing",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase9",
+      "broadcasting",
+      "microbatching",
+      "memory_accounting"
+    ],
+    "metadata": {}
+  },
+  "run_id": "batching_and_memory_auditing-broadcasting-memory_accounting-microbatching-phase9-s42-002824",
+  "metrics": {
+    "broadcasting_grad_error": 4.458138465881348,
+    "padding_fraction_random": 0.31066666666666665,
+    "padding_fraction_bucketed": 0.05137614678899083,
+    "padding_reduction": 0.2592905198776758,
+    "microbatch_grad_norm_diff": 2.9802322387695312e-08,
+    "buggy_grad_inflation_ratio": 4.000000417044613
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:49:46.339486+00:00",
+  "duration_seconds": 0.03585410118103027
+}

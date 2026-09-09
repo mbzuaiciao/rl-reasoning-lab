@@ -1,0 +1,255 @@
+{
+  "manifest": {
+    "name": "phase10_capstone",
+    "seed": 100,
+    "env_seed": 501,
+    "method": "Integrated_Research_Capstone",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase10",
+      "capstone",
+      "reasoning_evaluation",
+      "ood_matrix",
+      "goodhart"
+    ],
+    "metadata": {}
+  },
+  "run_id": "integrated_research_capstone-capstone-goodhart-ood_matrix-phase10-reasoning_evaluation-s100-459a36",
+  "metrics": {
+    "h1_outcome_process_gap": 0.4677830788469877,
+    "h1_gap_ci_lower": 0.43355001024307926,
+    "h1_gap_ci_upper": 0.5031156714834772,
+    "h2_process_path_gain": 0.4504026465299436,
+    "h2_path_ci_lower": 0.44160776806686164,
+    "h2_path_ci_upper": 0.4581656516443393,
+    "h2_cohens_d": 15.852566347538119,
+    "h3_weak_proxy_divergence": 0.6650366562746625,
+    "h3_inv_proxy_divergence": -0.002935553182921713,
+    "h4_kl_ece_reduction": 0.08531673492662438,
+    "h5_routing_catch_ratio": 3.4499999999999997,
+    "h6_rs_ppo_diff": 0.014614596608055197,
+    "h7_bon8_ppo_diff": 0.030000000000000027,
+    "distribution_matrix": {
+      "SFT_Baseline": {
+        "iid": 0.7155036270939779,
+        "ood_depth": 0.4366018123782635,
+        "distractors": 0.544565751241937,
+        "counterfactual": 0.5427862555876923,
+        "new_symbols": 0.5035050197895028,
+        "shortcut_cb": 0.47724439213280057
+      },
+      "Outcome_PPO": {
+        "iid": 0.8817883050671271,
+        "ood_depth": 0.16995135928369762,
+        "distractors": 0.38456575124193704,
+        "counterfactual": 0.23347327886505495,
+        "new_symbols": 0.34368949451526615,
+        "shortcut_cb": 0.1874805870928463
+      },
+      "Process_PPO": {
+        "iid": 0.8514029016751824,
+        "ood_depth": 0.6682765858309807,
+        "distractors": 0.7648023119942664,
+        "counterfactual": 0.7438167905037363,
+        "new_symbols": 0.723505019789503,
+        "shortcut_cb": 0.7376380503995434
+      },
+      "Hybrid_PPO": {
+        "iid": 0.877173708459072,
+        "ood_depth": 0.6999513592836977,
+        "distractors": 0.797952022994983,
+        "counterfactual": 0.7745038137810989,
+        "new_symbols": 0.7432283077008579,
+        "shortcut_cb": 0.7577955137062404
+      },
+      "Rejection_Sampling": {
+        "iid": 0.8367883050671272,
+        "ood_depth": 0.6492814499026107,
+        "distractors": 0.7363771674946247,
+        "counterfactual": 0.7141603021424175,
+        "new_symbols": 0.7032283077008579,
+        "shortcut_cb": 0.7076380503995434
+      },
+      "Process_PPO_KL": {
+        "iid": 0.856916772864442,
+        "ood_depth": 0.7206212686647844,
+        "distractors": 0.8103143062455205,
+        "counterfactual": 0.7948473254197802,
+        "new_symbols": 0.7629515956122128,
+        "shortcut_cb": 0.7679529770129376
+      },
+      "Process_PPO_Invariant": {
+        "iid": 0.8721737084590719,
+        "ood_depth": 0.7362911780458713,
+        "distractors": 0.8311017339956998,
+        "counterfactual": 0.8151908370584614,
+        "new_symbols": 0.7827671208864496,
+        "shortcut_cb": 0.7880317086662862
+      },
+      "Weak_Proxy_PPO": {
+        "iid": 0.7555036270939779,
+        "ood_depth": 0.11162613273641468,
+        "distractors": 0.31850288999283294,
+        "counterfactual": 0.17484732541978024,
+        "new_symbols": 0.28322830770085794,
+        "shortcut_cb": 0.1477955137062405
+      }
+    },
+    "compute_frontier": [
+      {
+        "method": "SFT_Greedy (N=1)",
+        "tokens_per_task": 18,
+        "oracle_accuracy": 0.72,
+        "tokens_per_correct": 25.0
+      },
+      {
+        "method": "SFT_BoN_2 (N=2)",
+        "tokens_per_task": 36,
+        "oracle_accuracy": 0.795,
+        "tokens_per_correct": 45.283018867924525
+      },
+      {
+        "method": "SFT_BoN_4 (N=4)",
+        "tokens_per_task": 72,
+        "oracle_accuracy": 0.85,
+        "tokens_per_correct": 84.70588235294117
+      },
+      {
+        "method": "SFT_BoN_8 (N=8)",
+        "tokens_per_task": 144,
+        "oracle_accuracy": 0.885,
+        "tokens_per_correct": 162.71186440677965
+      },
+      {
+        "method": "Process_PPO (Greedy N=1)",
+        "tokens_per_task": 18,
+        "oracle_accuracy": 0.855,
+        "tokens_per_correct": 21.05263157894737
+      },
+      {
+        "method": "Rejection_Sampling (Greedy N=1)",
+        "tokens_per_task": 18,
+        "oracle_accuracy": 0.84,
+        "tokens_per_correct": 21.42857142857143
+      }
+    ],
+    "calibration_results": {
+      "SFT_Baseline": {
+        "accuracy": 0.7155036270939779,
+        "ece": 0.06307626848757074,
+        "brier": 0.13830677588259904,
+        "entropy": 1.0,
+        "selective_risk_80": 0.08075236320522135
+      },
+      "Outcome_PPO": {
+        "accuracy": 0.8817883050671271,
+        "ece": 0.16139300341419513,
+        "brier": 0.27595020477987314,
+        "entropy": 0.5985748301615883,
+        "selective_risk_80": 0.08585343217754525
+      },
+      "Process_PPO": {
+        "accuracy": 0.8514029016751824,
+        "ece": 0.12211440273135613,
+        "brier": 0.22096016382389855,
+        "entropy": 0.9285789488036678,
+        "selective_risk_80": 0.08165630659296466
+      },
+      "Process_PPO_KL": {
+        "accuracy": 0.856916772864442,
+        "ece": 0.07607626848757075,
+        "brier": 0.15650677588259904,
+        "entropy": 1.0,
+        "selective_risk_80": 0.0489835710163475
+      }
+    },
+    "routing_results": [
+      {
+        "strategy": "Random Escalation (Control)",
+        "oracle_budget": 0.2,
+        "exploit_catch_rate": 0.2,
+        "final_oracle_utility": 0.745
+      },
+      {
+        "strategy": "Policy Entropy Escalation",
+        "oracle_budget": 0.2,
+        "exploit_catch_rate": 0.48,
+        "final_oracle_utility": 0.81
+      },
+      {
+        "strategy": "Verifier Disagreement Escalation",
+        "oracle_budget": 0.2,
+        "exploit_catch_rate": 0.69,
+        "final_oracle_utility": 0.865
+      },
+      {
+        "strategy": "Deep Ensemble Disagreement",
+        "oracle_budget": 0.2,
+        "exploit_catch_rate": 0.76,
+        "final_oracle_utility": 0.88
+      },
+      {
+        "strategy": "Combined (Disagreement + Entropy)",
+        "oracle_budget": 0.2,
+        "exploit_catch_rate": 0.825,
+        "final_oracle_utility": 0.895
+      }
+    ],
+    "depth_extrapolation": {
+      "SFT": [
+        0.85,
+        0.75,
+        0.56,
+        0.48,
+        0.44,
+        0.4
+      ],
+      "Outcome_PPO": [
+        0.98,
+        0.92,
+        0.75,
+        0.28,
+        0.16,
+        0.1
+      ],
+      "Process_PPO": [
+        0.95,
+        0.88,
+        0.74,
+        0.72,
+        0.68,
+        0.64
+      ],
+      "Process_PPO_KL": [
+        0.96,
+        0.9,
+        0.76,
+        0.75,
+        0.73,
+        0.7
+      ]
+    },
+    "replication": {
+      "rep_process_gain_mean": 0.4548452479244406,
+      "rep_process_gain_ci": [
+        0.4335758447627691,
+        0.47424273221844604
+      ],
+      "rep_goodhart_gap_mean": 0.6585900996538444,
+      "rep_goodhart_gap_ci": [
+        0.6422344714609229,
+        0.6752452087863491
+      ]
+    }
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T21:11:57.858721+00:00",
+  "duration_seconds": 0.11022830009460449
+}

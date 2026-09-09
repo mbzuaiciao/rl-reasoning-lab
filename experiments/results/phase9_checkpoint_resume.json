@@ -1,0 +1,34 @@
+{
+  "manifest": {
+    "name": "phase9_checkpoint_resume",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Atomic_Checkpoint_Auditing",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase9",
+      "checkpoint",
+      "determinism",
+      "atomic_write"
+    ],
+    "metadata": {}
+  },
+  "run_id": "atomic_checkpoint_auditing-atomic_write-checkpoint-determinism-phase9-s42-83dfca",
+  "metrics": {
+    "full_resume_param_divergence": 0.0,
+    "full_resume_loss_divergence": 0.0,
+    "omit_optimizer_divergence": 0.11663201451301575,
+    "omit_rng_divergence": 0.22475017607212067,
+    "atomic_crash_safety": 1.0
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:49:45.368380+00:00",
+  "duration_seconds": 0.774742841720581
+}

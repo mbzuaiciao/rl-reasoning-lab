@@ -1,0 +1,39 @@
+{
+  "manifest": {
+    "name": "phase8_ablation_and_interactions",
+    "seed": 42,
+    "env_seed": 101,
+    "method": "Factorial_Ablation",
+    "model_config": {},
+    "optimizer_config": {},
+    "training_budget": {},
+    "verifier_type": "none",
+    "reward_weights": {},
+    "evaluation_version": "v1",
+    "git_commit": "clean",
+    "tags": [
+      "phase8",
+      "factorial",
+      "synergy",
+      "mechanisms"
+    ],
+    "metadata": {}
+  },
+  "run_id": "factorial_ablation-factorial-mechanisms-phase8-synergy-s42-51f7e7",
+  "metrics": {
+    "acc_none": 0.5854730236223639,
+    "acc_process_only": 0.7230922056305855,
+    "acc_kl_only": 0.6254841112978287,
+    "acc_full_system": 0.8298586279890137,
+    "delta_process_alone": 0.13761918200822176,
+    "delta_kl_alone": 0.04001108767546484,
+    "delta_joint_observed": 0.24438560436664977,
+    "interaction_effect": 0.06675533468296316,
+    "mechanism_kl_reduction": 0.4647062324341421,
+    "outcome_ece_reduction": 0.12978933708320006
+  },
+  "seed_runs": [],
+  "traces": [],
+  "timestamp": "2026-09-07T20:28:26.643355+00:00",
+  "duration_seconds": 0.04074597358703613
+}
