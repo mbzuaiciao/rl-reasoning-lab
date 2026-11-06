@@ -23,6 +23,7 @@ Modern foundation models show dramatic accuracy gains on benchmark suites when f
 
 | Document | Description | Reading Time |
 | :--- | :--- | :---: |
+| [`frontend/`](frontend/README.md) | **Interactive Research Frontend**: Apple-inspired reader for all 9 tutorials, results explorer, and interactive teaching demos. | Live Web |
 | [`docs/research_summary.md`](docs/research_summary.md) | **Executive Research Brief**: Non-obvious dynamics, core findings, null results, and boundaries. | ~5 min |
 | [`docs/phase10_capstone_report.md`](docs/phase10_capstone_report.md) | **Full Research Paper**: Complete experimental setup, treatment matrices, distributions, and answers to 19 empirical questions. | ~20 min |
 | [`docs/claims.md`](docs/claims.md) | **Canonical Claim Registry**: 16 preregistered claims (CLAIM-01 to CLAIM-16) with bootstrap CIs, effect sizes ($d$), evidence strength, and status. | ~10 min |
@@ -105,4 +106,13 @@ pytest tests/ -v
 ```bash
 ruff check .
 ruff format --check .
+```
+
+### Launch Interactive Research Frontend
+```bash
+cd frontend
+npm install
+npm run dev     # Starts local server at http://localhost:4321
+npm test        # Runs frontend integrity & contract tests
+npm run build   # Builds standalone static production site (dist/)
 ```

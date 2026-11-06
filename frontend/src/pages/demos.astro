@@ -1,0 +1,56 @@
+---
+// demos.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GraphReasoningDemo from '../components/demos/GraphReasoningDemo.astro';
+import GoodhartDemo from '../components/demos/GoodhartDemo.astro';
+import LimitationBanner from '../components/LimitationBanner.astro';
+---
+
+<BaseLayout
+  title="Interactive Teaching Demonstrations | RL Reasoning Lab"
+  description="Explore pedagogical simulations illustrating multi-step graph reasoning vs shortcut exploits, Goodhart divergence, and topological invariant gating."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Header -->
+    <div class="max-w-3xl mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-apple-purple/10 text-apple-purple dark:bg-apple-purple-dark/15 dark:text-apple-purple-dark mb-4">
+        Interactive Education
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-apple-gray-900 dark:text-white leading-tight mb-4">
+        Interactive Teaching Demonstrations
+      </h1>
+      <p class="text-base text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed">
+        Two simple, deterministic interactive models designed to build first-principles intuition for post-training reinforcement learning dynamics.
+      </p>
+    </div>
+
+    <!-- Top Notice Banner -->
+    <div class="mb-12 p-4 rounded-2xl bg-apple-orange/10 dark:bg-apple-orange-dark/10 border border-apple-orange/20 dark:border-apple-orange-dark/20 text-xs text-apple-orange-dark leading-relaxed flex items-start gap-3">
+      <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-apple-orange/20 text-apple-orange-dark font-bold shrink-0">
+        i
+      </span>
+      <div>
+        <strong class="font-semibold block mb-0.5">Pedagogical Simulation Notice:</strong>
+        These visualizations are synthetic educational tools created to make core theoretical mechanisms intuitive. They illustrate the conceptual difference between outcome rewards, process supervision, and Goodhart divergence. For empirical quantitative benchmarks audited across $n=10$ random seeds, please consult the <a href="/results" class="underline font-semibold">Results Explorer</a>.
+      </div>
+    </div>
+
+    <!-- Demos List -->
+    <div class="space-y-16">
+      <!-- Demo 1: Graph Reasoning & Shortcuts -->
+      <section id="graph-reasoning" class="scroll-mt-20">
+        <GraphReasoningDemo />
+      </section>
+
+      <!-- Demo 2: Goodhart Divergence & Invariant Gating -->
+      <section id="goodhart-divergence" class="scroll-mt-20">
+        <GoodhartDemo />
+      </section>
+    </div>
+
+    <!-- Limitations Callout Banner -->
+    <div class="mt-20 pt-8 border-t border-black/[0.06] dark:border-white/[0.08]">
+      <LimitationBanner />
+    </div>
+  </div>
+</BaseLayout>

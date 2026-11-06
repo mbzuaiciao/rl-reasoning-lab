@@ -1,0 +1,112 @@
+---
+// tutorials/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { TUTORIALS_METADATA } from '../../lib/data';
+
+const phases = [
+  {
+    category: 'Part I: Foundations of Sequential Decision Making',
+    phases: TUTORIALS_METADATA.slice(0, 3)
+  },
+  {
+    category: 'Part II: Language Policies & Multi-Step Reasoning',
+    phases: TUTORIALS_METADATA.slice(3, 6)
+  },
+  {
+    category: 'Part III: Empirical Rigor & Research Engineering',
+    phases: TUTORIALS_METADATA.slice(6, 9)
+  }
+];
+---
+
+<BaseLayout
+  title="Curriculum Lineage | RL Reasoning Lab"
+  description="Nine first-principles tutorials covering sequential decision making, policy gradients, PPO, language model policies, multi-step reasoning, Goodhart divergence, uncertainty, and research engineering."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <!-- Header -->
+    <div class="max-w-3xl mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-apple-blue/10 text-apple-blue dark:bg-apple-blue-dark/15 dark:text-apple-blue-dark mb-4">
+        Interactive Textbook
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-apple-gray-900 dark:text-white leading-tight mb-4">
+        The First-Principles Curriculum
+      </h1>
+      <p class="text-base text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed">
+        Nine comprehensive tutorials tracing reinforcement learning from 5-state corridor dynamic programming up to autoregressive causal transformers, verifier game-theory, and empirical reproducibility.
+      </p>
+    </div>
+
+    <!-- Curriculum Sections -->
+    <div class="space-y-16">
+      {phases.map(section => (
+        <div class="space-y-6">
+          <div class="border-b border-black/[0.08] dark:border-white/[0.1] pb-3">
+            <h2 class="text-lg font-bold text-apple-gray-900 dark:text-white tracking-tight">
+              {section.category}
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {section.phases.map(tut => (
+              <a
+                href={`/tutorials/${tut.slug}`}
+                class="group rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] hover:border-apple-blue/30 dark:hover:border-apple-blue-dark/40 shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between"
+              >
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-600 dark:text-apple-gray-300">
+                      Phase {tut.phase}
+                    </span>
+                    <span class="text-[11px] text-apple-gray-400 font-sans">
+                      ~{tut.readingTimeMinutes} min
+                    </span>
+                  </div>
+                  <h3 class="text-base font-bold text-apple-gray-900 dark:text-white group-hover:text-apple-blue dark:group-hover:text-apple-blue-dark transition-colors mb-2 leading-snug">
+                    {tut.title}
+                  </h3>
+                  <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 line-clamp-3 leading-relaxed mb-4">
+                    {tut.description}
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between text-xs font-medium text-apple-blue dark:text-apple-blue-dark">
+                  <span>Start Reading</span>
+                  <span class="transition-transform group-hover:translate-x-1">→</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Phase 10 Capstone Transition Banner -->
+    <div class="mt-16 rounded-3xl p-8 bg-apple-gray-100/70 dark:bg-apple-gray-900/60 border border-black/[0.08] dark:border-white/[0.1] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div>
+        <span class="text-xs font-mono font-semibold uppercase tracking-wider text-apple-purple dark:text-apple-purple-dark block mb-1">
+          Capstone Synthesis
+        </span>
+        <h3 class="text-xl font-bold text-apple-gray-900 dark:text-white mb-2">
+          Phase 10: Integrated Research Capstone
+        </h3>
+        <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 max-w-2xl leading-relaxed">
+          The curriculum culminates in a preregistered empirical benchmark evaluating whether outcome-only RL versus process supervision improves the multi-step reasoning procedure.
+        </p>
+      </div>
+      <div class="flex items-center gap-3 shrink-0">
+        <a
+          href="/docs/phase10_capstone_report"
+          class="px-5 py-2.5 rounded-full text-xs font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900 hover:bg-apple-gray-800 dark:hover:bg-apple-gray-100 transition-colors shadow-xs"
+        >
+          Read Capstone Report →
+        </a>
+        <a
+          href="/results"
+          class="px-5 py-2.5 rounded-full text-xs font-semibold bg-white dark:bg-apple-gray-800 text-apple-gray-800 dark:text-apple-gray-200 border border-black/[0.08] dark:border-white/[0.1] hover:bg-apple-gray-50 dark:hover:bg-apple-gray-700 transition-colors"
+        >
+          Explore Results
+        </a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

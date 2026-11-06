@@ -1,0 +1,64 @@
+---
+// BaseLayout.astro
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import SearchModal from '../components/SearchModal.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  currentPath?: string;
+}
+
+const {
+  title = 'RL Reasoning Lab | Inspectable Multi-Step RL Research',
+  description = 'An inspectable, first-principles research laboratory investigating when reinforcement learning produces genuine multi-step reasoning improvement versus reward exploitation.',
+  currentPath
+} = Astro.props;
+
+const path = currentPath || Astro.url.pathname;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230071e3'><rect width='24' height='24' rx='6' fill='%231d1d1f'/><text x='12' y='16' fill='white' font-family='monospace' font-weight='bold' font-size='10' text-anchor='middle'>RL</text></svg>" />
+
+    <!-- Theme Initialization Script (Prevents FOUC) -->
+    <script is:inline>
+      (function() {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {
+          // Fallback if localStorage is inaccessible
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col bg-apple-gray-50 dark:bg-black text-apple-gray-900 dark:text-apple-gray-100 font-sans selection:bg-apple-blue/20">
+    <!-- Header -->
+    <Header currentPath={path} />
+
+    <!-- Main Content Area -->
+    <main class="flex-1 w-full">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+
+    <!-- Search Modal Dialog -->
+    <SearchModal />
+  </body>
+</html>

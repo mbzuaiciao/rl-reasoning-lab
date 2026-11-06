@@ -1,0 +1,754 @@
+---
+// results.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MetricCard from '../components/MetricCard.astro';
+import LimitationBanner from '../components/LimitationBanner.astro';
+import { loadCapstoneResults, RESEARCH_CLAIMS } from '../lib/data';
+
+const capstone = loadCapstoneResults();
+const distMatrix = capstone.distribution_matrix;
+const depthCurves = capstone.depth_extrapolation;
+const calibration = capstone.calibration_results;
+const routing = capstone.routing_results;
+const compute = capstone.compute_frontier;
+---
+
+<BaseLayout
+  title="Empirical Results Explorer | RL Reasoning Lab"
+  description="Interactive visual explorer for Phase 10 capstone benchmark and Phase 8 claim audits: outcome vs process RL, OOD matrix, Goodhart divergence, calibration, and audit efficiency."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Header -->
+    <div class="max-w-3xl mb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-apple-green/10 text-apple-green dark:bg-apple-green-dark/15 dark:text-apple-green-dark mb-4">
+        Audited Benchmark Data
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-apple-gray-900 dark:text-white leading-tight mb-4">
+        Research Results Explorer
+      </h1>
+      <p class="text-base text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed">
+        Explore empirical findings verified across $n=10$ paired training seeds and 7 distribution splits. Every figure is grounded in committed artifacts with exact confidence intervals and effect sizes.
+      </p>
+    </div>
+
+    <!-- Provenance & Audit Header Banner -->
+    <div class="p-4 rounded-2xl bg-white dark:bg-apple-gray-900 border border-black/[0.08] dark:border-white/[0.1] shadow-xs mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-apple-green dark:bg-apple-green-dark animate-pulse"></span>
+        <span class="text-apple-gray-600 dark:text-apple-gray-300 font-mono">
+          Artifact Source: <code class="text-apple-gray-900 dark:text-white">experiments/results/phase10_capstone.json</code>
+        </span>
+      </div>
+      <div class="flex items-center gap-4 text-apple-gray-500 font-mono text-[11px]">
+        <span>Pairs: n=10</span>
+        <span>Seeds: 100–110</span>
+        <a href="https://github.com/mbzuaiciao/rl-reasoning-lab/blob/main/experiments/results/phase10_capstone.json" target="_blank" rel="noopener noreferrer" class="text-apple-blue dark:text-apple-blue-dark hover:underline font-sans">
+          View Raw JSON ↗
+        </a>
+      </div>
+    </div>
+
+    <!-- Explorer Navigation Tabs -->
+    <div class="mb-10 border-b border-black/[0.08] dark:border-white/[0.1]">
+      <nav class="flex space-x-2 sm:space-x-6 overflow-x-auto pb-3 text-xs sm:text-sm font-semibold" aria-label="Results Explorer Views">
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900" data-view="view-process-gap">
+          Process Gap & Core RL
+        </button>
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-ood-matrix">
+          Distribution Shifts Matrix
+        </button>
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-depth-curve">
+          Depth Extrapolation ($d=1..6$)
+        </button>
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-goodhart">
+          Goodhart & Invariants
+        </button>
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-uncertainty">
+          Calibration & Auditing
+        </button>
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-compute">
+          Compute Frontier (BoN vs RL)
+        </button>
+        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-claims">
+          Claim Registry (16 Claims)
+        </button>
+      </nav>
+    </div>
+
+    <!-- VIEW 1: Process Gap & Core RL Comparisons -->
+    <div id="view-process-gap" class="explorer-view space-y-10">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
+          Outcome-Only RL vs Process Supervision: The Process Gap
+        </h2>
+        <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
+          Comparing terminal answer correctness against intermediate complete-path validity. Outcome PPO optimizes terminal answer rewards by discovering shortcut transitions, producing a <strong>45.8% process validity gap</strong> (Cohen's $d = 10.92$).
+        </p>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <MetricCard
+          value="45.8%"
+          label="Process Validity Gap (Outcome PPO)"
+          sublabel="Answer accuracy (87.8%) minus complete-path validity (42.0%)."
+          badge="H1 Confirmed"
+          ci="[+43.4%, +50.3%]"
+          claimId="CLAIM-10"
+          variant="red"
+        />
+        <MetricCard
+          value="+45.0%"
+          label="Process Supervision Path Gain"
+          sublabel="Path validity improvement of Process PPO over Outcome PPO."
+          badge="H2 Confirmed"
+          ci="[+44.2%, +45.8%]"
+          cohensD="15.85"
+          claimId="CLAIM-11"
+          variant="green"
+        />
+        <MetricCard
+          value="86.5%"
+          label="Complete-Path Validity (Process)"
+          sublabel="Tightly aligned with answer accuracy (84.7%) without shortcuts."
+          badge="Procedural"
+          claimId="CLAIM-11"
+          variant="green"
+        />
+        <MetricCard
+          value="16.7%"
+          label="OOD Depth Accuracy (Outcome PPO)"
+          sublabel="Collapses under unseen chain depths (d=4..6) due to memorized shortcuts."
+          badge="OOD Collapse"
+          claimId="CLAIM-10"
+          variant="red"
+        />
+      </div>
+
+      <!-- Comparison Data Table -->
+      <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 overflow-hidden shadow-xs">
+        <div class="p-4 sm:p-5 border-b border-black/[0.06] dark:border-white/[0.08]">
+          <h3 class="text-sm font-bold text-apple-gray-900 dark:text-white">
+            Core Treatment Matrix (IID vs OOD & Validity, n=10 paired seeds)
+          </h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 text-apple-gray-600 dark:text-apple-gray-300 font-semibold border-b border-black/[0.06] dark:border-white/[0.08]">
+              <tr>
+                <th class="py-3 px-4">Treatment</th>
+                <th class="py-3 px-4">IID Answer Acc</th>
+                <th class="py-3 px-4">Complete-Path Validity</th>
+                <th class="py-3 px-4">Process Validity Gap</th>
+                <th class="py-3 px-4">OOD Depth ($d=4..6$)</th>
+                <th class="py-3 px-4">Counterfactual Sens.</th>
+                <th class="py-3 px-4">Exploit Rate</th>
+                <th class="py-3 px-4">Primary Claim</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] font-mono text-apple-gray-700 dark:text-apple-gray-300">
+              <tr class="hover:bg-apple-gray-50/50 dark:hover:bg-white/[0.02]">
+                <td class="py-3 px-4 font-sans font-semibold text-apple-gray-900 dark:text-white">Trace SFT Baseline</td>
+                <td class="py-3 px-4">71.6%</td>
+                <td class="py-3 px-4">63.5%</td>
+                <td class="py-3 px-4 text-apple-gray-500">+8.1%</td>
+                <td class="py-3 px-4">43.7%</td>
+                <td class="py-3 px-4">54.3%</td>
+                <td class="py-3 px-4">4.0%</td>
+                <td class="py-3 px-4 font-sans"><a href="/docs/claims#claim-03" class="text-apple-blue hover:underline">CLAIM-03</a></td>
+              </tr>
+              <tr class="bg-apple-red/[0.03] dark:bg-apple-red-dark/[0.05] hover:bg-apple-red/[0.06]">
+                <td class="py-3 px-4 font-sans font-bold text-apple-red dark:text-apple-red-dark">Outcome PPO</td>
+                <td class="py-3 px-4 font-bold text-apple-green dark:text-apple-green-dark">88.2%</td>
+                <td class="py-3 px-4 font-bold text-apple-red dark:text-apple-red-dark">42.0%</td>
+                <td class="py-3 px-4 font-bold text-apple-red dark:text-apple-red-dark">+45.8%</td>
+                <td class="py-3 px-4 font-bold text-apple-red dark:text-apple-red-dark">16.7%</td>
+                <td class="py-3 px-4 text-apple-red">23.1%</td>
+                <td class="py-3 px-4 text-apple-red">38.0%</td>
+                <td class="py-3 px-4 font-sans"><a href="/docs/claims#claim-10" class="text-apple-blue hover:underline">CLAIM-10</a></td>
+              </tr>
+              <tr class="bg-apple-green/[0.03] dark:bg-apple-green-dark/[0.05] hover:bg-apple-green/[0.06]">
+                <td class="py-3 px-4 font-sans font-bold text-apple-green dark:text-apple-green-dark">Process PPO</td>
+                <td class="py-3 px-4">85.1%</td>
+                <td class="py-3 px-4 font-bold text-apple-green dark:text-apple-green-dark">86.5%</td>
+                <td class="py-3 px-4 text-apple-green font-bold">-1.4%</td>
+                <td class="py-3 px-4 font-bold text-apple-green dark:text-apple-green-dark">66.8%</td>
+                <td class="py-3 px-4 font-bold text-apple-green dark:text-apple-green-dark">74.4%</td>
+                <td class="py-3 px-4">5.0%</td>
+                <td class="py-3 px-4 font-sans"><a href="/docs/claims#claim-11" class="text-apple-blue hover:underline">CLAIM-11</a></td>
+              </tr>
+              <tr class="hover:bg-apple-gray-50/50 dark:hover:bg-white/[0.02]">
+                <td class="py-3 px-4 font-sans font-semibold">Hybrid PPO ($w_o=0.5, w_p=0.5$)</td>
+                <td class="py-3 px-4">87.7%</td>
+                <td class="py-3 px-4">88.0%</td>
+                <td class="py-3 px-4 text-apple-green">-0.3%</td>
+                <td class="py-3 px-4">70.0%</td>
+                <td class="py-3 px-4">77.5%</td>
+                <td class="py-3 px-4">4.5%</td>
+                <td class="py-3 px-4 font-sans"><a href="/docs/claims#claim-09" class="text-apple-blue hover:underline">CLAIM-09</a></td>
+              </tr>
+              <tr class="hover:bg-apple-gray-50/50 dark:hover:bg-white/[0.02]">
+                <td class="py-3 px-4 font-sans font-semibold">Rejection Sampling</td>
+                <td class="py-3 px-4">83.7%</td>
+                <td class="py-3 px-4">84.5%</td>
+                <td class="py-3 px-4 text-apple-green">-0.8%</td>
+                <td class="py-3 px-4">64.9%</td>
+                <td class="py-3 px-4">71.4%</td>
+                <td class="py-3 px-4">4.2%</td>
+                <td class="py-3 px-4 font-sans"><a href="/docs/claims#claim-16" class="text-apple-blue hover:underline">CLAIM-16</a></td>
+              </tr>
+              <tr class="hover:bg-apple-gray-50/50 dark:hover:bg-white/[0.02]">
+                <td class="py-3 px-4 font-sans font-semibold">Process PPO + Reference KL</td>
+                <td class="py-3 px-4">85.7%</td>
+                <td class="py-3 px-4">88.2%</td>
+                <td class="py-3 px-4 text-apple-green">-2.5%</td>
+                <td class="py-3 px-4">72.1%</td>
+                <td class="py-3 px-4">79.5%</td>
+                <td class="py-3 px-4">3.8%</td>
+                <td class="py-3 px-4 font-sans"><a href="/docs/claims#claim-14" class="text-apple-blue hover:underline">CLAIM-14</a></td>
+              </tr>
+              <tr class="hover:bg-apple-gray-50/50 dark:hover:bg-white/[0.02]">
+                <td class="py-3 px-4 font-sans font-semibold">Process PPO + Invariant Gate</td>
+                <td class="py-3 px-4 font-bold text-apple-blue dark:text-apple-blue-dark">87.2%</td>
+                <td class="py-3 px-4 font-bold text-apple-blue dark:text-apple-blue-dark">90.1%</td>
+                <td class="py-3 px-4 text-apple-green">-2.9%</td>
+                <td class="py-3 px-4 font-bold text-apple-blue dark:text-apple-blue-dark">73.6%</td>
+                <td class="py-3 px-4 font-bold text-apple-blue dark:text-apple-blue-dark">81.5%</td>
+                <td class="py-3 px-4 font-bold text-apple-green dark:text-apple-green-dark">1.3%</td>
+                <td class="py-3 px-4 font-sans"><a href="/docs/claims#claim-13" class="text-apple-blue hover:underline">CLAIM-13</a></td>
+              </tr>
+              <tr class="bg-apple-orange/[0.03] dark:bg-apple-orange-dark/[0.05] hover:bg-apple-orange/[0.06]">
+                <td class="py-3 px-4 font-sans font-semibold text-apple-orange dark:text-apple-orange-dark">Weak Proxy PPO</td>
+                <td class="py-3 px-4">75.6%</td>
+                <td class="py-3 px-4 text-apple-red">24.1%</td>
+                <td class="py-3 px-4 text-apple-red">+51.5%</td>
+                <td class="py-3 px-4 text-apple-red">11.2%</td>
+                <td class="py-3 px-4 text-apple-red">17.5%</td>
+                <td class="py-3 px-4 font-bold text-apple-red">64.9%</td>
+                <td class="py-3 px-4 font-sans"><a href="/docs/claims#claim-12" class="text-apple-blue hover:underline">CLAIM-12</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 2: Distribution Shifts Matrix -->
+    <div id="view-ood-matrix" class="explorer-view hidden space-y-10">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
+          Generalization & Stress Tests Matrix
+        </h2>
+        <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
+          Evaluating all 8 treatments across 6 distinct distribution splits: IID (d ≤ 3), OOD Depth (d ∈ &#123;4,5,6&#125;), Distractors (k=3), Single-Edge Counterfactuals, New Symbolic Tokens, and Counterbalanced Shortcut Datasets.
+        </p>
+      </div>
+
+      <!-- Matrix Table -->
+      <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 overflow-hidden shadow-xs">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 text-apple-gray-600 dark:text-apple-gray-300 font-semibold border-b border-black/[0.06] dark:border-white/[0.08]">
+              <tr>
+                <th class="py-3.5 px-4">Method</th>
+                <th class="py-3.5 px-4">IID ($d \le 3$)</th>
+                <th class="py-3.5 px-4">OOD Depth ($4..6$)</th>
+                <th class="py-3.5 px-4">Distractors ($k=3$)</th>
+                <th class="py-3.5 px-4">Counterfactual</th>
+                <th class="py-3.5 px-4">New Symbols</th>
+                <th class="py-3.5 px-4">Shortcut CB</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] font-mono text-apple-gray-700 dark:text-apple-gray-300">
+              {Object.entries(distMatrix).map(([model, vals]) => {
+                const isOutcome = model === 'Outcome_PPO';
+                const isProcess = model === 'Process_PPO';
+                const isInvariant = model === 'Process_PPO_Invariant';
+
+                let rowClass = 'hover:bg-black/[0.02] dark:hover:bg-white/[0.02]';
+                if (isOutcome) rowClass = 'bg-apple-red/[0.03] dark:bg-apple-red-dark/[0.05]';
+                if (isProcess) rowClass = 'bg-apple-green/[0.03] dark:bg-apple-green-dark/[0.05]';
+                if (isInvariant) rowClass = 'bg-apple-blue/[0.03] dark:bg-apple-blue-dark/[0.05]';
+
+                return (
+                  <tr class={rowClass}>
+                    <td class="py-3 px-4 font-sans font-semibold text-apple-gray-900 dark:text-white">
+                      {model.replace(/_/g, ' ')}
+                    </td>
+                    <td class="py-3 px-4">{(vals.iid * 100).toFixed(1)}%</td>
+                    <td class={`py-3 px-4 font-bold ${vals.ood_depth < 0.25 ? 'text-apple-red' : 'text-apple-green dark:text-apple-green-dark'}`}>
+                      {(vals.ood_depth * 100).toFixed(1)}%
+                    </td>
+                    <td class="py-3 px-4">{(vals.distractors * 100).toFixed(1)}%</td>
+                    <td class="py-3 px-4">{(vals.counterfactual * 100).toFixed(1)}%</td>
+                    <td class="py-3 px-4">{(vals.new_symbols * 100).toFixed(1)}%</td>
+                    <td class={`py-3 px-4 ${vals.shortcut_cb < 0.25 ? 'text-apple-red font-bold' : ''}`}>
+                      {(vals.shortcut_cb * 100).toFixed(1)}%
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 3: Depth Extrapolation Curves -->
+    <div id="view-depth-curve" class="explorer-view hidden space-y-10">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
+          Reasoning Depth Extrapolation ($d=1$ to $d=6$)
+        </h2>
+        <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
+          Tracking accuracy as relational deduction depth expands beyond training horizons ($d \le 3$). Notice the catastrophic collapse of Outcome PPO at $d=4$ ($28\% \to 16\% \to 10\%$) contrasted with the graceful transfer of Process PPO ($64\%$).
+        </p>
+      </div>
+
+      <!-- Depth Extrapolation Plot Card -->
+      <div class="rounded-3xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 p-6 sm:p-8 shadow-card">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center gap-6 text-xs font-semibold">
+            <span class="flex items-center gap-2">
+              <span class="w-3 h-0.5 bg-apple-red dark:bg-apple-red-dark"></span> Outcome PPO
+            </span>
+            <span class="flex items-center gap-2">
+              <span class="w-3 h-0.5 bg-apple-green dark:bg-apple-green-dark"></span> Process PPO
+            </span>
+            <span class="flex items-center gap-2">
+              <span class="w-3 h-0.5 bg-apple-blue dark:bg-apple-blue-dark"></span> Process PPO + KL
+            </span>
+            <span class="flex items-center gap-2">
+              <span class="w-3 h-0.5 bg-apple-gray-400"></span> SFT Baseline
+            </span>
+          </div>
+          <span class="text-xs font-mono text-apple-gray-400">Train Horizon: d ≤ 3</span>
+        </div>
+
+        <!-- SVG Depth Plot -->
+        <div class="w-full aspect-[21/9] max-h-80 relative overflow-hidden">
+          <svg viewBox="0 0 600 240" class="w-full h-full select-none">
+            <!-- Grid Lines -->
+            <line x1="50" y1="30" x2="570" y2="30" stroke="currentColor" stroke-dasharray="2,2" class="text-black/5 dark:text-white/5" />
+            <line x1="50" y1="80" x2="570" y2="80" stroke="currentColor" stroke-dasharray="2,2" class="text-black/5 dark:text-white/5" />
+            <line x1="50" y1="130" x2="570" y2="130" stroke="currentColor" stroke-dasharray="2,2" class="text-black/5 dark:text-white/5" />
+            <line x1="50" y1="180" x2="570" y2="180" stroke="currentColor" stroke-dasharray="2,2" class="text-black/5 dark:text-white/5" />
+
+            <!-- Y Axis Labels -->
+            <text x="40" y="34" text-anchor="end" font-size="10" font-family="monospace" class="fill-apple-gray-400">100%</text>
+            <text x="40" y="84" text-anchor="end" font-size="10" font-family="monospace" class="fill-apple-gray-400">75%</text>
+            <text x="40" y="134" text-anchor="end" font-size="10" font-family="monospace" class="fill-apple-gray-400">50%</text>
+            <text x="40" y="184" text-anchor="end" font-size="10" font-family="monospace" class="fill-apple-gray-400">25%</text>
+
+            <!-- X Axis Boundary (d=3) -->
+            <line x1="258" y1="20" x2="258" y2="200" stroke="currentColor" stroke-dasharray="4,4" class="text-apple-orange/40 dark:text-apple-orange-dark/40" stroke-width="1.5" />
+            <text x="262" y="25" font-size="9" font-family="monospace" class="fill-apple-orange dark:fill-apple-orange-dark font-bold">OOD Boundary →</text>
+
+            <!-- X Axis Ticks -->
+            <text x="50" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=1</text>
+            <text x="154" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=2</text>
+            <text x="258" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=3</text>
+            <text x="362" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=4</text>
+            <text x="466" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=5</text>
+            <text x="570" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=6</text>
+
+            <!-- Outcome PPO Path: [0.98, 0.92, 0.75, 0.28, 0.16, 0.10] -->
+            <!-- Y: 30 + (1 - acc) * 160 -->
+            <path
+              d="M 50 33 L 154 43 L 258 70 L 362 145 L 466 164 L 570 174"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              class="text-apple-red dark:text-apple-red-dark"
+            />
+
+            <!-- Process PPO Path: [0.95, 0.88, 0.74, 0.72, 0.68, 0.64] -->
+            <path
+              d="M 50 38 L 154 49 L 258 72 L 362 75 L 466 81 L 570 88"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              class="text-apple-green dark:text-apple-green-dark"
+            />
+
+            <!-- Process PPO + KL Path: [0.96, 0.90, 0.76, 0.75, 0.73, 0.70] -->
+            <path
+              d="M 50 36 L 154 46 L 258 68 L 362 70 L 466 73 L 570 78"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              class="text-apple-blue dark:text-apple-blue-dark"
+            />
+
+            <!-- SFT Path: [0.85, 0.75, 0.56, 0.48, 0.44, 0.40] -->
+            <path
+              d="M 50 54 L 154 70 L 258 100 L 362 113 L 466 120 L 570 126"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-dasharray="4,4"
+              class="text-apple-gray-400"
+            />
+          </svg>
+        </div>
+
+        <!-- Depth Extrapolation Table -->
+        <div class="mt-8 pt-6 border-t border-black/[0.06] dark:border-white/[0.08] overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 font-sans font-semibold text-apple-gray-600 dark:text-apple-gray-300">
+              <tr>
+                <th class="py-2.5 px-3">Method</th>
+                <th class="py-2.5 px-3">d=1</th>
+                <th class="py-2.5 px-3">d=2</th>
+                <th class="py-2.5 px-3">d=3 (Train Limit)</th>
+                <th class="py-2.5 px-3 text-apple-orange dark:text-apple-orange-dark">d=4 (OOD)</th>
+                <th class="py-2.5 px-3 text-apple-orange dark:text-apple-orange-dark">d=5 (OOD)</th>
+                <th class="py-2.5 px-3 text-apple-orange dark:text-apple-orange-dark">d=6 (OOD)</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] text-apple-gray-700 dark:text-apple-gray-300">
+              {Object.entries(depthCurves).map(([model, accs]) => (
+                <tr class="hover:bg-black/[0.02] dark:hover:bg-white/[0.02]">
+                  <td class="py-2.5 px-3 font-sans font-semibold text-apple-gray-900 dark:text-white">
+                    {model.replace(/_/g, ' ')}
+                  </td>
+                  {accs.map((acc, idx) => (
+                    <td class={`py-2.5 px-3 ${idx >= 3 && acc < 0.3 ? 'text-apple-red font-bold' : ''}`}>
+                      {(acc * 100).toFixed(0)}%
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 4: Goodhart & Invariant Safeguards -->
+    <div id="view-goodhart" class="explorer-view hidden space-y-10">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
+          Goodhart Divergence & Invariant Gate Safeguards
+        </h2>
+        <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
+          Optimizing an un-gated heuristic proxy verifier causes proxy reward to surge to 94.5% while true oracle utility crashes to 25.7% (64.9% exploit rate). Prepending a lightweight structural invariant gate suppresses exploits to 1.3%.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <MetricCard
+          value="+68.8%"
+          label="Goodhart Divergence Gap (Weak Proxy)"
+          sublabel="Proxy reward (94.5%) minus True oracle utility (25.7%)."
+          badge="H3 Confirmed"
+          ci="Exploit rate: 64.9%"
+          cohensD="-22.40"
+          claimId="CLAIM-12"
+          variant="red"
+        />
+
+        <MetricCard
+          value="1.3%"
+          label="Exploit Rate (Invariant Gated)"
+          sublabel="Linear-time topological gate verifies start-node & adjacency."
+          badge="H3 Gated"
+          ci="Δ = -63.6%"
+          cohensD="+18.20"
+          claimId="CLAIM-13"
+          variant="green"
+        />
+      </div>
+
+      <!-- Goodhart Comparison Table -->
+      <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 p-6 shadow-xs">
+        <h3 class="text-sm font-bold text-apple-gray-900 dark:text-white mb-4">
+          Goodhart Divergence Mechanics
+        </h3>
+        <p class="text-xs text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed mb-4">
+          In Phase 6 and Phase 10 Core Experiment C, policies optimized against substring heuristics learn to emit formatting noise and distractor tokens that trigger false-positive rewards. Soft reward penalties fail to eliminate the exploit; hard topological structural gates reduce exploits from 64.9% to 1.3%.
+        </p>
+        <div class="flex items-center gap-4 text-xs font-semibold">
+          <a href="/demos#goodhart-divergence" class="text-apple-blue dark:text-apple-blue-dark hover:underline flex items-center gap-1">
+            Try Interactive Goodhart Simulation Demo →
+          </a>
+          <a href="/docs/claims#claim-12" class="text-apple-gray-500 hover:underline">
+            Read CLAIM-12 Specification
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 5: Uncertainty & Selective Auditing -->
+    <div id="view-uncertainty" class="explorer-view hidden space-y-10">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
+          Uncertainty Calibration & Selective Audit Efficiency
+        </h2>
+        <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
+          RL policy optimization systematically inflates confidence, degrading Expected Calibration Error (ECE). Under fixed oracle budgets, routing by verifier disagreement catches 69% of exploits (3.4x random auditing), while entropy catches only 48%.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Calibration Table -->
+        <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 p-6 shadow-xs">
+          <h3 class="text-sm font-bold text-apple-gray-900 dark:text-white mb-4">
+            Calibration & Entropy Across Treatments
+          </h3>
+          <div class="space-y-3 font-mono text-xs">
+            {Object.entries(calibration).map(([model, metrics]) => (
+              <div class="p-3 rounded-xl bg-apple-gray-50 dark:bg-apple-gray-800/60 border border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between">
+                <div>
+                  <span class="font-sans font-semibold text-apple-gray-900 dark:text-white block">
+                    {model.replace(/_/g, ' ')}
+                  </span>
+                  <span class="text-[11px] text-apple-gray-400 font-sans">
+                    Entropy: {metrics.entropy.toFixed(2)} • Brier: {metrics.brier.toFixed(3)}
+                  </span>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-bold text-apple-gray-900 dark:text-white block">
+                    ECE: {(metrics.ece * 100).toFixed(2)}%
+                  </span>
+                  <span class="text-[11px] text-apple-gray-400">
+                    Risk@80%: {(metrics.selective_risk_80 * 100).toFixed(1)}%
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Audit Routing Table -->
+        <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 p-6 shadow-xs">
+          <h3 class="text-sm font-bold text-apple-gray-900 dark:text-white mb-4">
+            Selective Auditing Under 20% Oracle Query Budget
+          </h3>
+          <div class="space-y-3 font-mono text-xs">
+            {routing.map(item => (
+              <div class="p-3 rounded-xl bg-apple-gray-50 dark:bg-apple-gray-800/60 border border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between">
+                <div>
+                  <span class="font-sans font-semibold text-apple-gray-900 dark:text-white block">
+                    {item.strategy}
+                  </span>
+                  <span class="text-[11px] text-apple-gray-400 font-sans">
+                    Oracle Budget: {(item.oracle_budget * 100).toFixed(0)}%
+                  </span>
+                </div>
+                <div class="text-right">
+                  <span class="text-xs font-bold text-apple-blue dark:text-apple-blue-dark block">
+                    Catch: {(item.exploit_catch_rate * 100).toFixed(1)}%
+                  </span>
+                  <span class="text-[11px] text-apple-gray-400">
+                    Utility: {(item.final_oracle_utility * 100).toFixed(1)}%
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 6: Compute Frontier -->
+    <div id="view-compute" class="explorer-view hidden space-y-10">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
+          Compute Frontier: Test-Time Search vs Policy RL
+        </h2>
+        <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
+          Evaluating the Pareto tradeoff between inference token cost and task accuracy. SFT + Best-of-8 search matches single-sample Process PPO (88.5% vs 85.5%), but consumes 144 tokens/task vs 18 tokens/task (8x token cost).
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <MetricCard
+          value="88.5%"
+          label="SFT + Best-of-8 Accuracy"
+          sublabel="Matches Process PPO (85.5%) without policy gradient updates."
+          badge="H7 Confirmed"
+          ci="144 tokens / task"
+          cohensD="+1.10"
+          claimId="CLAIM-16"
+          variant="neutral"
+        />
+
+        <MetricCard
+          value="21.1"
+          label="Tokens per Correct (Process PPO)"
+          sublabel="7.7x more token-efficient than SFT BoN-8 (162.7 tokens/correct)."
+          badge="Inference Efficiency"
+          claimId="CLAIM-16"
+          variant="green"
+        />
+      </div>
+
+      <!-- Compute Table -->
+      <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 overflow-hidden shadow-xs">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs font-mono">
+            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 font-sans font-semibold text-apple-gray-600 dark:text-apple-gray-300 border-b border-black/[0.06] dark:border-white/[0.08]">
+              <tr>
+                <th class="py-3 px-4">Method Configuration</th>
+                <th class="py-3 px-4">Tokens / Task</th>
+                <th class="py-3 px-4">Oracle Accuracy</th>
+                <th class="py-3 px-4">Tokens / Correct Answer</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] text-apple-gray-700 dark:text-apple-gray-300">
+              {compute.map(row => (
+                <tr class="hover:bg-black/[0.02] dark:hover:bg-white/[0.02]">
+                  <td class="py-3 px-4 font-sans font-semibold text-apple-gray-900 dark:text-white">
+                    {row.method}
+                  </td>
+                  <td class="py-3 px-4">{row.tokens_per_task}</td>
+                  <td class="py-3 px-4 font-bold text-apple-blue dark:text-apple-blue-dark">
+                    {(row.oracle_accuracy * 100).toFixed(1)}%
+                  </td>
+                  <td class="py-3 px-4">{row.tokens_per_correct.toFixed(1)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW 7: Canonical Claim Registry (All 16 Claims) -->
+    <div id="view-claims" class="explorer-view hidden space-y-10">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
+          Canonical Research Claim Registry
+        </h2>
+        <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
+          All 16 preregistered claims (CLAIM-01 through CLAIM-16) across Phases 2 through 10, audited with paired tests, effect sizes, and operational boundaries.
+        </p>
+      </div>
+
+      <!-- Interactive Claim Filters -->
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="text-xs font-semibold text-apple-gray-400 mr-2">Filter Status:</span>
+        <button type="button" class="claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900" data-filter="all">
+          All (16)
+        </button>
+        <button type="button" class="claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-600 dark:text-apple-gray-300" data-filter="robustly reproduced">
+          Robustly Reproduced (15)
+        </button>
+        <button type="button" class="claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-600 dark:text-apple-gray-300" data-filter="budget-sensitive">
+          Budget-Sensitive (1)
+        </button>
+      </div>
+
+      <!-- Claim Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="claims-grid">
+        {RESEARCH_CLAIMS.map(claim => (
+          <div
+            class="claim-card rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] shadow-xs flex flex-col justify-between"
+            data-status={claim.status}
+          >
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-mono font-bold text-apple-blue dark:text-apple-blue-dark">
+                  {claim.id} (Phase {claim.phase})
+                </span>
+                <span class={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${claim.status === 'robustly reproduced' ? 'bg-apple-green/10 text-apple-green dark:text-apple-green-dark' : 'bg-apple-orange/10 text-apple-orange dark:text-apple-orange-dark'}`}>
+                  {claim.status}
+                </span>
+              </div>
+              <h3 class="text-base font-bold text-apple-gray-900 dark:text-white mb-2 leading-snug">
+                {claim.title}
+              </h3>
+              <p class="text-xs text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed mb-4">
+                {claim.claim}
+              </p>
+              <div class="p-3 rounded-xl bg-apple-gray-50 dark:bg-apple-gray-800/60 border border-black/[0.04] dark:border-white/[0.06] text-xs font-mono mb-4">
+                <div class="text-[11px] text-apple-gray-400 font-sans mb-1">Primary Evidence:</div>
+                <div class="text-apple-gray-800 dark:text-apple-gray-200">{claim.evidence}</div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between text-xs">
+              <span class="font-mono text-apple-gray-400">{claim.effectSize}</span>
+              <a href={`/docs/claims#${claim.id.toLowerCase()}`} class="text-apple-blue dark:text-apple-blue-dark hover:underline font-medium">
+                Full Specification →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Limitations Callout Banner at Bottom of Results -->
+    <div class="mt-16 pt-8 border-t border-black/[0.06] dark:border-white/[0.08]">
+      <LimitationBanner />
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  (function () {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const views = document.querySelectorAll('.explorer-view');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetView = btn.getAttribute('data-view');
+
+        // Tab buttons styling
+        tabBtns.forEach(b => {
+          b.className = 'tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white';
+        });
+        btn.className = 'tab-btn px-3 py-1.5 rounded-full transition-all bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900';
+
+        // Switch views
+        views.forEach(v => {
+          if (v.id === targetView) {
+            v.classList.remove('hidden');
+          } else {
+            v.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Check URL hash on load
+    if (window.location.hash) {
+      const hash = window.location.hash.replace('#', '');
+      if (hash === 'goodhart') {
+        const btn = document.querySelector('[data-view="view-goodhart"]');
+        if (btn) btn.click();
+      } else if (hash === 'compute-frontier') {
+        const btn = document.querySelector('[data-view="view-compute"]');
+        if (btn) btn.click();
+      } else if (hash.startsWith('claim')) {
+        const btn = document.querySelector('[data-view="view-claims"]');
+        if (btn) btn.click();
+      }
+    }
+
+    // Claim Filter buttons
+    const filterBtns = document.querySelectorAll('.claim-filter-btn');
+    const claimCards = document.querySelectorAll('.claim-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        filterBtns.forEach(b => {
+          b.className = 'claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-600 dark:text-apple-gray-300';
+        });
+        btn.className = 'claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900';
+
+        claimCards.forEach(card => {
+          const status = card.getAttribute('data-status');
+          if (filter === 'all' || status === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+  })();
+</script>
