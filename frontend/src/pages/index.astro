@@ -1,0 +1,348 @@
+---
+// index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LimitationBanner from '../components/LimitationBanner.astro';
+import MetricCard from '../components/MetricCard.astro';
+import { TUTORIALS_METADATA } from '../lib/data';
+---
+
+<BaseLayout
+  title="RL Reasoning Lab | Genuine Reasoning Improvement vs Reward Exploitation"
+  description="An inspectable, first-principles research laboratory investigating when reinforcement learning produces genuine multi-step reasoning improvement versus reward exploitation."
+>
+  <!-- Hero Section -->
+  <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden border-b border-black/[0.04] dark:border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <!-- Eyebrow Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-apple-blue/10 text-apple-blue dark:bg-apple-blue-dark/15 dark:text-apple-blue-dark mb-6">
+          <span class="w-1.5 h-1.5 rounded-full bg-apple-blue dark:bg-apple-blue-dark"></span>
+          First-Principles Research Laboratory
+        </div>
+
+        <!-- Headline -->
+        <h1 class="text-4xl sm:text-6xl font-bold tracking-tight text-apple-gray-900 dark:text-white leading-[1.08] mb-6">
+          When does RL produce <span class="text-apple-blue dark:text-apple-blue-dark">genuine reasoning</span>, not reward exploits?
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-lg sm:text-xl text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed font-normal mb-8">
+          Modern language models show dramatic accuracy leaps when fine-tuned with reinforcement learning against verifiers. However, benchmark accuracy conflates two fundamentally different phenomena: acquiring a valid multi-step deduction procedure versus satisfying a reward channel via opportunistic shortcuts.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a
+            href="/tutorials"
+            class="px-5 py-2.5 rounded-full text-sm font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900 hover:bg-apple-gray-800 dark:hover:bg-apple-gray-100 shadow-sm transition-all"
+          >
+            Explore Curriculum (9 Phases) →
+          </a>
+          <a
+            href="/results"
+            class="px-5 py-2.5 rounded-full text-sm font-semibold bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-800 dark:text-apple-gray-200 hover:bg-apple-gray-200 dark:hover:bg-apple-gray-700 border border-black/[0.08] dark:border-white/[0.1] transition-all"
+          >
+            Explore Empirical Results
+          </a>
+          <a
+            href="/demos"
+            class="px-5 py-2.5 rounded-full text-sm font-semibold text-apple-blue dark:text-apple-blue-dark hover:underline transition-all"
+          >
+            Try Interactive Demos
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Central Scientific Distinction Section -->
+  <section class="py-16 sm:py-20 border-b border-black/[0.04] dark:border-white/[0.06] bg-apple-gray-100/40 dark:bg-apple-gray-950/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-10 text-center max-w-2xl mx-auto">
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-3">
+          The Central Scientific Distinction
+        </h2>
+        <p class="text-sm text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed">
+          Benchmark accuracy is an aggregate terminal metric. In multi-step reasoning, optimizing final answers alone actively degrades the procedural validity of intermediate deductions.
+        </p>
+      </div>
+
+      <!-- Comparison Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Outcome-Only RL Card -->
+        <div class="rounded-3xl p-6 sm:p-8 bg-white dark:bg-apple-gray-900 border border-apple-red/20 dark:border-apple-red-dark/30 shadow-card flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-apple-red/10 text-apple-red dark:text-apple-red-dark">
+                Terminal Reward Only
+              </span>
+              <span class="text-xs font-mono text-apple-gray-400">CLAIM-10</span>
+            </div>
+            <h3 class="text-xl font-bold text-apple-gray-900 dark:text-white mb-2">
+              Outcome-Only PPO
+            </h3>
+            <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed mb-6">
+              Rewarded purely on final answer correctness (terminal R ∈ &#123;0, 1&#125;). The optimizer discovers hallucinated transitions and dataset shortcuts that maximize immediate answer accuracy while bypassing causal reasoning.
+            </p>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">IID Answer Accuracy:</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">87.8%</span>
+              </div>
+              <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">Complete-Path Validity:</span>
+                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark">42.0%</span>
+              </div>
+              <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">Process Validity Gap:</span>
+                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark">+45.8%</span>
+              </div>
+              <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">OOD Depth Acc ($d=4..6$):</span>
+                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark">16.7% (Collapse)</span>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">Counterfactual Sensitivity:</span>
+                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark">23.1%</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] text-[11px] text-apple-red dark:text-apple-red-dark font-medium">
+            Produces high benchmark accuracy via hallucinated shortcuts.
+          </div>
+        </div>
+
+        <!-- Process Supervision Card -->
+        <div class="rounded-3xl p-6 sm:p-8 bg-white dark:bg-apple-gray-900 border border-apple-green/20 dark:border-apple-green-dark/30 shadow-card flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-apple-green/10 text-apple-green dark:text-apple-green-dark">
+                Step-Level Supervision
+              </span>
+              <span class="text-xs font-mono text-apple-gray-400">CLAIM-11</span>
+            </div>
+            <h3 class="text-xl font-bold text-apple-gray-900 dark:text-white mb-2">
+              Process-Supervised PPO
+            </h3>
+            <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed mb-6">
+              Rewarded on the validity of each intermediate deduction step (mean step validity R). Aligns answer correctness tightly with procedural chain validity, enabling strong OOD generalization.
+            </p>
+
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">IID Answer Accuracy:</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">84.7%</span>
+              </div>
+              <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">Complete-Path Validity:</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">86.5%</span>
+              </div>
+              <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">Path Gain over Outcome:</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">+44.8% (d = 10.92)</span>
+              </div>
+              <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">OOD Depth Acc ($d=4..6$):</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">66.5% (Transfers)</span>
+              </div>
+              <div class="flex items-center justify-between text-xs">
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">Counterfactual Sensitivity:</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">74.2%</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-black/[0.06] dark:border-white/[0.08] text-[11px] text-apple-green dark:text-apple-green-dark font-medium">
+            Improves the actual multi-step reasoning procedure.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Headline Findings Section -->
+  <section class="py-16 sm:py-20 border-b border-black/[0.04] dark:border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="mb-12">
+        <span class="text-xs font-semibold uppercase tracking-wider text-apple-blue dark:text-apple-blue-dark block mb-2">
+          Audited Empirical Evidence
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
+          Headline Research Findings
+        </h2>
+        <p class="text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-2xl">
+          All findings are evaluated across $n=10$ paired training seeds and audited using non-parametric bootstrap confidence intervals and Cohen's $d$ effect sizes traceable to committed JSON artifacts.
+        </p>
+      </div>
+
+      <!-- Grid of 5 Headline Findings -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Finding 1 -->
+        <MetricCard
+          value="45.8%"
+          label="Process Validity Gap"
+          sublabel="Outcome PPO answer accuracy (87.8%) surges while path validity collapses (42.0%)."
+          badge="Core Finding"
+          ci="[+42.7%, +49.5%]"
+          cohensD="10.92"
+          claimId="CLAIM-10"
+          variant="red"
+        />
+
+        <!-- Finding 2 -->
+        <MetricCard
+          value="+49.8%"
+          label="OOD Depth Advantage"
+          sublabel="Process supervision maintains 66.5% accuracy on unseen chain lengths vs 16.7% for outcome RL."
+          badge="Generalization"
+          ci="p < 0.001"
+          cohensD="8.45"
+          claimId="CLAIM-11"
+          variant="green"
+        />
+
+        <!-- Finding 3 -->
+        <MetricCard
+          value="+68.8%"
+          label="Goodhart Divergence Gap"
+          sublabel="Optimizing flawed proxy verifiers drives proxy reward to 94.5% while true utility falls to 25.7%."
+          badge="Goodhart Law"
+          ci="Exploit rate: 64.9%"
+          cohensD="-22.40"
+          claimId="CLAIM-12"
+          variant="red"
+        />
+
+        <!-- Finding 4 -->
+        <MetricCard
+          value="1.3%"
+          label="Exploit Suppression via Gating"
+          sublabel="Topological invariant gates suppress learned exploits from 64.9% down to 1.3% under flawed verifiers."
+          badge="Safeguard"
+          ci="Δ = -63.6%"
+          cohensD="+18.20"
+          claimId="CLAIM-13"
+          variant="green"
+        />
+
+        <!-- Finding 5 -->
+        <MetricCard
+          value="3.4x"
+          label="Disagreement Audit Efficiency"
+          sublabel="Routing queries by inter-verifier disagreement catches 69% of exploits under a 20% budget vs 20% for random."
+          badge="Auditing"
+          ci="Budget: 20%"
+          cohensD="+7.80"
+          claimId="CLAIM-15"
+          variant="blue"
+        />
+
+        <!-- Finding 6 -->
+        <MetricCard
+          value="8x"
+          label="Inference Compute Frontier"
+          sublabel="SFT + Best-of-8 search matches single-sample Process PPO accuracy (88.5% vs 85.5%) at 8x token expenditure."
+          badge="Search vs RL"
+          ci="144 vs 18 tok/task"
+          cohensD="+1.10"
+          claimId="CLAIM-16"
+          variant="neutral"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Threats to Validity / Limitations Banner -->
+  <section class="py-12 border-b border-black/[0.04] dark:border-white/[0.06] bg-apple-gray-100/30 dark:bg-apple-gray-950/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <LimitationBanner />
+    </div>
+  </section>
+
+  <!-- Interactive Curriculum Lineage (All 9 Tutorials) -->
+  <section class="py-16 sm:py-20 border-b border-black/[0.04] dark:border-white/[0.06]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-semibold uppercase tracking-wider text-apple-blue dark:text-apple-blue-dark block mb-2">
+            First-Principles Curriculum
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-apple-gray-900 dark:text-white">
+            The 9-Phase Research Lineage
+          </h2>
+          <p class="text-sm text-apple-gray-500 dark:text-apple-gray-400 mt-1 max-w-xl">
+            Each phase constructs the theoretical foundation, mathematical derivations, and forensic code necessary to understand post-training reasoning dynamics.
+          </p>
+        </div>
+        <a
+          href="/tutorials"
+          class="text-xs font-semibold text-apple-blue dark:text-apple-blue-dark hover:underline flex items-center gap-1 shrink-0"
+        >
+          View Full Curriculum Table of Contents →
+        </a>
+      </div>
+
+      <!-- 9 Tutorial Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {TUTORIALS_METADATA.map(tut => (
+          <a
+            href={`/tutorials/${tut.slug}`}
+            class="group rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] hover:border-apple-blue/30 dark:hover:border-apple-blue-dark/40 shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between"
+          >
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-600 dark:text-apple-gray-300">
+                  Phase {tut.phase}
+                </span>
+                <span class="text-[11px] text-apple-gray-400 font-sans">
+                  ~{tut.readingTimeMinutes} min read
+                </span>
+              </div>
+              <h3 class="text-base font-bold text-apple-gray-900 dark:text-white group-hover:text-apple-blue dark:group-hover:text-apple-blue-dark transition-colors mb-2 leading-snug">
+                {tut.title}
+              </h3>
+              <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 line-clamp-3 leading-relaxed mb-4">
+                {tut.description}
+              </p>
+            </div>
+            <div class="pt-3 border-t border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between text-xs font-medium text-apple-blue dark:text-apple-blue-dark">
+              <span>Read Tutorial</span>
+              <span class="transition-transform group-hover:translate-x-1">→</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Reproducibility & Quickstart Section -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <span class="text-xs font-semibold uppercase tracking-wider text-apple-blue dark:text-apple-blue-dark block mb-2">
+          Local Deterministic Execution
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-4">
+          Reproduce Experiments in Seconds
+        </h2>
+        <p class="text-sm text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed mb-6">
+          All benchmarks run locally on CPU in seconds with zero external dependencies, API keys, or GPU requirements.
+        </p>
+
+        <!-- Command Block -->
+        <div class="rounded-2xl bg-apple-gray-900 text-apple-gray-100 p-5 font-mono text-xs border border-black/10 dark:border-white/10 overflow-x-auto shadow-elevated">
+          <div class="text-apple-gray-500 mb-2"># Clone and install dependencies using uv</div>
+          <div class="text-apple-gray-300 mb-1">git clone https://github.com/mbzuaiciao/rl-reasoning-lab.git</div>
+          <div class="text-apple-gray-300 mb-1">cd rl-reasoning-lab && uv venv && source .venv/bin/activate</div>
+          <div class="text-apple-gray-300 mb-4">uv pip install -e ".[dev]"</div>
+
+          <div class="text-apple-gray-500 mb-2"># Reproduce the Phase 10 Capstone Benchmark</div>
+          <div class="text-apple-green dark:text-apple-green-dark mb-4">python experiments/phase10_capstone.py</div>
+
+          <div class="text-apple-gray-500 mb-2"># Run the complete test suite (128 passing tests)</div>
+          <div class="text-apple-blue dark:text-apple-blue-dark">pytest tests/ -v</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,390 @@
+---
+// GraphReasoningDemo.astro
+---
+
+<div class="rounded-3xl border border-black/[0.08] dark:border-white/[0.1] bg-white/80 dark:bg-apple-gray-900/80 p-6 sm:p-8 backdrop-blur-sm shadow-card">
+  <!-- Header -->
+  <div class="mb-6">
+    <div class="flex items-center gap-2 mb-1.5">
+      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-apple-purple/10 text-apple-purple dark:text-apple-purple-dark">
+        Interactive Demo 1
+      </span>
+      <span class="text-xs text-apple-gray-400">• Pedagogical Model</span>
+    </div>
+    <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white">
+      Multi-Step Causal Path vs Shortcut Exploitation
+    </h3>
+    <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 mt-1">
+      Observe how outcome-only RL learns to satisfy terminal answer verifiers via invalid shortcut edges, and how counterfactual premise mutations instantly expose procedural failure.
+    </p>
+  </div>
+
+  <!-- Illustrative Callout -->
+  <div class="mb-6 px-4 py-2.5 rounded-xl bg-apple-orange/10 dark:bg-apple-orange-dark/10 border border-apple-orange/20 dark:border-apple-orange-dark/20 text-[11px] text-apple-orange-dark flex items-start gap-2">
+    <span class="font-bold shrink-0">NOTICE:</span>
+    <span>Illustrative Teaching Demonstration — Designed for conceptual intuition. Quantitative measurements are recorded separately in the Results Explorer.</span>
+  </div>
+
+  <!-- Interactive Controls Bar -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+    <!-- Regime Selector -->
+    <div>
+      <label class="block text-xs font-semibold text-apple-gray-700 dark:text-apple-gray-300 mb-2">
+        Training Supervision Regime
+      </label>
+      <div class="grid grid-cols-2 gap-2 p-1 rounded-xl bg-apple-gray-100 dark:bg-apple-gray-800">
+        <button
+          type="button"
+          id="btn-process-regime"
+          class="px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-white dark:bg-apple-gray-700 text-apple-gray-900 dark:text-white shadow-xs"
+        >
+          Process Supervision
+        </button>
+        <button
+          type="button"
+          id="btn-outcome-regime"
+          class="px-3 py-2 rounded-lg text-xs font-semibold transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white"
+        >
+          Outcome-Only RL
+        </button>
+      </div>
+    </div>
+
+    <!-- Counterfactual Mutation Toggle -->
+    <div>
+      <label class="block text-xs font-semibold text-apple-gray-700 dark:text-apple-gray-300 mb-2">
+        Counterfactual Premise Mutation
+      </label>
+      <button
+        type="button"
+        id="btn-mutate-premise"
+        class="w-full py-2.5 px-4 rounded-xl text-xs font-semibold border border-black/[0.08] dark:border-white/[0.1] bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-700 dark:text-apple-gray-200 hover:bg-apple-gray-200 dark:hover:bg-apple-gray-700 transition-colors flex items-center justify-between"
+      >
+        <span>Mutate Edge 2: <code id="lbl-edge2" class="font-mono font-bold text-apple-blue dark:text-apple-blue-dark">B → C</code></span>
+        <span id="badge-mutation" class="text-[10px] px-2 py-0.5 rounded-full bg-apple-gray-200 dark:bg-apple-gray-700 text-apple-gray-600 dark:text-apple-gray-300">
+          Standard Task
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Graph & Execution Visualizer -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- SVG Graph Diagram (Left 7 cols) -->
+    <div class="lg:col-span-7 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-apple-gray-50/70 dark:bg-apple-gray-950/70 p-4 flex flex-col justify-between">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-mono font-semibold text-apple-gray-500 dark:text-apple-gray-400">
+          Environment Premise Graph (|V|=8, d=3)
+        </span>
+        <span class="text-[11px] font-mono text-apple-gray-400">Query: A → ?</span>
+      </div>
+
+      <!-- SVG Diagram -->
+      <div class="w-full aspect-[16/9] flex items-center justify-center relative overflow-hidden">
+        <svg viewBox="0 0 540 240" class="w-full h-full select-none" id="dag-svg">
+          <!-- Definitions for arrow markers -->
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor" class="text-apple-gray-400 dark:text-apple-gray-600" />
+            </marker>
+            <marker id="arrow-active" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor" class="text-apple-green dark:text-apple-green-dark" />
+            </marker>
+            <marker id="arrow-invalid" viewBox="0 0 10 10" refX="22" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 10 5 L 0 9 z" fill="currentColor" class="text-apple-red dark:text-apple-red-dark" />
+            </marker>
+          </defs>
+
+          <!-- Background Distractor Edges -->
+          <path d="M 60 190 L 160 190" stroke="currentColor" stroke-dasharray="4,4" class="text-apple-gray-300 dark:text-apple-gray-700" stroke-width="1.5" marker-end="url(#arrow)" />
+          <path d="M 380 190 L 480 190" stroke="currentColor" stroke-dasharray="4,4" class="text-apple-gray-300 dark:text-apple-gray-700" stroke-width="1.5" marker-end="url(#arrow)" />
+
+          <!-- Main Causal Path Edges -->
+          <!-- Edge A -> B -->
+          <line id="svg-edge-ab" x1="60" y1="80" x2="180" y2="80" stroke="currentColor" class="text-apple-gray-300 dark:text-apple-gray-700" stroke-width="2.5" marker-end="url(#arrow)" />
+          <!-- Edge B -> C (Standard) -->
+          <line id="svg-edge-bc" x1="180" y1="80" x2="300" y2="80" stroke="currentColor" class="text-apple-gray-300 dark:text-apple-gray-700" stroke-width="2.5" marker-end="url(#arrow)" />
+          <!-- Edge B -> K (Mutated Alternate) -->
+          <line id="svg-edge-bk" x1="180" y1="80" x2="300" y2="150" stroke="currentColor" stroke-dasharray="3,3" class="text-apple-gray-300 dark:text-apple-gray-800" stroke-width="2" marker-end="url(#arrow)" />
+          <!-- Edge C -> D -->
+          <line id="svg-edge-cd" x1="300" y1="80" x2="440" y2="80" stroke="currentColor" class="text-apple-gray-300 dark:text-apple-gray-700" stroke-width="2.5" marker-end="url(#arrow)" />
+
+          <!-- Shortcut Edge (Outcome PPO Hallucination A -> D) -->
+          <path id="svg-edge-shortcut" d="M 60 80 Q 250 15 440 80" fill="none" stroke="currentColor" stroke-dasharray="5,5" class="text-transparent" stroke-width="2" marker-end="url(#arrow-invalid)" />
+
+          <!-- Distractor Nodes -->
+          <g transform="translate(60, 190)">
+            <circle r="15" fill="currentColor" class="text-apple-gray-200 dark:text-apple-gray-800" />
+            <text text-anchor="middle" dy="4" font-size="11" font-family="monospace" class="fill-apple-gray-500">X</text>
+          </g>
+          <g transform="translate(160, 190)">
+            <circle r="15" fill="currentColor" class="text-apple-gray-200 dark:text-apple-gray-800" />
+            <text text-anchor="middle" dy="4" font-size="11" font-family="monospace" class="fill-apple-gray-500">Y</text>
+          </g>
+          <g transform="translate(380, 190)">
+            <circle r="15" fill="currentColor" class="text-apple-gray-200 dark:text-apple-gray-800" />
+            <text text-anchor="middle" dy="4" font-size="11" font-family="monospace" class="fill-apple-gray-500">M</text>
+          </g>
+          <g transform="translate(480, 190)">
+            <circle r="15" fill="currentColor" class="text-apple-gray-200 dark:text-apple-gray-800" />
+            <text text-anchor="middle" dy="4" font-size="11" font-family="monospace" class="fill-apple-gray-500">N</text>
+          </g>
+
+          <!-- Mutated Target Node K -->
+          <g id="node-k" transform="translate(300, 150)">
+            <circle r="16" fill="currentColor" class="text-apple-gray-200 dark:text-apple-gray-800" stroke="currentColor" class="text-apple-gray-300 dark:text-apple-gray-700" stroke-width="1.5" />
+            <text text-anchor="middle" dy="4.5" font-size="12" font-family="monospace" font-weight="bold" class="fill-apple-gray-700 dark:fill-apple-gray-300">K</text>
+          </g>
+
+          <!-- Main Nodes: A, B, C, D -->
+          <g id="node-a" transform="translate(60, 80)">
+            <circle r="18" fill="currentColor" class="text-apple-blue/20 dark:text-apple-blue-dark/20" stroke="currentColor" class="text-apple-blue dark:text-apple-blue-dark" stroke-width="2" />
+            <text text-anchor="middle" dy="5" font-size="13" font-family="monospace" font-weight="bold" class="fill-apple-blue dark:fill-apple-blue-dark">A</text>
+            <text text-anchor="middle" dy="32" font-size="10" font-family="sans-serif" class="fill-apple-gray-400">Start</text>
+          </g>
+          <g id="node-b" transform="translate(180, 80)">
+            <circle r="18" fill="currentColor" class="text-apple-gray-100 dark:text-apple-gray-800" stroke="currentColor" class="text-apple-gray-300 dark:text-apple-gray-700" stroke-width="2" />
+            <text text-anchor="middle" dy="5" font-size="13" font-family="monospace" font-weight="bold" class="fill-apple-gray-800 dark:fill-apple-gray-200">B</text>
+          </g>
+          <g id="node-c" transform="translate(300, 80)">
+            <circle r="18" fill="currentColor" class="text-apple-gray-100 dark:text-apple-gray-800" stroke="currentColor" class="text-apple-gray-300 dark:text-apple-gray-700" stroke-width="2" />
+            <text text-anchor="middle" dy="5" font-size="13" font-family="monospace" font-weight="bold" class="fill-apple-gray-800 dark:fill-apple-gray-200">C</text>
+          </g>
+          <g id="node-d" transform="translate(440, 80)">
+            <circle r="18" fill="currentColor" class="text-apple-gray-100 dark:text-apple-gray-800" stroke="currentColor" class="text-apple-gray-300 dark:text-apple-gray-700" stroke-width="2" />
+            <text text-anchor="middle" dy="5" font-size="13" font-family="monospace" font-weight="bold" class="fill-apple-gray-800 dark:fill-apple-gray-200">D</text>
+            <text text-anchor="middle" dy="32" font-size="10" font-family="sans-serif" class="fill-apple-gray-400">Target</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="mt-2 text-[11px] text-apple-gray-400 flex items-center justify-between">
+        <span class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-apple-green dark:bg-apple-green-dark"></span> Valid traversed edge
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-apple-red dark:bg-apple-red-dark"></span> Shortcut / invalid transition
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full border border-dashed border-apple-gray-400"></span> Unused distractors
+        </span>
+      </div>
+    </div>
+
+    <!-- Generated Reasoning Trace & Verifier Scoreboard (Right 5 cols) -->
+    <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+      <!-- Generated Token Sequence -->
+      <div class="p-4 rounded-2xl bg-apple-gray-100 dark:bg-apple-gray-800/60 border border-black/[0.06] dark:border-white/[0.08]">
+        <span class="text-[11px] font-semibold text-apple-gray-500 uppercase tracking-wider block mb-2">
+          Model Emitted Sequence ($y \sim \pi_\theta$)
+        </span>
+        <div id="trace-output" class="font-mono text-xs sm:text-sm p-3 rounded-xl bg-white dark:bg-apple-gray-900 border border-black/[0.04] dark:border-white/[0.06] text-apple-gray-800 dark:text-apple-gray-200 leading-relaxed overflow-x-auto">
+          R: A->B; B->C; C->D; A: D
+        </div>
+      </div>
+
+      <!-- Verifier Auditing Cards -->
+      <div class="grid grid-cols-2 gap-3">
+        <!-- Terminal Answer Check -->
+        <div class="p-3 rounded-xl bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08]">
+          <span class="text-[10px] font-semibold text-apple-gray-400 uppercase tracking-wider block mb-1">
+            Answer Verifier
+          </span>
+          <div id="val-outcome-score" class="text-xl font-bold font-mono text-apple-green dark:text-apple-green-dark">
+            1.00 <span class="text-xs font-sans font-normal">(Correct)</span>
+          </div>
+          <span id="sub-outcome-score" class="text-[10px] text-apple-gray-400">
+            Terminal matches target
+          </span>
+        </div>
+
+        <!-- Step Process Validity Check -->
+        <div class="p-3 rounded-xl bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08]">
+          <span class="text-[10px] font-semibold text-apple-gray-400 uppercase tracking-wider block mb-1">
+            Process Oracle
+          </span>
+          <div id="val-process-score" class="text-xl font-bold font-mono text-apple-green dark:text-apple-green-dark">
+            100% <span class="text-xs font-sans font-normal">(Valid)</span>
+          </div>
+          <span id="sub-process-score" class="text-[10px] text-apple-gray-400">
+            All 3 edges verified
+          </span>
+        </div>
+      </div>
+
+      <!-- Diagnostic Forensic Analysis Box -->
+      <div id="forensic-box" class="p-4 rounded-xl bg-apple-green/5 dark:bg-apple-green-dark/10 border border-apple-green/20 dark:border-apple-green-dark/20 text-xs">
+        <h4 id="forensic-title" class="font-semibold text-apple-green dark:text-apple-green-dark mb-1">
+          Valid Multi-Step Deduction
+        </h4>
+        <p id="forensic-desc" class="text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed text-[11px]">
+          The policy traverses the complete causal chain step-by-step. Each intermediate deduction (A→B, B→C, C→D) is verified against graph premises.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const btnProcess = document.getElementById('btn-process-regime');
+    const btnOutcome = document.getElementById('btn-outcome-regime');
+    const btnMutate = document.getElementById('btn-mutate-premise');
+    const lblEdge2 = document.getElementById('lbl-edge2');
+    const badgeMutation = document.getElementById('badge-mutation');
+
+    const traceOutput = document.getElementById('trace-output');
+    const valOutcome = document.getElementById('val-outcome-score');
+    const subOutcome = document.getElementById('sub-outcome-score');
+    const valProcess = document.getElementById('val-process-score');
+    const subProcess = document.getElementById('sub-process-score');
+    const forensicBox = document.getElementById('forensic-box');
+    const forensicTitle = document.getElementById('forensic-title');
+    const forensicDesc = document.getElementById('forensic-desc');
+
+    const edgeAB = document.getElementById('svg-edge-ab');
+    const edgeBC = document.getElementById('svg-edge-bc');
+    const edgeBK = document.getElementById('svg-edge-bk');
+    const edgeCD = document.getElementById('svg-edge-cd');
+    const edgeShortcut = document.getElementById('svg-edge-shortcut');
+
+    let currentRegime = 'process'; // 'process' | 'outcome'
+    let isMutated = false;
+
+    function update() {
+      // Button states
+      if (currentRegime === 'process') {
+        btnProcess.className = 'px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-white dark:bg-apple-gray-700 text-apple-gray-900 dark:text-white shadow-xs';
+        btnOutcome.className = 'px-3 py-2 rounded-lg text-xs font-semibold transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white';
+      } else {
+        btnOutcome.className = 'px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-white dark:bg-apple-gray-700 text-apple-gray-900 dark:text-white shadow-xs';
+        btnProcess.className = 'px-3 py-2 rounded-lg text-xs font-semibold transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white';
+      }
+
+      // Mutation labels
+      if (isMutated) {
+        lblEdge2.textContent = 'B → K';
+        badgeMutation.textContent = 'Mutated Premise';
+        badgeMutation.className = 'text-[10px] px-2 py-0.5 rounded-full bg-apple-orange/15 text-apple-orange dark:text-apple-orange-dark font-medium';
+        edgeBC.setAttribute('stroke-dasharray', '3,3');
+        edgeBK.removeAttribute('stroke-dasharray');
+      } else {
+        lblEdge2.textContent = 'B → C';
+        badgeMutation.textContent = 'Standard Task';
+        badgeMutation.className = 'text-[10px] px-2 py-0.5 rounded-full bg-apple-gray-200 dark:bg-apple-gray-700 text-apple-gray-600 dark:text-apple-gray-300';
+        edgeBC.removeAttribute('stroke-dasharray');
+        edgeBK.setAttribute('stroke-dasharray', '3,3');
+      }
+
+      // Graph Edge colors
+      if (currentRegime === 'process') {
+        edgeShortcut.setAttribute('class', 'text-transparent');
+        edgeAB.setAttribute('class', 'text-apple-green dark:text-apple-green-dark');
+        edgeAB.setAttribute('marker-end', 'url(#arrow-active)');
+
+        if (isMutated) {
+          edgeBC.setAttribute('class', 'text-apple-gray-300 dark:text-apple-gray-700');
+          edgeBC.setAttribute('marker-end', 'url(#arrow)');
+          edgeBK.setAttribute('class', 'text-apple-green dark:text-apple-green-dark');
+          edgeBK.setAttribute('marker-end', 'url(#arrow-active)');
+          edgeCD.setAttribute('class', 'text-apple-gray-300 dark:text-apple-gray-700');
+          edgeCD.setAttribute('marker-end', 'url(#arrow)');
+
+          traceOutput.innerHTML = '<span class="text-apple-blue font-bold">R:</span> A->B; B->K; <span class="text-apple-green dark:text-apple-green-dark font-bold">A: K</span>';
+          valOutcome.innerHTML = '1.00 <span class="text-xs font-sans font-normal">(Correct)</span>';
+          valOutcome.className = 'text-xl font-bold font-mono text-apple-green dark:text-apple-green-dark';
+          subOutcome.textContent = 'Correctly adapts to mutated target K';
+
+          valProcess.innerHTML = '100% <span class="text-xs font-sans font-normal">(Valid)</span>';
+          valProcess.className = 'text-xl font-bold font-mono text-apple-green dark:text-apple-green-dark';
+          subProcess.textContent = 'Edges A->B and B->K verified';
+
+          forensicBox.className = 'p-4 rounded-xl bg-apple-green/5 dark:bg-apple-green-dark/10 border border-apple-green/20 dark:border-apple-green-dark/20 text-xs';
+          forensicTitle.textContent = 'Counterfactual Generalization Preserved (CLAIM-11)';
+          forensicTitle.className = 'font-semibold text-apple-green dark:text-apple-green-dark mb-1';
+          forensicDesc.textContent = 'When premise edge B->C is mutated to B->K, the process-trained policy detects the branch, traverses B->K, and emits target K (74.2% sensitivity vs 23.1% for outcome RL).';
+        } else {
+          edgeBC.setAttribute('class', 'text-apple-green dark:text-apple-green-dark');
+          edgeBC.setAttribute('marker-end', 'url(#arrow-active)');
+          edgeBK.setAttribute('class', 'text-apple-gray-300 dark:text-apple-gray-800');
+          edgeBK.setAttribute('marker-end', 'url(#arrow)');
+          edgeCD.setAttribute('class', 'text-apple-green dark:text-apple-green-dark');
+          edgeCD.setAttribute('marker-end', 'url(#arrow-active)');
+
+          traceOutput.innerHTML = '<span class="text-apple-blue font-bold">R:</span> A->B; B->C; C->D; <span class="text-apple-green dark:text-apple-green-dark font-bold">A: D</span>';
+          valOutcome.innerHTML = '1.00 <span class="text-xs font-sans font-normal">(Correct)</span>';
+          valOutcome.className = 'text-xl font-bold font-mono text-apple-green dark:text-apple-green-dark';
+          subOutcome.textContent = 'Terminal matches ground truth D';
+
+          valProcess.innerHTML = '100% <span class="text-xs font-sans font-normal">(Valid)</span>';
+          valProcess.className = 'text-xl font-bold font-mono text-apple-green dark:text-apple-green-dark';
+          subProcess.textContent = 'All 3 intermediate edges valid';
+
+          forensicBox.className = 'p-4 rounded-xl bg-apple-green/5 dark:bg-apple-green-dark/10 border border-apple-green/20 dark:border-apple-green-dark/20 text-xs';
+          forensicTitle.textContent = 'Valid Multi-Step Deduction (CLAIM-04 & CLAIM-11)';
+          forensicTitle.className = 'font-semibold text-apple-green dark:text-apple-green-dark mb-1';
+          forensicDesc.textContent = 'Under process supervision, each deduction step is explicitly validated. Answer accuracy (84.7%) aligns closely with path validity (86.5%).';
+        }
+      } else {
+        // Outcome-only regime
+        edgeAB.setAttribute('class', 'text-apple-gray-300 dark:text-apple-gray-700');
+        edgeAB.setAttribute('marker-end', 'url(#arrow)');
+        edgeBC.setAttribute('class', 'text-apple-gray-300 dark:text-apple-gray-700');
+        edgeBC.setAttribute('marker-end', 'url(#arrow)');
+        edgeBK.setAttribute('class', 'text-apple-gray-300 dark:text-apple-gray-800');
+        edgeBK.setAttribute('marker-end', 'url(#arrow)');
+        edgeCD.setAttribute('class', 'text-apple-gray-300 dark:text-apple-gray-700');
+        edgeCD.setAttribute('marker-end', 'url(#arrow)');
+
+        edgeShortcut.setAttribute('class', 'text-apple-red dark:text-apple-red-dark');
+
+        if (isMutated) {
+          traceOutput.innerHTML = '<span class="text-apple-blue font-bold">R:</span> A->D; <span class="text-apple-red dark:text-apple-red-dark font-bold">A: D</span> <span class="text-apple-gray-400 text-[10px]">(Stubbornly emits D)</span>';
+          valOutcome.innerHTML = '0.00 <span class="text-xs font-sans font-normal text-apple-red">(Failed)</span>';
+          valOutcome.className = 'text-xl font-bold font-mono text-apple-red dark:text-apple-red-dark';
+          subOutcome.textContent = 'Emitted D, but ground truth is K!';
+
+          valProcess.innerHTML = '0% <span class="text-xs font-sans font-normal text-apple-red">(Invalid)</span>';
+          valProcess.className = 'text-xl font-bold font-mono text-apple-red dark:text-apple-red-dark';
+          subProcess.textContent = 'Hallucinated transition A->D';
+
+          forensicBox.className = 'p-4 rounded-xl bg-apple-red/5 dark:bg-apple-red-dark/10 border border-apple-red/20 dark:border-apple-red-dark/20 text-xs';
+          forensicTitle.textContent = 'Catastrophic Counterfactual Collapse (CLAIM-10)';
+          forensicTitle.className = 'font-semibold text-apple-red dark:text-apple-red-dark mb-1';
+          forensicDesc.textContent = 'Because outcome-only RL learned a static correlation shortcut (output D for query A) rather than step-by-step reasoning, it fails completely when a premise is altered (dropping to 23.1% counterfactual consistency).';
+        } else {
+          traceOutput.innerHTML = '<span class="text-apple-blue font-bold">R:</span> A->X; X->D; <span class="text-apple-green dark:text-apple-green-dark font-bold">A: D</span> <span class="text-apple-orange text-[10px]">(Shortcut Exploit)</span>';
+          valOutcome.innerHTML = '1.00 <span class="text-xs font-sans font-normal">(Rewarding!)</span>';
+          valOutcome.className = 'text-xl font-bold font-mono text-apple-green dark:text-apple-green-dark';
+          subOutcome.textContent = 'Outcome verifier sees terminal "D"';
+
+          valProcess.innerHTML = '0% <span class="text-xs font-sans font-normal text-apple-red">(45.8% Gap)</span>';
+          valProcess.className = 'text-xl font-bold font-mono text-apple-red dark:text-apple-red-dark';
+          subProcess.textContent = 'Edge X->D does not exist in graph';
+
+          forensicBox.className = 'p-4 rounded-xl bg-apple-orange/10 dark:bg-apple-orange-dark/15 border border-apple-orange/20 dark:border-apple-orange-dark/25 text-xs';
+          forensicTitle.textContent = 'Severe Process Validity Gap Manifested (CLAIM-10)';
+          forensicTitle.className = 'font-semibold text-apple-orange-dark dark:text-apple-orange mb-1';
+          forensicDesc.textContent = 'The outcome-only policy achieves high terminal reward by hallucinating a shortcut (A->X->D). The answer is technically "D", but complete-path validity is 0%. This illustrates the 45.8% process gap (Cohen\'s d = 10.92).';
+        }
+      }
+    }
+
+    btnProcess.addEventListener('click', () => {
+      currentRegime = 'process';
+      update();
+    });
+
+    btnOutcome.addEventListener('click', () => {
+      currentRegime = 'outcome';
+      update();
+    });
+
+    btnMutate.addEventListener('click', () => {
+      isMutated = !isMutated;
+      update();
+    });
+
+    update();
+  })();
+</script>

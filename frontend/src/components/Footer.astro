@@ -1,0 +1,93 @@
+---
+// Footer.astro
+---
+
+<footer class="w-full mt-24 border-t border-black/[0.06] dark:border-white/[0.08] bg-apple-gray-100/50 dark:bg-apple-gray-900/40 text-apple-gray-500 dark:text-apple-gray-400 text-xs">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <!-- Col 1: About -->
+      <div class="space-y-3 md:col-span-1">
+        <div class="flex items-center gap-2">
+          <div class="w-6 h-6 rounded bg-apple-gray-800 dark:bg-white text-white dark:text-apple-gray-900 flex items-center justify-center font-mono font-bold text-[10px]">
+            RL
+          </div>
+          <span class="font-semibold text-apple-gray-900 dark:text-apple-gray-100 text-sm">
+            rl-reasoning-lab
+          </span>
+        </div>
+        <p class="text-xs leading-relaxed text-apple-gray-500 dark:text-apple-gray-400">
+          An inspectable, first-principles research laboratory investigating when reinforcement learning produces genuine multi-step reasoning improvement versus reward exploitation.
+        </p>
+      </div>
+
+      <!-- Col 2: Curriculum -->
+      <div>
+        <h3 class="font-semibold text-apple-gray-800 dark:text-apple-gray-200 mb-3 text-xs tracking-wider uppercase">
+          Curriculum Lineage
+        </h3>
+        <ul class="space-y-2">
+          <li><a href="/tutorials/01_rl_first_principles" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 1: RL Foundations</a></li>
+          <li><a href="/tutorials/02_policy_gradients" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 2: Policy Gradients</a></li>
+          <li><a href="/tutorials/03_ppo" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 3: PPO & Trust Regions</a></li>
+          <li><a href="/tutorials/04_language_models_as_policies" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 4: LMs as Policies</a></li>
+          <li><a href="/tutorials/05_rl_for_reasoning" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 5: RL for Reasoning</a></li>
+          <li><a href="/tutorials/06_rewards_and_verifiers" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 6: Rewards & Verifiers</a></li>
+          <li><a href="/tutorials/07_uncertainty_and_calibration" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 7: Uncertainty & Calibration</a></li>
+          <li><a href="/tutorials/08_experimental_science" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 8: Experimental Science</a></li>
+          <li><a href="/tutorials/09_research_engineering" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 9: Research Engineering</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Research Artifacts -->
+      <div>
+        <h3 class="font-semibold text-apple-gray-800 dark:text-apple-gray-200 mb-3 text-xs tracking-wider uppercase">
+          Empirical Research
+        </h3>
+        <ul class="space-y-2">
+          <li><a href="/docs/research_summary" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Executive Summary</a></li>
+          <li><a href="/docs/phase10_capstone_report" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Phase 10 Capstone Report</a></li>
+          <li><a href="/docs/claims" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Canonical Claim Registry (16 Claims)</a></li>
+          <li><a href="/docs/phase10_hypotheses" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Preregistered Hypotheses (H1–H7)</a></li>
+          <li><a href="/docs/phase10_failure_taxonomy" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Failure Taxonomy (10 Modes)</a></li>
+          <li><a href="/docs/phase10_case_studies" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Qualitative Case Studies</a></li>
+          <li><a href="/results" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Results Explorer (JSON Audits)</a></li>
+          <li><a href="/demos" class="hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors">Interactive Teaching Demos</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Scientific Boundaries -->
+      <div>
+        <h3 class="font-semibold text-apple-gray-800 dark:text-apple-gray-200 mb-3 text-xs tracking-wider uppercase">
+          Scientific Boundaries
+        </h3>
+        <p class="leading-relaxed text-apple-gray-500 dark:text-apple-gray-400 mb-3">
+          All experiments evaluate a 2-layer autoregressive causal transformer on synthetic directed acyclic graph deduction tasks (|V|=8) under an insulated oracle.
+        </p>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-apple-green/10 dark:bg-apple-green-dark/10 text-apple-green dark:text-apple-green-dark font-medium text-[11px]">
+          <span class="w-1.5 h-1.5 rounded-full bg-apple-green dark:bg-apple-green-dark"></span>
+          128 Unit & Statistical Tests Passing
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-black/[0.06] dark:border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-[11px] text-apple-gray-400 dark:text-apple-gray-500">
+        Released under the MIT License • Built with Astro, TypeScript & KaTeX • Zero telemetry
+      </p>
+      <div class="flex items-center gap-4 text-[11px]">
+        <a href="https://github.com/mbzuaiciao/rl-reasoning-lab" target="_blank" rel="noopener noreferrer" class="hover:text-apple-blue transition-colors">
+          GitHub Repository
+        </a>
+        <span>•</span>
+        <a href="/docs/claims" class="hover:text-apple-blue transition-colors">
+          Claim Registry
+        </a>
+        <span>•</span>
+        <a href="/results" class="hover:text-apple-blue transition-colors">
+          Committed Results
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>

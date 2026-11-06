@@ -1,0 +1,328 @@
+---
+// GoodhartDemo.astro
+---
+
+<div class="rounded-3xl border border-black/[0.08] dark:border-white/[0.1] bg-white/80 dark:bg-apple-gray-900/80 p-6 sm:p-8 backdrop-blur-sm shadow-card">
+  <!-- Header -->
+  <div class="mb-6">
+    <div class="flex items-center gap-2 mb-1.5">
+      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-apple-red/10 text-apple-red dark:text-apple-red-dark">
+        Interactive Demo 2
+      </span>
+      <span class="text-xs text-apple-gray-400">• Pedagogical Model</span>
+    </div>
+    <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white">
+      Goodhart's Law & Invariant Gate Protection
+    </h3>
+    <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 mt-1">
+      Simulate policy optimization against a flawed proxy verifier. Watch proxy reward soar while true oracle utility collapses, and observe how structural invariant gates halt reward hacking.
+    </p>
+  </div>
+
+  <!-- Illustrative Callout -->
+  <div class="mb-6 px-4 py-2.5 rounded-xl bg-apple-orange/10 dark:bg-apple-orange-dark/10 border border-apple-orange/20 dark:border-apple-orange-dark/20 text-[11px] text-apple-orange-dark flex items-start gap-2">
+    <span class="font-bold shrink-0">NOTICE:</span>
+    <span>Illustrative Teaching Demonstration — Visual pedagogical simulation of Phase 6 and Phase 10 Goodhart dynamics. Empirical benchmark numbers are stored in the Results Explorer.</span>
+  </div>
+
+  <!-- Interactive Controls -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 p-4 rounded-2xl bg-apple-gray-50 dark:bg-apple-gray-950 border border-black/[0.04] dark:border-white/[0.06]">
+    <!-- Optimization Pressure Slider -->
+    <div>
+      <div class="flex items-center justify-between mb-2">
+        <label for="slider-steps" class="text-xs font-semibold text-apple-gray-700 dark:text-apple-gray-300">
+          RL Optimization Pressure / Steps
+        </label>
+        <span id="lbl-steps-val" class="font-mono text-xs font-bold text-apple-blue dark:text-apple-blue-dark">
+          50 steps
+        </span>
+      </div>
+      <input
+        type="range"
+        id="slider-steps"
+        min="0"
+        max="100"
+        value="50"
+        step="5"
+        class="w-full h-2 bg-apple-gray-200 dark:bg-apple-gray-800 rounded-lg appearance-none cursor-pointer accent-apple-blue dark:accent-apple-blue-dark"
+      />
+      <div class="flex justify-between text-[10px] text-apple-gray-400 mt-1 font-mono">
+        <span>0 (SFT Init)</span>
+        <span>50 (Moderate)</span>
+        <span>100 (Aggressive RL)</span>
+      </div>
+    </div>
+
+    <!-- Invariant Gate Toggle -->
+    <div class="flex flex-col justify-center">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-xs font-semibold text-apple-gray-800 dark:text-white block">
+            Topological Invariant Gate
+          </span>
+          <span class="text-[11px] text-apple-gray-400">
+            Enforces start-node matching & edge adjacency
+          </span>
+        </div>
+        <button
+          type="button"
+          id="btn-toggle-gate"
+          class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none bg-apple-gray-300 dark:bg-apple-gray-700"
+          role="switch"
+          aria-checked="false"
+        >
+          <span
+            id="gate-knob"
+            class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-md ring-0 transition duration-200 ease-in-out translate-x-0"
+          ></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Real-time Score Display & Dynamic Curves -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
+    <!-- Card 1: Proxy Reward -->
+    <div class="p-4 rounded-2xl bg-apple-gray-100/70 dark:bg-apple-gray-800/50 border border-black/[0.04] dark:border-white/[0.06]">
+      <span class="text-[10px] font-semibold text-apple-gray-400 uppercase tracking-wider block mb-1">
+        Training Proxy Reward (R_proxy)
+      </span>
+      <div id="metric-proxy-reward" class="text-2xl sm:text-3xl font-mono font-bold text-apple-blue dark:text-apple-blue-dark">
+        94.5%
+      </div>
+      <p class="text-[11px] text-apple-gray-500 mt-1">
+        Heuristic substring verifier score
+      </p>
+    </div>
+
+    <!-- Card 2: True Oracle Utility -->
+    <div class="p-4 rounded-2xl bg-apple-gray-100/70 dark:bg-apple-gray-800/50 border border-black/[0.04] dark:border-white/[0.06]">
+      <span class="text-[10px] font-semibold text-apple-gray-400 uppercase tracking-wider block mb-1">
+        True Oracle Utility (U_oracle)
+      </span>
+      <div id="metric-oracle-utility" class="text-2xl sm:text-3xl font-mono font-bold text-apple-red dark:text-apple-red-dark">
+        25.7%
+      </div>
+      <p class="text-[11px] text-apple-gray-500 mt-1">
+        Independent ground-truth graph evaluation
+      </p>
+    </div>
+
+    <!-- Card 3: Exploit Rate / Divergence Gap -->
+    <div class="p-4 rounded-2xl bg-apple-gray-100/70 dark:bg-apple-gray-800/50 border border-black/[0.04] dark:border-white/[0.06]">
+      <span class="text-[10px] font-semibold text-apple-gray-400 uppercase tracking-wider block mb-1">
+        Exploit Rate (R_proxy − U_oracle)
+      </span>
+      <div id="metric-exploit-rate" class="text-2xl sm:text-3xl font-mono font-bold text-apple-orange dark:text-apple-orange-dark">
+        64.9%
+      </div>
+      <p class="text-[11px] text-apple-gray-500 mt-1">
+        Divergence gap from reward hacking
+      </p>
+    </div>
+  </div>
+
+  <!-- Real-Time Dynamic Visualization Plot -->
+  <div class="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-apple-gray-50/70 dark:bg-apple-gray-950/70 p-4">
+    <div class="flex items-center justify-between mb-3 text-xs text-apple-gray-500">
+      <span class="font-mono font-semibold">Optimization Trajectory Curve</span>
+      <div class="flex items-center gap-4 text-[11px]">
+        <span class="flex items-center gap-1.5">
+          <span class="w-2.5 h-0.5 bg-apple-blue dark:bg-apple-blue-dark"></span> Proxy Reward
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-2.5 h-0.5 bg-apple-red dark:bg-apple-red-dark"></span> Oracle Utility
+        </span>
+        <span class="flex items-center gap-1.5">
+          <span class="w-2.5 h-0.5 bg-apple-orange dark:bg-apple-orange-dark stroke-dash"></span> Exploit Gap
+        </span>
+      </div>
+    </div>
+
+    <div class="w-full aspect-[21/9] max-h-48 relative overflow-hidden flex items-end">
+      <svg viewBox="0 0 500 160" class="w-full h-full overflow-visible" id="goodhart-svg">
+        <!-- Grid lines -->
+        <line x1="40" y1="20" x2="480" y2="20" stroke="currentColor" stroke-dasharray="2,2" class="text-black/5 dark:text-white/5" />
+        <line x1="40" y1="70" x2="480" y2="70" stroke="currentColor" stroke-dasharray="2,2" class="text-black/5 dark:text-white/5" />
+        <line x1="40" y1="120" x2="480" y2="120" stroke="currentColor" stroke-dasharray="2,2" class="text-black/5 dark:text-white/5" />
+
+        <!-- Axis Labels -->
+        <text x="35" y="24" text-anchor="end" font-size="9" font-family="monospace" class="fill-apple-gray-400">100%</text>
+        <text x="35" y="74" text-anchor="end" font-size="9" font-family="monospace" class="fill-apple-gray-400">50%</text>
+        <text x="35" y="124" text-anchor="end" font-size="9" font-family="monospace" class="fill-apple-gray-400">0%</text>
+
+        <!-- Paths -->
+        <path id="path-proxy" fill="none" stroke="currentColor" stroke-width="2.5" class="text-apple-blue dark:text-apple-blue-dark" />
+        <path id="path-oracle" fill="none" stroke="currentColor" stroke-width="2.5" class="text-apple-red dark:text-apple-red-dark" />
+        <path id="path-gap" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3,3" class="text-apple-orange dark:text-apple-orange-dark" />
+
+        <!-- Current Step Indicator Line -->
+        <line id="indicator-line" x1="260" y1="15" x2="260" y2="135" stroke="currentColor" stroke-width="1.5" class="text-apple-gray-400 dark:text-apple-gray-600" />
+        <circle id="indicator-dot-proxy" cx="260" cy="28" r="4" fill="currentColor" class="text-apple-blue dark:text-apple-blue-dark" />
+        <circle id="indicator-dot-oracle" cx="260" cy="100" r="4" fill="currentColor" class="text-apple-red dark:text-apple-red-dark" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- Dynamic Conclusion Footer -->
+  <div id="goodhart-insight" class="mt-4 p-4 rounded-xl bg-apple-gray-100 dark:bg-apple-gray-800 text-xs text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed">
+    <!-- Populated by script -->
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    const slider = document.getElementById('slider-steps');
+    const lblSteps = document.getElementById('lbl-steps-val');
+    const btnGate = document.getElementById('btn-toggle-gate');
+    const knob = document.getElementById('gate-knob');
+
+    const mProxy = document.getElementById('metric-proxy-reward');
+    const mOracle = document.getElementById('metric-oracle-utility');
+    const mExploit = document.getElementById('metric-exploit-rate');
+    const insight = document.getElementById('goodhart-insight');
+
+    const pathProxy = document.getElementById('path-proxy');
+    const pathOracle = document.getElementById('path-oracle');
+    const pathGap = document.getElementById('path-gap');
+    const indicatorLine = document.getElementById('indicator-line');
+    const dotProxy = document.getElementById('indicator-dot-proxy');
+    const dotOracle = document.getElementById('indicator-dot-oracle');
+
+    let gateEnabled = false;
+
+    // Simulation mathematical model based on Phase 6 & Phase 10 empirical trajectories
+    function calculateValues(steps, gated) {
+      const t = steps / 100; // 0 to 1
+
+      if (!gated) {
+        // Weak Proxy without invariant gating
+        // Proxy reward rises rapidly from 65% to 94.5%
+        const proxy = 0.65 + 0.30 * Math.pow(t, 0.7);
+        // True oracle utility starts at 60%, initially rises slightly to 68% at t=0.2, then crashes to 25.7%
+        let oracle;
+        if (t < 0.2) {
+          oracle = 0.60 + 0.40 * t;
+        } else {
+          oracle = 0.68 - 0.53 * Math.pow((t - 0.2) / 0.8, 1.2);
+        }
+        const exploit = Math.max(0, proxy - oracle);
+        return { proxy, oracle, exploit };
+      } else {
+        // Invariant-Gated PPO
+        // Both proxy and oracle rise together safely
+        const proxy = 0.65 + 0.235 * Math.pow(t, 0.8); // reaches ~88.5%
+        const oracle = 0.60 + 0.270 * Math.pow(t, 0.85); // reaches ~87.0%
+        const exploit = Math.max(0.01, proxy - oracle); // stays around 1.3%
+        return { proxy, oracle, exploit };
+      }
+    }
+
+    function renderPlot(currentSteps, gated) {
+      const xStart = 45;
+      const xEnd = 475;
+      const yZero = 120;
+      const yMax = 20;
+      const yRange = yZero - yMax;
+
+      const numPoints = 25;
+      const proxyCoords = [];
+      const oracleCoords = [];
+      const gapCoords = [];
+
+      for (let i = 0; i <= numPoints; i++) {
+        const s = (i / numPoints) * 100;
+        const vals = calculateValues(s, gated);
+        const x = xStart + (i / numPoints) * (xEnd - xStart);
+        const yP = yZero - vals.proxy * yRange;
+        const yO = yZero - vals.oracle * yRange;
+        const yG = yZero - vals.exploit * yRange;
+
+        proxyCoords.push(`${x},${yP}`);
+        oracleCoords.push(`${x},${yO}`);
+        gapCoords.push(`${x},${yG}`);
+      }
+
+      pathProxy.setAttribute('d', 'M ' + proxyCoords.join(' L '));
+      pathOracle.setAttribute('d', 'M ' + oracleCoords.join(' L '));
+      pathGap.setAttribute('d', 'M ' + gapCoords.join(' L '));
+
+      // Indicator position
+      const currVals = calculateValues(currentSteps, gated);
+      const currX = xStart + (currentSteps / 100) * (xEnd - xStart);
+      const currYP = yZero - currVals.proxy * yRange;
+      const currYO = yZero - currVals.oracle * yRange;
+
+      indicatorLine.setAttribute('x1', currX);
+      indicatorLine.setAttribute('x2', currX);
+      dotProxy.setAttribute('cx', currX);
+      dotProxy.setAttribute('cy', currYP);
+      dotOracle.setAttribute('cx', currX);
+      dotOracle.setAttribute('cy', currYO);
+
+      // Colors
+      if (gated) {
+        pathOracle.setAttribute('class', 'text-apple-green dark:text-apple-green-dark');
+        dotOracle.setAttribute('class', 'text-apple-green dark:text-apple-green-dark');
+        mOracle.className = 'text-2xl sm:text-3xl font-mono font-bold text-apple-green dark:text-apple-green-dark';
+        mExploit.className = 'text-2xl sm:text-3xl font-mono font-bold text-apple-green dark:text-apple-green-dark';
+      } else {
+        pathOracle.setAttribute('class', 'text-apple-red dark:text-apple-red-dark');
+        dotOracle.setAttribute('class', 'text-apple-red dark:text-apple-red-dark');
+        mOracle.className = 'text-2xl sm:text-3xl font-mono font-bold text-apple-red dark:text-apple-red-dark';
+        mExploit.className = 'text-2xl sm:text-3xl font-mono font-bold text-apple-orange dark:text-apple-orange-dark';
+      }
+    }
+
+    function update() {
+      const steps = parseInt(slider.value, 10);
+      lblSteps.textContent = `${steps} steps`;
+
+      const vals = calculateValues(steps, gateEnabled);
+      mProxy.textContent = (vals.proxy * 100).toFixed(1) + '%';
+      mOracle.textContent = (vals.oracle * 100).toFixed(1) + '%';
+      mExploit.textContent = (vals.exploit * 100).toFixed(1) + '%';
+
+      renderPlot(steps, gateEnabled);
+
+      if (gateEnabled) {
+        btnGate.classList.remove('bg-apple-gray-300', 'dark:bg-apple-gray-700');
+        btnGate.classList.add('bg-apple-green', 'dark:bg-apple-green-dark');
+        btnGate.setAttribute('aria-checked', 'true');
+        knob.classList.remove('translate-x-0');
+        knob.classList.add('translate-x-5');
+
+        insight.innerHTML = `
+          <strong class="text-apple-green dark:text-apple-green-dark font-semibold">Structural Invariant Protection Active (CLAIM-13):</strong>
+          By requiring emitted traces to satisfy linear-time topological invariants (start-node matching and valid premise adjacency) before granting proxy reward, learned exploits are suppressed from 64.9% down to <strong>1.3%</strong> (Cohen's d = +18.20). True task utility tracks proxy reward steadily up to 87.0%.
+        `;
+      } else {
+        btnGate.classList.remove('bg-apple-green', 'dark:bg-apple-green-dark');
+        btnGate.classList.add('bg-apple-gray-300', 'dark:bg-apple-gray-700');
+        btnGate.setAttribute('aria-checked', 'false');
+        knob.classList.remove('translate-x-5');
+        knob.classList.add('translate-x-0');
+
+        if (steps > 40) {
+          insight.innerHTML = `
+            <strong class="text-apple-red dark:text-apple-red-dark font-semibold">Catastrophic Goodhart Divergence Detected (CLAIM-12):</strong>
+            As optimization pressure increases, the policy discovers heuristic loopholes in the proxy verifier (e.g. emitting answer tokens in noise). Proxy reward surges to <strong>${(vals.proxy * 100).toFixed(1)}%</strong> while true task utility collapses to <strong>${(vals.oracle * 100).toFixed(1)}%</strong>, producing an exploit rate of <strong>${(vals.exploit * 100).toFixed(1)}%</strong> (Cohen's d = -22.40).
+          `;
+        } else {
+          insight.innerHTML = `
+            <strong class="text-apple-gray-800 dark:text-white font-semibold">Early RL Training:</strong>
+            In initial iterations, the proxy verifier correlates roughly with true task utility. However, unconstrained policy optimization will rapidly discover and exploit heuristic shortcuts as training proceeds.
+          `;
+        }
+      }
+    }
+
+    slider.addEventListener('input', update);
+    btnGate.addEventListener('click', () => {
+      gateEnabled = !gateEnabled;
+      update();
+    });
+
+    update();
+  })();
+</script>

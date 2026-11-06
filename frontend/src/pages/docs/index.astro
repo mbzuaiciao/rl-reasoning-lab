@@ -1,0 +1,90 @@
+---
+// docs/index.astro
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { DOCS_METADATA } from '../../lib/data';
+
+const categories = [
+  {
+    name: 'Research Papers & Capstone',
+    docs: DOCS_METADATA.filter(d => d.category === 'capstone')
+  },
+  {
+    name: 'Claims & Hypotheses',
+    docs: DOCS_METADATA.filter(d => d.category === 'claims' || d.slug === 'phase10_hypotheses')
+  },
+  {
+    name: 'Methodology & Research Design',
+    docs: DOCS_METADATA.filter(d => d.category === 'methodology' && d.slug !== 'phase10_hypotheses')
+  },
+  {
+    name: 'Audits, Case Studies & Artifacts',
+    docs: DOCS_METADATA.filter(d => d.category === 'audit')
+  },
+  {
+    name: 'Future Directions',
+    docs: DOCS_METADATA.filter(d => d.category === 'future')
+  }
+];
+---
+
+<BaseLayout
+  title="Research Documentation | RL Reasoning Lab"
+  description="Canonical registry of claims, capstone research report, preregistered hypotheses, empirical failure taxonomy, and replication studies."
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    <div class="max-w-3xl mb-12">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase bg-apple-purple/10 text-apple-purple dark:bg-apple-purple-dark/15 dark:text-apple-purple-dark mb-4">
+        Research Registry
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-apple-gray-900 dark:text-white leading-tight mb-4">
+        Research Papers & Documentation
+      </h1>
+      <p class="text-base text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed">
+        The complete research corpus: Phase 10 capstone report, the canonical 16-claim audit registry, qualitative failure case studies, and preregistered statistical controls.
+      </p>
+    </div>
+
+    <!-- Category Sections -->
+    <div class="space-y-14">
+      {categories.map(cat => (
+        <div class="space-y-6">
+          <div class="border-b border-black/[0.08] dark:border-white/[0.1] pb-3">
+            <h2 class="text-lg font-bold text-apple-gray-900 dark:text-white tracking-tight">
+              {cat.name}
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cat.docs.map(doc => (
+              <a
+                href={`/docs/${doc.slug}`}
+                class="group rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] hover:border-apple-blue/30 dark:hover:border-apple-blue-dark/40 shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between"
+              >
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded-full bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-600 dark:text-apple-gray-300 uppercase">
+                      {doc.category}
+                    </span>
+                    <span class="text-[11px] text-apple-gray-400 font-sans">
+                      ~{doc.readingTimeMinutes} min
+                    </span>
+                  </div>
+                  <h3 class="text-base font-bold text-apple-gray-900 dark:text-white group-hover:text-apple-blue dark:group-hover:text-apple-blue-dark transition-colors mb-2 leading-snug">
+                    {doc.title}
+                  </h3>
+                  <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 line-clamp-3 leading-relaxed mb-4">
+                    {doc.subtitle}
+                  </p>
+                </div>
+                <div class="pt-3 border-t border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between text-xs font-medium text-apple-blue dark:text-apple-blue-dark">
+                  <span>Read Document</span>
+                  <span class="transition-transform group-hover:translate-x-1">→</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,80 @@
+---
+// MetricCard.astro
+interface Props {
+  value: string;
+  label: string;
+  sublabel?: string;
+  badge?: string;
+  ci?: string;
+  cohensD?: string;
+  claimId?: string;
+  variant?: 'blue' | 'green' | 'red' | 'purple' | 'neutral';
+}
+
+const {
+  value,
+  label,
+  sublabel,
+  badge,
+  ci,
+  cohensD,
+  claimId,
+  variant = 'neutral'
+} = Astro.props;
+
+const borderColors = {
+  blue: 'border-apple-blue/20 dark:border-apple-blue-dark/30 hover:border-apple-blue/40',
+  green: 'border-apple-green/20 dark:border-apple-green-dark/30 hover:border-apple-green/40',
+  red: 'border-apple-red/20 dark:border-apple-red-dark/30 hover:border-apple-red/40',
+  purple: 'border-apple-purple/20 dark:border-apple-purple-dark/30 hover:border-apple-purple/40',
+  neutral: 'border-black/[0.08] dark:border-white/[0.1] hover:border-black/20 dark:hover:border-white/25'
+};
+
+const valueColors = {
+  blue: 'text-apple-blue dark:text-apple-blue-dark',
+  green: 'text-apple-green dark:text-apple-green-dark',
+  red: 'text-apple-red dark:text-apple-red-dark',
+  purple: 'text-apple-purple dark:text-apple-purple-dark',
+  neutral: 'text-apple-gray-900 dark:text-white'
+};
+---
+
+<div class={`rounded-2xl p-5 bg-white/80 dark:bg-apple-gray-900/80 backdrop-blur-sm border ${borderColors[variant]} shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between`}>
+  <div>
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-xs font-medium text-apple-gray-500 dark:text-apple-gray-400">
+        {label}
+      </span>
+      {badge && (
+        <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-apple-gray-600 dark:text-apple-gray-300">
+          {badge}
+        </span>
+      )}
+    </div>
+    <div class={`text-2xl sm:text-3xl font-bold tracking-tight ${valueColors[variant]} mb-1 font-mono`}>
+      {value}
+    </div>
+    {sublabel && (
+      <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 leading-normal">
+        {sublabel}
+      </p>
+    )}
+  </div>
+
+  {(ci || cohensD || claimId) && (
+    <div class="mt-4 pt-3 border-t border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between text-[11px] text-apple-gray-400 dark:text-apple-gray-500 font-mono">
+      <div class="truncate">
+        {cohensD && <span class="mr-2">d = {cohensD}</span>}
+        {ci && <span>{ci}</span>}
+      </div>
+      {claimId && (
+        <a
+          href={`/docs/claims#${claimId.toLowerCase()}`}
+          class="shrink-0 ml-2 font-sans font-medium text-apple-blue dark:text-apple-blue-dark hover:underline"
+        >
+          {claimId} →
+        </a>
+      )}
+    </div>
+  )}
+</div>
