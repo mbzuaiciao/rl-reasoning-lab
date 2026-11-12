@@ -41,8 +41,8 @@ const phases = [
     <div class="space-y-16">
       {phases.map(section => (
         <div class="space-y-6">
-          <div class="border-b border-black/[0.08] dark:border-white/[0.1] pb-3">
-            <h2 class="text-lg font-bold text-apple-gray-900 dark:text-white tracking-tight">
+          <div class="border-b border-black/[0.06] dark:border-white/[0.08] pb-3">
+            <h2 class="text-base sm:text-lg font-bold text-apple-gray-900 dark:text-white tracking-tight">
               {section.category}
             </h2>
           </div>
@@ -51,7 +51,7 @@ const phases = [
             {section.phases.map(tut => (
               <a
                 href={`/tutorials/${tut.slug}`}
-                class="group rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] hover:border-apple-blue/30 dark:hover:border-apple-blue-dark/40 shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between"
+                class="group rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] hover:border-black/[0.14] dark:hover:border-white/[0.16] shadow-subtle hover:shadow-card hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div class="flex items-center justify-between mb-3">
@@ -81,7 +81,7 @@ const phases = [
     </div>
 
     <!-- Phase 10 Capstone Transition Banner -->
-    <div class="mt-16 rounded-3xl p-8 bg-apple-gray-100/70 dark:bg-apple-gray-900/60 border border-black/[0.08] dark:border-white/[0.1] flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+    <div class="mt-16 rounded-3xl p-8 bg-apple-gray-100/70 dark:bg-apple-gray-900/60 border border-black/[0.06] dark:border-white/[0.08] shadow-subtle flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
       <div>
         <span class="text-xs font-mono font-semibold uppercase tracking-wider text-apple-purple dark:text-apple-purple-dark block mb-1">
           Capstone Synthesis
@@ -96,13 +96,13 @@ const phases = [
       <div class="flex items-center gap-3 shrink-0">
         <a
           href="/docs/phase10_capstone_report"
-          class="px-5 py-2.5 rounded-full text-xs font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900 hover:bg-apple-gray-800 dark:hover:bg-apple-gray-100 transition-colors shadow-xs"
+          class="px-5 py-2.5 rounded-full text-xs font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900 hover:bg-apple-gray-800 dark:hover:bg-apple-gray-100 transition-colors shadow-subtle"
         >
           Read Capstone Report →
         </a>
         <a
           href="/results"
-          class="px-5 py-2.5 rounded-full text-xs font-semibold bg-white dark:bg-apple-gray-800 text-apple-gray-800 dark:text-apple-gray-200 border border-black/[0.08] dark:border-white/[0.1] hover:bg-apple-gray-50 dark:hover:bg-apple-gray-700 transition-colors"
+          class="px-5 py-2.5 rounded-full text-xs font-semibold bg-white dark:bg-apple-gray-800 text-apple-gray-800 dark:text-apple-gray-200 border border-black/[0.06] dark:border-white/[0.08] hover:bg-apple-gray-50 dark:hover:bg-apple-gray-700 transition-colors"
         >
           Explore Results
         </a>

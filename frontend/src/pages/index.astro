@@ -11,7 +11,7 @@ import { TUTORIALS_METADATA } from '../lib/data';
   description="An inspectable, first-principles research laboratory investigating when reinforcement learning produces genuine multi-step reasoning improvement versus reward exploitation."
 >
   <!-- Hero Section -->
-  <section class="relative pt-12 pb-16 sm:pt-20 sm:pb-24 overflow-hidden border-b border-black/[0.04] dark:border-white/[0.06]">
+  <section class="relative pt-14 pb-18 sm:pt-24 sm:pb-28 overflow-hidden border-b border-black/[0.04] dark:border-white/[0.06]">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <!-- Eyebrow Badge -->
@@ -31,22 +31,22 @@ import { TUTORIALS_METADATA } from '../lib/data';
         </p>
 
         <!-- CTA Action Buttons -->
-        <div class="flex flex-wrap items-center gap-4">
+        <div class="flex flex-wrap items-center gap-3.5">
           <a
             href="/tutorials"
-            class="px-5 py-2.5 rounded-full text-sm font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900 hover:bg-apple-gray-800 dark:hover:bg-apple-gray-100 shadow-sm transition-all"
+            class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900 hover:bg-apple-gray-800 dark:hover:bg-apple-gray-100 shadow-subtle active:scale-[0.98] transition-all"
           >
             Explore Curriculum (9 Phases) →
           </a>
           <a
             href="/results"
-            class="px-5 py-2.5 rounded-full text-sm font-semibold bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-800 dark:text-apple-gray-200 hover:bg-apple-gray-200 dark:hover:bg-apple-gray-700 border border-black/[0.08] dark:border-white/[0.1] transition-all"
+            class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-800 dark:text-apple-gray-200 hover:bg-apple-gray-200 dark:hover:bg-apple-gray-700 border border-black/[0.06] dark:border-white/[0.08] active:scale-[0.98] transition-all"
           >
             Explore Empirical Results
           </a>
           <a
             href="/demos"
-            class="px-5 py-2.5 rounded-full text-sm font-semibold text-apple-blue dark:text-apple-blue-dark hover:underline transition-all"
+            class="px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-apple-blue dark:text-apple-blue-dark hover:underline transition-all"
           >
             Try Interactive Demos
           </a>
@@ -70,7 +70,7 @@ import { TUTORIALS_METADATA } from '../lib/data';
       <!-- Comparison Cards -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
         <!-- Outcome-Only RL Card -->
-        <div class="rounded-3xl p-6 sm:p-8 bg-white dark:bg-apple-gray-900 border border-apple-red/20 dark:border-apple-red-dark/30 shadow-card flex flex-col justify-between">
+        <div class="rounded-3xl p-6 sm:p-8 bg-white dark:bg-apple-gray-900/90 border border-black/[0.06] dark:border-white/[0.08] shadow-subtle hover:shadow-card transition-all flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-apple-red/10 text-apple-red dark:text-apple-red-dark">
@@ -88,23 +88,23 @@ import { TUTORIALS_METADATA } from '../lib/data';
             <div class="space-y-3 mb-6">
               <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
                 <span class="text-apple-gray-600 dark:text-apple-gray-400">IID Answer Accuracy:</span>
-                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">87.8%</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark tabular-nums">87.8%</span>
               </div>
               <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
                 <span class="text-apple-gray-600 dark:text-apple-gray-400">Complete-Path Validity:</span>
-                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark">42.0%</span>
+                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark tabular-nums">42.0%</span>
               </div>
               <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
                 <span class="text-apple-gray-600 dark:text-apple-gray-400">Process Validity Gap:</span>
-                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark">+45.8%</span>
+                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark tabular-nums">+45.8%</span>
               </div>
               <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
-                <span class="text-apple-gray-600 dark:text-apple-gray-400">OOD Depth Acc ($d=4..6$):</span>
-                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark">16.7% (Collapse)</span>
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">OOD Depth Acc (d = 4–6):</span>
+                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark tabular-nums">16.7% (Collapse)</span>
               </div>
               <div class="flex items-center justify-between text-xs">
                 <span class="text-apple-gray-600 dark:text-apple-gray-400">Counterfactual Sensitivity:</span>
-                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark">23.1%</span>
+                <span class="font-mono font-bold text-apple-red dark:text-apple-red-dark tabular-nums">23.1%</span>
               </div>
             </div>
           </div>
@@ -114,7 +114,7 @@ import { TUTORIALS_METADATA } from '../lib/data';
         </div>
 
         <!-- Process Supervision Card -->
-        <div class="rounded-3xl p-6 sm:p-8 bg-white dark:bg-apple-gray-900 border border-apple-green/20 dark:border-apple-green-dark/30 shadow-card flex flex-col justify-between">
+        <div class="rounded-3xl p-6 sm:p-8 bg-white dark:bg-apple-gray-900/90 border border-black/[0.06] dark:border-white/[0.08] shadow-subtle hover:shadow-card transition-all flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between mb-4">
               <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-apple-green/10 text-apple-green dark:text-apple-green-dark">
@@ -132,23 +132,23 @@ import { TUTORIALS_METADATA } from '../lib/data';
             <div class="space-y-3 mb-6">
               <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
                 <span class="text-apple-gray-600 dark:text-apple-gray-400">IID Answer Accuracy:</span>
-                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">84.7%</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark tabular-nums">84.7%</span>
               </div>
               <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
                 <span class="text-apple-gray-600 dark:text-apple-gray-400">Complete-Path Validity:</span>
-                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">86.5%</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark tabular-nums">86.5%</span>
               </div>
               <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
                 <span class="text-apple-gray-600 dark:text-apple-gray-400">Path Gain over Outcome:</span>
-                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">+44.8% (d = 10.92)</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark tabular-nums">+44.8% (d = 10.92)</span>
               </div>
               <div class="flex items-center justify-between text-xs pb-2 border-b border-black/[0.04] dark:border-white/[0.06]">
-                <span class="text-apple-gray-600 dark:text-apple-gray-400">OOD Depth Acc ($d=4..6$):</span>
-                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">66.5% (Transfers)</span>
+                <span class="text-apple-gray-600 dark:text-apple-gray-400">OOD Depth Acc (d = 4–6):</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark tabular-nums">66.5% (Transfers)</span>
               </div>
               <div class="flex items-center justify-between text-xs">
                 <span class="text-apple-gray-600 dark:text-apple-gray-400">Counterfactual Sensitivity:</span>
-                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark">74.2%</span>
+                <span class="font-mono font-bold text-apple-green dark:text-apple-green-dark tabular-nums">74.2%</span>
               </div>
             </div>
           </div>
@@ -170,12 +170,12 @@ import { TUTORIALS_METADATA } from '../lib/data';
         <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
           Headline Research Findings
         </h2>
-        <p class="text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-2xl">
-          All findings are evaluated across $n=10$ paired training seeds and audited using non-parametric bootstrap confidence intervals and Cohen's $d$ effect sizes traceable to committed JSON artifacts.
+        <p class="text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-2xl leading-relaxed">
+          All findings are evaluated across <span class="font-serif italic">n</span> = 10 paired training seeds and audited using non-parametric bootstrap confidence intervals and Cohen's <span class="font-serif italic">d</span> effect sizes traceable to committed JSON artifacts.
         </p>
       </div>
 
-      <!-- Grid of 5 Headline Findings -->
+      <!-- Grid of 6 Headline Findings -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Finding 1 -->
         <MetricCard
@@ -287,7 +287,7 @@ import { TUTORIALS_METADATA } from '../lib/data';
         {TUTORIALS_METADATA.map(tut => (
           <a
             href={`/tutorials/${tut.slug}`}
-            class="group rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] hover:border-apple-blue/30 dark:hover:border-apple-blue-dark/40 shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between"
+            class="group rounded-2xl p-6 bg-white dark:bg-apple-gray-900/90 border border-black/[0.06] dark:border-white/[0.08] hover:border-black/[0.14] dark:hover:border-white/[0.16] shadow-subtle hover:shadow-card hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between"
           >
             <div>
               <div class="flex items-center justify-between mb-3">

@@ -22,16 +22,16 @@ const isActive = (href: string) => {
 };
 ---
 
-<header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-apple-gray-50/80 dark:bg-black/80 border-b border-black/[0.06] dark:border-white/[0.1] transition-colors">
+<header class="sticky top-0 z-40 w-full backdrop-blur-xl bg-apple-gray-50/85 dark:bg-black/85 border-b border-black/[0.06] dark:border-white/[0.08] transition-colors">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-13 py-2">
+    <div class="flex items-center justify-between h-14">
       <!-- Logo / Title -->
-      <a href="/" class="flex items-center gap-2.5 group">
-        <div class="w-7 h-7 rounded-lg bg-apple-gray-800 dark:bg-white text-white dark:text-apple-gray-900 flex items-center justify-center font-mono font-bold text-xs tracking-tight shadow-sm transition-transform group-hover:scale-105">
+      <a href="/" class="flex items-center gap-2.5 group rounded-lg focus-visible:outline-apple-blue" aria-label="RL Reasoning Lab Home">
+        <div class="w-7 h-7 rounded-lg bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900 flex items-center justify-center font-mono font-bold text-xs tracking-tight shadow-subtle transition-transform group-hover:scale-105">
           RL
         </div>
         <div class="flex flex-col">
-          <span class="text-sm font-semibold tracking-tight text-apple-gray-800 dark:text-apple-gray-100 group-hover:text-apple-blue dark:group-hover:text-apple-blue-dark transition-colors">
+          <span class="text-sm font-semibold tracking-tight text-apple-gray-900 dark:text-apple-gray-100 group-hover:text-apple-blue dark:group-hover:text-apple-blue-dark transition-colors">
             rl-reasoning-lab
           </span>
           <span class="text-[10px] text-apple-gray-400 dark:text-apple-gray-500 leading-none">
@@ -41,16 +41,16 @@ const isActive = (href: string) => {
       </a>
 
       <!-- Desktop Navigation Links -->
-      <nav class="hidden md:flex items-center gap-1">
+      <nav class="hidden md:flex items-center gap-1" aria-label="Main Navigation">
         {navLinks.map(link => {
           const active = isActive(link.href);
           return (
             <a
               href={link.href}
-              class={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+              class={`px-3 py-1.5 rounded-full text-xs transition-all ${
                 active
-                  ? 'bg-apple-gray-200/70 dark:bg-apple-gray-800 text-apple-gray-900 dark:text-white font-semibold shadow-xs'
-                  : 'text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5'
+                  ? 'bg-black/[0.05] dark:bg-white/[0.08] text-apple-gray-900 dark:text-white font-semibold shadow-subtle'
+                  : 'text-apple-gray-500 dark:text-apple-gray-400 font-medium hover:text-apple-gray-900 dark:hover:text-white hover:bg-black/[0.03] dark:hover:bg-white/[0.04]'
               }`}
             >
               {link.label}
@@ -65,7 +65,7 @@ const isActive = (href: string) => {
         <button
           type="button"
           id="search-trigger-btn"
-          class="flex items-center gap-2 px-2.5 py-1.5 rounded-full text-xs font-normal text-apple-gray-500 dark:text-apple-gray-400 bg-apple-gray-100 dark:bg-apple-gray-900/90 border border-black/[0.06] dark:border-white/[0.08] hover:border-black/15 dark:hover:border-white/20 transition-all shadow-xs"
+          class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-normal text-apple-gray-500 dark:text-apple-gray-400 bg-apple-gray-100 dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] hover:border-black/15 dark:hover:border-white/20 transition-all shadow-subtle focus-visible:outline-apple-blue"
           aria-label="Search tutorials and research"
         >
           <svg class="w-3.5 h-3.5 text-apple-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,7 +85,7 @@ const isActive = (href: string) => {
           href="https://github.com/mbzuaiciao/rl-reasoning-lab"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center justify-center w-9 h-9 rounded-full text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-800 dark:hover:text-apple-gray-100 hover:bg-black/5 dark:hover:bg-white/10 transition-colors"
+          class="inline-flex items-center justify-center w-8 h-8 rounded-full text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-800 dark:hover:text-apple-gray-100 hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus-visible:outline-apple-blue"
           aria-label="GitHub Repository"
         >
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -97,8 +97,8 @@ const isActive = (href: string) => {
         <button
           type="button"
           id="mobile-menu-btn"
-          class="md:hidden inline-flex items-center justify-center w-9 h-9 rounded-full text-apple-gray-500 hover:text-apple-gray-800 dark:hover:text-white"
-          aria-label="Open navigation menu"
+          class="md:hidden inline-flex items-center justify-center w-8 h-8 rounded-full text-apple-gray-500 hover:text-apple-gray-800 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus-visible:outline-apple-blue"
+          aria-label="Toggle navigation menu"
           aria-expanded="false"
         >
           <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -110,15 +110,15 @@ const isActive = (href: string) => {
   </div>
 
   <!-- Mobile Dropdown Navigation -->
-  <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-1 bg-apple-gray-50/95 dark:bg-apple-gray-900/95 border-b border-black/[0.08] dark:border-white/[0.1] backdrop-blur-xl">
+  <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 space-y-1 bg-white/95 dark:bg-apple-gray-900/95 border-b border-black/[0.08] dark:border-white/[0.1] backdrop-blur-xl">
     {navLinks.map(link => {
       const active = isActive(link.href);
       return (
         <a
           href={link.href}
-          class={`block px-3 py-2 rounded-xl text-sm font-medium transition-colors ${
+          class={`block px-3.5 py-2 rounded-xl text-sm font-medium transition-colors ${
             active
-              ? 'bg-apple-gray-200 dark:bg-apple-gray-800 text-apple-gray-900 dark:text-white font-semibold'
+              ? 'bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-900 dark:text-white font-semibold'
               : 'text-apple-gray-600 dark:text-apple-gray-300 hover:bg-black/5 dark:hover:bg-white/5'
           }`}
         >

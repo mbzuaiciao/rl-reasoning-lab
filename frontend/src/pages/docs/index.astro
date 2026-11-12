@@ -48,8 +48,8 @@ const categories = [
     <div class="space-y-14">
       {categories.map(cat => (
         <div class="space-y-6">
-          <div class="border-b border-black/[0.08] dark:border-white/[0.1] pb-3">
-            <h2 class="text-lg font-bold text-apple-gray-900 dark:text-white tracking-tight">
+          <div class="border-b border-black/[0.06] dark:border-white/[0.08] pb-3">
+            <h2 class="text-base sm:text-lg font-bold text-apple-gray-900 dark:text-white tracking-tight">
               {cat.name}
             </h2>
           </div>
@@ -58,7 +58,7 @@ const categories = [
             {cat.docs.map(doc => (
               <a
                 href={`/docs/${doc.slug}`}
-                class="group rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] hover:border-apple-blue/30 dark:hover:border-apple-blue-dark/40 shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between"
+                class="group rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] hover:border-black/[0.14] dark:hover:border-white/[0.16] shadow-subtle hover:shadow-card hover:-translate-y-0.5 transition-all duration-200 flex flex-col justify-between"
               >
                 <div>
                   <div class="flex items-center justify-between mb-3">

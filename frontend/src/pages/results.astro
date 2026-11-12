@@ -27,12 +27,12 @@ const compute = capstone.compute_frontier;
         Research Results Explorer
       </h1>
       <p class="text-base text-apple-gray-600 dark:text-apple-gray-300 leading-relaxed">
-        Explore empirical findings verified across $n=10$ paired training seeds and 7 distribution splits. Every figure is grounded in committed artifacts with exact confidence intervals and effect sizes.
+        Explore empirical findings verified across <span class="font-serif italic">n</span> = 10 paired training seeds and 7 distribution splits. Every figure is grounded in committed artifacts with exact confidence intervals and effect sizes.
       </p>
     </div>
 
     <!-- Provenance & Audit Header Banner -->
-    <div class="p-4 rounded-2xl bg-white dark:bg-apple-gray-900 border border-black/[0.08] dark:border-white/[0.1] shadow-xs mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
+    <div class="p-4 rounded-2xl bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] shadow-subtle mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
       <div class="flex items-center gap-3">
         <span class="w-2.5 h-2.5 rounded-full bg-apple-green dark:bg-apple-green-dark animate-pulse"></span>
         <span class="text-apple-gray-600 dark:text-apple-gray-300 font-mono">
@@ -40,7 +40,7 @@ const compute = capstone.compute_frontier;
         </span>
       </div>
       <div class="flex items-center gap-4 text-apple-gray-500 font-mono text-[11px]">
-        <span>Pairs: n=10</span>
+        <span>Pairs: n = 10</span>
         <span>Seeds: 100–110</span>
         <a href="https://github.com/mbzuaiciao/rl-reasoning-lab/blob/main/experiments/results/phase10_capstone.json" target="_blank" rel="noopener noreferrer" class="text-apple-blue dark:text-apple-blue-dark hover:underline font-sans">
           View Raw JSON ↗
@@ -48,28 +48,28 @@ const compute = capstone.compute_frontier;
       </div>
     </div>
 
-    <!-- Explorer Navigation Tabs -->
-    <div class="mb-10 border-b border-black/[0.08] dark:border-white/[0.1]">
-      <nav class="flex space-x-2 sm:space-x-6 overflow-x-auto pb-3 text-xs sm:text-sm font-semibold" aria-label="Results Explorer Views">
-        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900" data-view="view-process-gap">
+    <!-- Explorer Navigation Tabs (Segmented Control Pill Bar) -->
+    <div class="mb-10 overflow-x-auto pb-1">
+      <nav class="inline-flex p-1 rounded-2xl bg-apple-gray-100 dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] shadow-subtle gap-1 max-w-full" aria-label="Results Explorer Views">
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all bg-white dark:bg-apple-gray-800 text-apple-gray-900 dark:text-white shadow-subtle" data-view="view-process-gap">
           Process Gap & Core RL
         </button>
-        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-ood-matrix">
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-ood-matrix">
           Distribution Shifts Matrix
         </button>
-        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-depth-curve">
-          Depth Extrapolation ($d=1..6$)
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-depth-curve">
+          Depth Extrapolation (d = 1–6)
         </button>
-        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-goodhart">
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-goodhart">
           Goodhart & Invariants
         </button>
-        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-uncertainty">
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-uncertainty">
           Calibration & Auditing
         </button>
-        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-compute">
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-compute">
           Compute Frontier (BoN vs RL)
         </button>
-        <button type="button" class="tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-claims">
+        <button type="button" class="tab-btn px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white" data-view="view-claims">
           Claim Registry (16 Claims)
         </button>
       </nav>
@@ -82,7 +82,7 @@ const compute = capstone.compute_frontier;
           Outcome-Only RL vs Process Supervision: The Process Gap
         </h2>
         <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
-          Comparing terminal answer correctness against intermediate complete-path validity. Outcome PPO optimizes terminal answer rewards by discovering shortcut transitions, producing a <strong>45.8% process validity gap</strong> (Cohen's $d = 10.92$).
+          Comparing terminal answer correctness against intermediate complete-path validity. Outcome PPO optimizes terminal answer rewards by discovering shortcut transitions, producing a <strong>45.8% process validity gap</strong> (Cohen's <span class="font-serif italic">d</span> = 10.92).
         </p>
       </div>
 
@@ -118,7 +118,7 @@ const compute = capstone.compute_frontier;
         <MetricCard
           value="16.7%"
           label="OOD Depth Accuracy (Outcome PPO)"
-          sublabel="Collapses under unseen chain depths (d=4..6) due to memorized shortcuts."
+          sublabel="Collapses under unseen chain depths (d = 4–6) due to memorized shortcuts."
           badge="OOD Collapse"
           claimId="CLAIM-10"
           variant="red"
@@ -126,27 +126,27 @@ const compute = capstone.compute_frontier;
       </div>
 
       <!-- Comparison Data Table -->
-      <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 overflow-hidden shadow-xs">
+      <div class="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-apple-gray-900 overflow-hidden shadow-subtle">
         <div class="p-4 sm:p-5 border-b border-black/[0.06] dark:border-white/[0.08]">
           <h3 class="text-sm font-bold text-apple-gray-900 dark:text-white">
-            Core Treatment Matrix (IID vs OOD & Validity, n=10 paired seeds)
+            Core Treatment Matrix (IID vs OOD & Validity, n = 10 paired seeds)
           </h3>
         </div>
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs">
-            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 text-apple-gray-600 dark:text-apple-gray-300 font-semibold border-b border-black/[0.06] dark:border-white/[0.08]">
+          <table class="w-full text-left text-xs tabular-nums">
+            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 text-apple-gray-600 dark:text-apple-gray-300 font-semibold border-b border-black/[0.06] dark:border-white/[0.08] whitespace-nowrap">
               <tr>
                 <th class="py-3 px-4">Treatment</th>
                 <th class="py-3 px-4">IID Answer Acc</th>
                 <th class="py-3 px-4">Complete-Path Validity</th>
                 <th class="py-3 px-4">Process Validity Gap</th>
-                <th class="py-3 px-4">OOD Depth ($d=4..6$)</th>
+                <th class="py-3 px-4">OOD Depth (d = 4–6)</th>
                 <th class="py-3 px-4">Counterfactual Sens.</th>
                 <th class="py-3 px-4">Exploit Rate</th>
                 <th class="py-3 px-4">Primary Claim</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] font-mono text-apple-gray-700 dark:text-apple-gray-300">
+            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] font-mono text-apple-gray-700 dark:text-apple-gray-300 whitespace-nowrap">
               <tr class="hover:bg-apple-gray-50/50 dark:hover:bg-white/[0.02]">
                 <td class="py-3 px-4 font-sans font-semibold text-apple-gray-900 dark:text-white">Trace SFT Baseline</td>
                 <td class="py-3 px-4">71.6%</td>
@@ -178,7 +178,7 @@ const compute = capstone.compute_frontier;
                 <td class="py-3 px-4 font-sans"><a href="/docs/claims#claim-11" class="text-apple-blue hover:underline">CLAIM-11</a></td>
               </tr>
               <tr class="hover:bg-apple-gray-50/50 dark:hover:bg-white/[0.02]">
-                <td class="py-3 px-4 font-sans font-semibold">Hybrid PPO ($w_o=0.5, w_p=0.5$)</td>
+                <td class="py-3 px-4 font-sans font-semibold">Hybrid PPO (wₒ = 0.5, wₚ = 0.5)</td>
                 <td class="py-3 px-4">87.7%</td>
                 <td class="py-3 px-4">88.0%</td>
                 <td class="py-3 px-4 text-apple-green">-0.3%</td>
@@ -240,32 +240,32 @@ const compute = capstone.compute_frontier;
           Generalization & Stress Tests Matrix
         </h2>
         <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
-          Evaluating all 8 treatments across 6 distinct distribution splits: IID (d ≤ 3), OOD Depth (d ∈ &#123;4,5,6&#125;), Distractors (k=3), Single-Edge Counterfactuals, New Symbolic Tokens, and Counterbalanced Shortcut Datasets.
+          Evaluating all 8 treatments across 6 distinct distribution splits: IID (d ≤ 3), OOD Depth (d ∈ &#123;4, 5, 6&#125;), Distractors (k = 3), Single-Edge Counterfactuals, New Symbolic Tokens, and Counterbalanced Shortcut Datasets.
         </p>
       </div>
 
       <!-- Matrix Table -->
-      <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 overflow-hidden shadow-xs">
+      <div class="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-apple-gray-900 overflow-hidden shadow-subtle">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs">
-            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 text-apple-gray-600 dark:text-apple-gray-300 font-semibold border-b border-black/[0.06] dark:border-white/[0.08]">
+          <table class="w-full text-left text-xs tabular-nums">
+            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 text-apple-gray-600 dark:text-apple-gray-300 font-semibold border-b border-black/[0.06] dark:border-white/[0.08] whitespace-nowrap">
               <tr>
                 <th class="py-3.5 px-4">Method</th>
-                <th class="py-3.5 px-4">IID ($d \le 3$)</th>
-                <th class="py-3.5 px-4">OOD Depth ($4..6$)</th>
-                <th class="py-3.5 px-4">Distractors ($k=3$)</th>
+                <th class="py-3.5 px-4">IID (d ≤ 3)</th>
+                <th class="py-3.5 px-4">OOD Depth (d = 4–6)</th>
+                <th class="py-3.5 px-4">Distractors (k = 3)</th>
                 <th class="py-3.5 px-4">Counterfactual</th>
                 <th class="py-3.5 px-4">New Symbols</th>
                 <th class="py-3.5 px-4">Shortcut CB</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] font-mono text-apple-gray-700 dark:text-apple-gray-300">
+            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] font-mono text-apple-gray-700 dark:text-apple-gray-300 whitespace-nowrap">
               {Object.entries(distMatrix).map(([model, vals]) => {
                 const isOutcome = model === 'Outcome_PPO';
                 const isProcess = model === 'Process_PPO';
                 const isInvariant = model === 'Process_PPO_Invariant';
 
-                let rowClass = 'hover:bg-black/[0.02] dark:hover:bg-white/[0.02]';
+                let rowClass = 'hover:bg-black/[0.015] dark:hover:bg-white/[0.02]';
                 if (isOutcome) rowClass = 'bg-apple-red/[0.03] dark:bg-apple-red-dark/[0.05]';
                 if (isProcess) rowClass = 'bg-apple-green/[0.03] dark:bg-apple-green-dark/[0.05]';
                 if (isInvariant) rowClass = 'bg-apple-blue/[0.03] dark:bg-apple-blue-dark/[0.05]';
@@ -298,17 +298,17 @@ const compute = capstone.compute_frontier;
     <div id="view-depth-curve" class="explorer-view hidden space-y-10">
       <div>
         <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
-          Reasoning Depth Extrapolation ($d=1$ to $d=6$)
+          Reasoning Depth Extrapolation (d = 1 to d = 6)
         </h2>
         <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
-          Tracking accuracy as relational deduction depth expands beyond training horizons ($d \le 3$). Notice the catastrophic collapse of Outcome PPO at $d=4$ ($28\% \to 16\% \to 10\%$) contrasted with the graceful transfer of Process PPO ($64\%$).
+          Tracking accuracy as relational deduction depth expands beyond training horizons (d ≤ 3). Notice the catastrophic collapse of Outcome PPO at d = 4 (28% → 16% → 10%) contrasted with the graceful transfer of Process PPO (64%).
         </p>
       </div>
 
       <!-- Depth Extrapolation Plot Card -->
-      <div class="rounded-3xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 p-6 sm:p-8 shadow-card">
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex items-center gap-6 text-xs font-semibold">
+      <div class="rounded-3xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-apple-gray-900 p-6 sm:p-8 shadow-subtle hover:shadow-card transition-all">
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-4">
+          <div class="flex items-center gap-6 text-xs font-semibold flex-wrap">
             <span class="flex items-center gap-2">
               <span class="w-3 h-0.5 bg-apple-red dark:bg-apple-red-dark"></span> Outcome PPO
             </span>
@@ -316,7 +316,7 @@ const compute = capstone.compute_frontier;
               <span class="w-3 h-0.5 bg-apple-green dark:bg-apple-green-dark"></span> Process PPO
             </span>
             <span class="flex items-center gap-2">
-              <span class="w-3 h-0.5 bg-apple-blue dark:bg-apple-blue-dark"></span> Process PPO + KL
+              <span class="w-3 h-0.5 bg-apple-blue dark:text-apple-blue-dark"></span> Process PPO + KL
             </span>
             <span class="flex items-center gap-2">
               <span class="w-3 h-0.5 bg-apple-gray-400"></span> SFT Baseline
@@ -342,23 +342,22 @@ const compute = capstone.compute_frontier;
 
             <!-- X Axis Boundary (d=3) -->
             <line x1="258" y1="20" x2="258" y2="200" stroke="currentColor" stroke-dasharray="4,4" class="text-apple-orange/40 dark:text-apple-orange-dark/40" stroke-width="1.5" />
-            <text x="262" y="25" font-size="9" font-family="monospace" class="fill-apple-orange dark:fill-apple-orange-dark font-bold">OOD Boundary →</text>
+            <text x="262" y="25" font-size="9" font-family="monospace" class="fill-apple-orange dark:fill-apple-orange-dark font-bold">OOD Boundary (d &gt; 3) →</text>
 
             <!-- X Axis Ticks -->
-            <text x="50" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=1</text>
-            <text x="154" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=2</text>
-            <text x="258" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=3</text>
-            <text x="362" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=4</text>
-            <text x="466" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=5</text>
-            <text x="570" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d=6</text>
+            <text x="50" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d = 1</text>
+            <text x="154" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d = 2</text>
+            <text x="258" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d = 3</text>
+            <text x="362" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d = 4</text>
+            <text x="466" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d = 5</text>
+            <text x="570" y="215" text-anchor="middle" font-size="11" font-family="monospace" class="fill-apple-gray-500">d = 6</text>
 
             <!-- Outcome PPO Path: [0.98, 0.92, 0.75, 0.28, 0.16, 0.10] -->
-            <!-- Y: 30 + (1 - acc) * 160 -->
             <path
               d="M 50 33 L 154 43 L 258 70 L 362 145 L 466 164 L 570 174"
               fill="none"
               stroke="currentColor"
-              stroke-width="3"
+              stroke-width="2.5"
               class="text-apple-red dark:text-apple-red-dark"
             />
 
@@ -367,7 +366,7 @@ const compute = capstone.compute_frontier;
               d="M 50 38 L 154 49 L 258 72 L 362 75 L 466 81 L 570 88"
               fill="none"
               stroke="currentColor"
-              stroke-width="3"
+              stroke-width="2.5"
               class="text-apple-green dark:text-apple-green-dark"
             />
 
@@ -376,7 +375,7 @@ const compute = capstone.compute_frontier;
               d="M 50 36 L 154 46 L 258 68 L 362 70 L 466 73 L 570 78"
               fill="none"
               stroke="currentColor"
-              stroke-width="3"
+              stroke-width="2.5"
               class="text-apple-blue dark:text-apple-blue-dark"
             />
 
@@ -394,21 +393,21 @@ const compute = capstone.compute_frontier;
 
         <!-- Depth Extrapolation Table -->
         <div class="mt-8 pt-6 border-t border-black/[0.06] dark:border-white/[0.08] overflow-x-auto">
-          <table class="w-full text-left text-xs font-mono">
-            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 font-sans font-semibold text-apple-gray-600 dark:text-apple-gray-300">
+          <table class="w-full text-left text-xs font-mono tabular-nums">
+            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 font-sans font-semibold text-apple-gray-600 dark:text-apple-gray-300 whitespace-nowrap">
               <tr>
                 <th class="py-2.5 px-3">Method</th>
-                <th class="py-2.5 px-3">d=1</th>
-                <th class="py-2.5 px-3">d=2</th>
-                <th class="py-2.5 px-3">d=3 (Train Limit)</th>
-                <th class="py-2.5 px-3 text-apple-orange dark:text-apple-orange-dark">d=4 (OOD)</th>
-                <th class="py-2.5 px-3 text-apple-orange dark:text-apple-orange-dark">d=5 (OOD)</th>
-                <th class="py-2.5 px-3 text-apple-orange dark:text-apple-orange-dark">d=6 (OOD)</th>
+                <th class="py-2.5 px-3">d = 1</th>
+                <th class="py-2.5 px-3">d = 2</th>
+                <th class="py-2.5 px-3">d = 3 (Train Limit)</th>
+                <th class="py-2.5 px-3 text-apple-orange dark:text-apple-orange-dark">d = 4 (OOD)</th>
+                <th class="py-2.5 px-3 text-apple-orange dark:text-apple-orange-dark">d = 5 (OOD)</th>
+                <th class="py-2.5 px-3 text-apple-orange dark:text-apple-orange-dark">d = 6 (OOD)</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] text-apple-gray-700 dark:text-apple-gray-300">
+            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] text-apple-gray-700 dark:text-apple-gray-300 whitespace-nowrap">
               {Object.entries(depthCurves).map(([model, accs]) => (
-                <tr class="hover:bg-black/[0.02] dark:hover:bg-white/[0.02]">
+                <tr class="hover:bg-black/[0.015] dark:hover:bg-white/[0.02]">
                   <td class="py-2.5 px-3 font-sans font-semibold text-apple-gray-900 dark:text-white">
                     {model.replace(/_/g, ' ')}
                   </td>
@@ -461,7 +460,7 @@ const compute = capstone.compute_frontier;
       </div>
 
       <!-- Goodhart Comparison Table -->
-      <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 p-6 shadow-xs">
+      <div class="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-apple-gray-900 p-6 shadow-subtle">
         <h3 class="text-sm font-bold text-apple-gray-900 dark:text-white mb-4">
           Goodhart Divergence Mechanics
         </h3>
@@ -492,27 +491,27 @@ const compute = capstone.compute_frontier;
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Calibration Table -->
-        <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 p-6 shadow-xs">
+        <div class="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-apple-gray-900 p-6 shadow-subtle">
           <h3 class="text-sm font-bold text-apple-gray-900 dark:text-white mb-4">
             Calibration & Entropy Across Treatments
           </h3>
-          <div class="space-y-3 font-mono text-xs">
+          <div class="space-y-3 font-mono text-xs tabular-nums">
             {Object.entries(calibration).map(([model, metrics]) => (
               <div class="p-3 rounded-xl bg-apple-gray-50 dark:bg-apple-gray-800/60 border border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between">
                 <div>
-                  <span class="font-sans font-semibold text-apple-gray-900 dark:text-white block">
+                  <span class="font-sans font-semibold text-apple-gray-800 dark:text-apple-gray-200 block text-xs">
                     {model.replace(/_/g, ' ')}
                   </span>
-                  <span class="text-[11px] text-apple-gray-400 font-sans">
-                    Entropy: {metrics.entropy.toFixed(2)} • Brier: {metrics.brier.toFixed(3)}
+                  <span class="text-[11px] text-apple-gray-500">
+                    ECE: {(metrics.ece * 100).toFixed(1)}% • Entropy: {metrics.entropy.toFixed(3)}
                   </span>
                 </div>
                 <div class="text-right">
-                  <span class="text-xs font-bold text-apple-gray-900 dark:text-white block">
-                    ECE: {(metrics.ece * 100).toFixed(2)}%
+                  <span class="text-[10px] uppercase font-semibold text-apple-gray-400 block font-sans">
+                    Brier Score
                   </span>
-                  <span class="text-[11px] text-apple-gray-400">
-                    Risk@80%: {(metrics.selective_risk_80 * 100).toFixed(1)}%
+                  <span class="font-bold text-apple-gray-900 dark:text-white">
+                    {metrics.brier.toFixed(3)}
                   </span>
                 </div>
               </div>
@@ -520,85 +519,98 @@ const compute = capstone.compute_frontier;
           </div>
         </div>
 
-        <!-- Audit Routing Table -->
-        <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 p-6 shadow-xs">
-          <h3 class="text-sm font-bold text-apple-gray-900 dark:text-white mb-4">
-            Selective Auditing Under 20% Oracle Query Budget
-          </h3>
-          <div class="space-y-3 font-mono text-xs">
-            {routing.map(item => (
-              <div class="p-3 rounded-xl bg-apple-gray-50 dark:bg-apple-gray-800/60 border border-black/[0.04] dark:border-white/[0.06] flex items-center justify-between">
-                <div>
-                  <span class="font-sans font-semibold text-apple-gray-900 dark:text-white block">
-                    {item.strategy}
-                  </span>
-                  <span class="text-[11px] text-apple-gray-400 font-sans">
-                    Oracle Budget: {(item.oracle_budget * 100).toFixed(0)}%
-                  </span>
+        <!-- Audit Routing Efficiency -->
+        <div class="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-apple-gray-900 p-6 shadow-subtle flex flex-col justify-between">
+          <div>
+            <h3 class="text-sm font-bold text-apple-gray-900 dark:text-white mb-2">
+              Selective Audit Routing (Budget: 20%)
+            </h3>
+            <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 mb-6 leading-relaxed">
+              When ground truth verification is costly, routing suspicious samples to the oracle by inter-verifier disagreement catches significantly more latent exploits than policy entropy or random sampling.
+            </p>
+
+            <div class="space-y-3 font-mono text-xs tabular-nums">
+              {routing.map(r => (
+                <div class="flex items-center justify-between p-3 rounded-xl bg-apple-gray-50 dark:bg-apple-gray-800/60 border border-black/[0.04] dark:border-white/[0.06]">
+                  <div>
+                    <span class="font-sans font-medium text-apple-gray-800 dark:text-apple-gray-200 block text-xs">
+                      {r.strategy.replace(/_/g, ' ')}
+                    </span>
+                    <span class="text-[11px] text-apple-gray-400">Budget: {(r.oracle_budget * 100).toFixed(0)}%</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="text-[10px] uppercase font-semibold text-apple-gray-400 block font-sans">
+                      Exploits Caught
+                    </span>
+                    <span class={`font-bold ${r.exploit_catch_rate > 0.6 ? 'text-apple-blue dark:text-apple-blue-dark' : 'text-apple-gray-600'}`}>
+                      {(r.exploit_catch_rate * 100).toFixed(0)}%
+                    </span>
+                  </div>
                 </div>
-                <div class="text-right">
-                  <span class="text-xs font-bold text-apple-blue dark:text-apple-blue-dark block">
-                    Catch: {(item.exploit_catch_rate * 100).toFixed(1)}%
-                  </span>
-                  <span class="text-[11px] text-apple-gray-400">
-                    Utility: {(item.final_oracle_utility * 100).toFixed(1)}%
-                  </span>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
+          </div>
+
+          <div class="pt-4 mt-4 border-t border-black/[0.04] dark:border-white/[0.06] text-[11px] text-apple-gray-400">
+            Traceable to CLAIM-15 (Disagreement Escalation, d = +7.80)
           </div>
         </div>
       </div>
     </div>
 
-    <!-- VIEW 6: Compute Frontier -->
+    <!-- VIEW 6: Compute Frontier (Best-of-N vs RL) -->
     <div id="view-compute" class="explorer-view hidden space-y-10">
       <div>
         <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white mb-2">
-          Compute Frontier: Test-Time Search vs Policy RL
+          Inference Compute Frontier: Test-Time Search vs Policy RL
         </h2>
         <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 max-w-3xl leading-relaxed">
-          Evaluating the Pareto tradeoff between inference token cost and task accuracy. SFT + Best-of-8 search matches single-sample Process PPO (88.5% vs 85.5%), but consumes 144 tokens/task vs 18 tokens/task (8x token cost).
+          Evaluating trade-offs between parameter optimization and test-time token expenditure. SFT + Best-of-8 rejection sampling matches Process PPO accuracy at zero gradient variance, but requires 8x more generation compute.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <MetricCard
           value="88.5%"
-          label="SFT + Best-of-8 Accuracy"
-          sublabel="Matches Process PPO (85.5%) without policy gradient updates."
-          badge="H7 Confirmed"
-          ci="144 tokens / task"
-          cohensD="+1.10"
+          label="SFT BoN-8 Oracle Accuracy"
+          sublabel="Matches Process PPO (85.5%) via test-time sample search."
+          badge="Compute Frontier"
+          claimId="CLAIM-16"
+          variant="blue"
+        />
+        <MetricCard
+          value="8x"
+          label="Token Multiplier"
+          sublabel="144 tokens per task for BoN-8 vs 18 tokens for single-pass PPO."
+          badge="Inference Cost"
           claimId="CLAIM-16"
           variant="neutral"
         />
-
         <MetricCard
-          value="21.1"
-          label="Tokens per Correct (Process PPO)"
-          sublabel="7.7x more token-efficient than SFT BoN-8 (162.7 tokens/correct)."
-          badge="Inference Efficiency"
+          value="0"
+          label="Gradient Training Instability"
+          sublabel="Rejection sampling avoids policy gradient variance, KL drift, and value nets."
+          badge="Simplicity"
           claimId="CLAIM-16"
           variant="green"
         />
       </div>
 
       <!-- Compute Table -->
-      <div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-white dark:bg-apple-gray-900 overflow-hidden shadow-xs">
+      <div class="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-white dark:bg-apple-gray-900 overflow-hidden shadow-subtle">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs font-mono">
-            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 font-sans font-semibold text-apple-gray-600 dark:text-apple-gray-300 border-b border-black/[0.06] dark:border-white/[0.08]">
+          <table class="w-full text-left text-xs tabular-nums">
+            <thead class="bg-apple-gray-50 dark:bg-apple-gray-800/60 text-apple-gray-600 dark:text-apple-gray-300 font-semibold border-b border-black/[0.06] dark:border-white/[0.08] whitespace-nowrap">
               <tr>
-                <th class="py-3 px-4">Method Configuration</th>
+                <th class="py-3 px-4">Method & Sampling Regime</th>
                 <th class="py-3 px-4">Tokens / Task</th>
                 <th class="py-3 px-4">Oracle Accuracy</th>
                 <th class="py-3 px-4">Tokens / Correct Answer</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] text-apple-gray-700 dark:text-apple-gray-300">
+            <tbody class="divide-y divide-black/[0.04] dark:divide-white/[0.06] font-mono text-apple-gray-700 dark:text-apple-gray-300 whitespace-nowrap">
               {compute.map(row => (
-                <tr class="hover:bg-black/[0.02] dark:hover:bg-white/[0.02]">
+                <tr class="hover:bg-black/[0.015] dark:hover:bg-white/[0.02]">
                   <td class="py-3 px-4 font-sans font-semibold text-apple-gray-900 dark:text-white">
                     {row.method}
                   </td>
@@ -627,32 +639,34 @@ const compute = capstone.compute_frontier;
       </div>
 
       <!-- Interactive Claim Filters -->
-      <div class="flex flex-wrap items-center gap-2">
-        <span class="text-xs font-semibold text-apple-gray-400 mr-2">Filter Status:</span>
-        <button type="button" class="claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900" data-filter="all">
-          All (16)
-        </button>
-        <button type="button" class="claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-600 dark:text-apple-gray-300" data-filter="robustly reproduced">
-          Robustly Reproduced (15)
-        </button>
-        <button type="button" class="claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-600 dark:text-apple-gray-300" data-filter="budget-sensitive">
-          Budget-Sensitive (1)
-        </button>
+      <div class="flex items-center gap-3">
+        <span class="text-xs font-semibold text-apple-gray-400">Filter Status:</span>
+        <div class="inline-flex p-1 rounded-2xl bg-apple-gray-100 dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] shadow-subtle gap-1">
+          <button type="button" class="claim-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-white dark:bg-apple-gray-800 text-apple-gray-900 dark:text-white shadow-subtle" data-filter="all">
+            All (16)
+          </button>
+          <button type="button" class="claim-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white" data-filter="robustly reproduced">
+            Robustly Reproduced (15)
+          </button>
+          <button type="button" class="claim-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white" data-filter="budget-sensitive">
+            Budget-Sensitive (1)
+          </button>
+        </div>
       </div>
 
-      <!-- Claim Cards Grid -->
+      <!-- Claim Cards Grid (Responsive 2-column layout) -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="claims-grid">
         {RESEARCH_CLAIMS.map(claim => (
           <div
-            class="claim-card rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] shadow-xs flex flex-col justify-between"
+            class="claim-card rounded-2xl p-6 bg-white dark:bg-apple-gray-900 border border-black/[0.06] dark:border-white/[0.08] shadow-subtle hover:shadow-card hover:border-black/[0.12] dark:hover:border-white/[0.16] transition-all flex flex-col justify-between"
             data-status={claim.status}
           >
             <div>
-              <div class="flex items-center justify-between mb-3">
+              <div class="flex items-center justify-between mb-3 gap-2">
                 <span class="text-xs font-mono font-bold text-apple-blue dark:text-apple-blue-dark">
                   {claim.id} (Phase {claim.phase})
                 </span>
-                <span class={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${claim.status === 'robustly reproduced' ? 'bg-apple-green/10 text-apple-green dark:text-apple-green-dark' : 'bg-apple-orange/10 text-apple-orange dark:text-apple-orange-dark'}`}>
+                <span class={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${claim.status === 'robustly reproduced' ? 'bg-apple-green/10 text-apple-green dark:text-apple-green-dark' : 'bg-apple-orange/10 text-apple-orange dark:text-apple-orange-dark'}`}>
                   {claim.status}
                 </span>
               </div>
@@ -697,9 +711,9 @@ const compute = capstone.compute_frontier;
 
         // Tab buttons styling
         tabBtns.forEach(b => {
-          b.className = 'tab-btn px-3 py-1.5 rounded-full transition-all text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white';
+          b.className = 'tab-btn px-3.5 py-2 rounded-xl text-xs font-medium whitespace-nowrap shrink-0 transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white';
         });
-        btn.className = 'tab-btn px-3 py-1.5 rounded-full transition-all bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900';
+        btn.className = 'tab-btn px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap shrink-0 transition-all bg-white dark:bg-apple-gray-800 text-apple-gray-900 dark:text-white shadow-subtle';
 
         // Switch views
         views.forEach(v => {
@@ -736,9 +750,9 @@ const compute = capstone.compute_frontier;
         const filter = btn.getAttribute('data-filter');
 
         filterBtns.forEach(b => {
-          b.className = 'claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-100 dark:bg-apple-gray-800 text-apple-gray-600 dark:text-apple-gray-300';
+          b.className = 'claim-filter-btn px-3 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-gray-900 dark:hover:text-white';
         });
-        btn.className = 'claim-filter-btn px-2.5 py-1 rounded-full text-xs font-semibold bg-apple-gray-900 dark:bg-white text-white dark:text-apple-gray-900';
+        btn.className = 'claim-filter-btn px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all bg-white dark:bg-apple-gray-800 text-apple-gray-900 dark:text-white shadow-subtle';
 
         claimCards.forEach(card => {
           const status = card.getAttribute('data-status');

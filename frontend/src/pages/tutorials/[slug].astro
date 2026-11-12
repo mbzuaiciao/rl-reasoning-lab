@@ -51,7 +51,7 @@ const { tut, processed, prev, next } = Astro.props;
           href={`https://github.com/mbzuaiciao/rl-reasoning-lab/blob/main/${tut.filePath}`}
           target="_blank"
           rel="noopener noreferrer"
-          class="hover:text-apple-blue transition-colors flex items-center gap-1"
+          class="hover:text-apple-blue transition-colors flex items-center gap-1 font-medium"
         >
           View Source ↗
         </a>
@@ -59,18 +59,18 @@ const { tut, processed, prev, next } = Astro.props;
     </div>
 
     <!-- Main Content Layout with Sticky Sidebar -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-      <!-- Article Column (Left 8-9 cols) -->
-      <article class="lg:col-span-8 xl:col-span-9 min-w-0">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14">
+      <!-- Article Column (Left 8 cols, max-w-3xl reading line) -->
+      <article class="lg:col-span-8 xl:col-span-8 min-w-0">
         <!-- Rendered Prose HTML with KaTeX and Shiki -->
-        <div class="prose-lab max-w-none" set:html={processed.html} />
+        <div class="prose-lab mx-auto lg:mx-0" set:html={processed.html} />
 
         <!-- Bottom Navigation Controls -->
-        <div class="mt-16 pt-8 border-t border-black/[0.08] dark:border-white/[0.1] flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="mt-16 pt-8 border-t border-black/[0.06] dark:border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4">
           {prev ? (
             <a
               href={`/tutorials/${prev.slug}`}
-              class="w-full sm:w-auto p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.08] hover:border-apple-blue/30 dark:hover:border-apple-blue-dark/40 bg-white dark:bg-apple-gray-900 transition-all text-left flex-1"
+              class="w-full sm:w-auto p-4 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] hover:border-black/[0.14] dark:hover:border-white/[0.16] bg-white dark:bg-apple-gray-900 shadow-subtle hover:shadow-card transition-all text-left flex-1"
             >
               <span class="text-[10px] uppercase font-semibold text-apple-gray-400 tracking-wider block mb-1">
                 ← Previous Phase {prev.phase}
@@ -84,7 +84,7 @@ const { tut, processed, prev, next } = Astro.props;
           {next ? (
             <a
               href={`/tutorials/${next.slug}`}
-              class="w-full sm:w-auto p-4 rounded-xl border border-black/[0.06] dark:border-white/[0.08] hover:border-apple-blue/30 dark:hover:border-apple-blue-dark/40 bg-white dark:bg-apple-gray-900 transition-all text-right flex-1"
+              class="w-full sm:w-auto p-4 rounded-2xl border border-black/[0.06] dark:border-white/[0.08] hover:border-black/[0.14] dark:hover:border-white/[0.16] bg-white dark:bg-apple-gray-900 shadow-subtle hover:shadow-card transition-all text-right flex-1"
             >
               <span class="text-[10px] uppercase font-semibold text-apple-gray-400 tracking-wider block mb-1">
                 Next Phase {next.phase} →
@@ -96,7 +96,7 @@ const { tut, processed, prev, next } = Astro.props;
           ) : (
             <a
               href="/docs/phase10_capstone_report"
-              class="w-full sm:w-auto p-4 rounded-xl border border-apple-purple/30 bg-apple-purple/5 dark:bg-apple-purple-dark/10 transition-all text-right flex-1"
+              class="w-full sm:w-auto p-4 rounded-2xl border border-apple-purple/30 bg-apple-purple/5 dark:bg-apple-purple-dark/10 shadow-subtle hover:shadow-card transition-all text-right flex-1"
             >
               <span class="text-[10px] uppercase font-semibold text-apple-purple dark:text-apple-purple-dark tracking-wider block mb-1">
                 Capstone Benchmark →
@@ -109,12 +109,12 @@ const { tut, processed, prev, next } = Astro.props;
         </div>
       </article>
 
-      <!-- Sidebar Column (Right 4-3 cols, sticky) -->
-      <aside class="hidden lg:block lg:col-span-4 xl:col-span-3">
+      <!-- Sidebar Column (Right 4 cols, sticky) -->
+      <aside class="hidden lg:block lg:col-span-4 xl:col-span-4">
         <div class="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto space-y-6 pr-2">
           <!-- Meta Card -->
-          <div class="p-4 rounded-2xl bg-apple-gray-100/60 dark:bg-apple-gray-900/60 border border-black/[0.04] dark:border-white/[0.06] text-xs space-y-2">
-            <div class="font-semibold text-apple-gray-800 dark:text-apple-gray-200">
+          <div class="p-4 rounded-2xl bg-apple-gray-100/70 dark:bg-apple-gray-900/60 border border-black/[0.04] dark:border-white/[0.06] text-xs space-y-2 shadow-subtle">
+            <div class="font-semibold text-apple-gray-900 dark:text-apple-gray-100">
               Phase {tut.phase} Overview
             </div>
             <p class="text-[11px] text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed">

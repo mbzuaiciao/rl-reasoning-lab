@@ -2,7 +2,7 @@
 // LimitationBanner.astro
 ---
 
-<div class="rounded-2xl border border-black/[0.08] dark:border-white/[0.1] bg-apple-gray-100/60 dark:bg-apple-gray-900/60 p-6 backdrop-blur-sm">
+<div class="rounded-2xl border border-black/[0.06] dark:border-white/[0.08] bg-apple-gray-100/70 dark:bg-apple-gray-900/60 p-6 backdrop-blur-sm shadow-subtle">
   <div class="flex items-center gap-2 mb-3">
     <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-apple-orange/15 dark:bg-apple-orange-dark/20 text-apple-orange dark:text-apple-orange-dark text-xs font-bold">
       !
@@ -11,33 +11,41 @@
       Methodological Boundaries & Threats to Validity
     </h3>
   </div>
-  <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 mb-4 leading-relaxed">
-    To preserve scientific integrity, all claims in this laboratory are strictly bounded by four controlled architectural and domain constraints:
+  <p class="text-xs text-apple-gray-600 dark:text-apple-gray-400 mb-4 leading-relaxed">
+    To preserve scientific integrity, all findings in this laboratory are strictly bounded by four controlled architectural and domain constraints:
   </p>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
-    <div class="p-3 rounded-xl bg-white/70 dark:bg-black/40 border border-black/[0.04] dark:border-white/[0.06]">
-      <span class="font-semibold text-apple-gray-800 dark:text-apple-gray-200 block mb-1">1. Model Scale</span>
-      <p class="text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-[11px]">
-        2-layer autoregressive causal transformer (<code>TinyTransformer</code>, 64-dim, 2 heads). Captures policy dynamics, but lacks web-scale pre-trained world knowledge.
-      </p>
+    <div class="p-3.5 rounded-xl bg-white dark:bg-black/40 border border-black/[0.04] dark:border-white/[0.06] shadow-subtle flex flex-col justify-between">
+      <div>
+        <span class="font-semibold text-apple-gray-900 dark:text-apple-gray-100 block mb-1">1. Model Scale</span>
+        <p class="text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-[11px]">
+          2-layer autoregressive causal transformer (<code class="font-mono">TinyTransformer</code>, 64-dim, 2 heads). Isolates optimization dynamics without confounding web-scale pre-training.
+        </p>
+      </div>
     </div>
-    <div class="p-3 rounded-xl bg-white/70 dark:bg-black/40 border border-black/[0.04] dark:border-white/[0.06]">
-      <span class="font-semibold text-apple-gray-800 dark:text-apple-gray-200 block mb-1">2. Synthetic Graph Domain</span>
-      <p class="text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-[11px]">
-        Tasks are defined over 8-node DAG deductions. Provides exact ground-truth transitions, but lacks natural language polysemy and open-world ambiguity.
-      </p>
+    <div class="p-3.5 rounded-xl bg-white dark:bg-black/40 border border-black/[0.04] dark:border-white/[0.06] shadow-subtle flex flex-col justify-between">
+      <div>
+        <span class="font-semibold text-apple-gray-900 dark:text-apple-gray-100 block mb-1">2. Synthetic Graph Domain</span>
+        <p class="text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-[11px]">
+          Tasks are defined over 8-node directed acyclic graph deductions (<span class="font-mono">|V| = 8</span>). Provides exact ground truth, but lacks natural language polysemy.
+        </p>
+      </div>
     </div>
-    <div class="p-3 rounded-xl bg-white/70 dark:bg-black/40 border border-black/[0.04] dark:border-white/[0.06]">
-      <span class="font-semibold text-apple-gray-800 dark:text-apple-gray-200 block mb-1">3. Discrete Trace Alignment</span>
-      <p class="text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-[11px]">
-        Evaluation assumes emitted tokens represent computational deduction. In overparameterized LLMs, internal latent activations may decouple from text.
-      </p>
+    <div class="p-3.5 rounded-xl bg-white dark:bg-black/40 border border-black/[0.04] dark:border-white/[0.06] shadow-subtle flex flex-col justify-between">
+      <div>
+        <span class="font-semibold text-apple-gray-900 dark:text-apple-gray-100 block mb-1">3. Discrete Trace Alignment</span>
+        <p class="text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-[11px]">
+          Evaluation assumes emitted token sequences represent computational deduction. In frontier LLMs, internal latent activations may decouple from text.
+        </p>
+      </div>
     </div>
-    <div class="p-3 rounded-xl bg-white/70 dark:bg-black/40 border border-black/[0.04] dark:border-white/[0.06]">
-      <span class="font-semibold text-apple-gray-800 dark:text-apple-gray-200 block mb-1">4. Verifier Availability</span>
-      <p class="text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-[11px]">
-        Step process supervision assumes verifiable transition rules. In open domains lacking formal syntax, learned step verifiers risk second-order Goodhart drift.
-      </p>
+    <div class="p-3.5 rounded-xl bg-white dark:bg-black/40 border border-black/[0.04] dark:border-white/[0.06] shadow-subtle flex flex-col justify-between">
+      <div>
+        <span class="font-semibold text-apple-gray-900 dark:text-apple-gray-100 block mb-1">4. Verifier Availability</span>
+        <p class="text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed text-[11px]">
+          Step process supervision assumes verifiable transition rules. In open domains lacking formal syntax, learned step verifiers risk second-order Goodhart drift.
+        </p>
+      </div>
     </div>
   </div>
 </div>

@@ -98,6 +98,27 @@ function rehypeExternalLinksPlugin() {
   };
 }
 
+// Custom rehype plugin to wrap tables in responsive scroll container
+function rehypeTableWrapPlugin() {
+  return (tree: any) => {
+    visit(tree, 'element', (node: any, index: any, parent: any) => {
+      if (
+        node.tagName === 'table' &&
+        parent &&
+        (!parent.properties?.className || !parent.properties.className.includes('table-wrapper'))
+      ) {
+        const wrapper = {
+          type: 'element',
+          tagName: 'div',
+          properties: { className: ['table-wrapper'] },
+          children: [node]
+        };
+        parent.children[index] = wrapper;
+      }
+    });
+  };
+}
+
 export async function processMarkdown(raw: string): Promise<ProcessedMarkdown> {
   const meta = { toc: [] as TableOfContentsItem[], title: '' };
 
@@ -109,6 +130,7 @@ export async function processMarkdown(raw: string): Promise<ProcessedMarkdown> {
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeKatex)
     .use(rehypeSlug)
+    .use(rehypeTableWrapPlugin)
     .use(rehypeExternalLinksPlugin)
     .use(rehypeShiki, {
       themes: {

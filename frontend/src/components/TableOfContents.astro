@@ -11,15 +11,22 @@ const { toc } = Astro.props;
 
 {toc.length > 0 && (
   <nav class="space-y-1 text-xs" aria-label="Table of Contents">
-    <p class="font-semibold text-apple-gray-800 dark:text-apple-gray-200 uppercase tracking-wider text-[11px] mb-3">
-      On this page
-    </p>
-    <ul class="space-y-1.5 border-l border-black/[0.08] dark:border-white/[0.1] pl-3">
+    <div class="flex items-center gap-1.5 font-semibold text-apple-gray-800 dark:text-apple-gray-200 uppercase tracking-wider text-[11px] mb-3">
+      <svg class="w-3.5 h-3.5 text-apple-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h14" />
+      </svg>
+      <span>On this page</span>
+    </div>
+    <ul class="space-y-1 border-l border-black/[0.08] dark:border-white/[0.1] pl-3 py-0.5">
       {toc.map(item => (
-        <li class={item.depth === 3 ? 'ml-3' : ''}>
+        <li class={item.depth === 3 ? 'pl-3' : ''}>
           <a
             href={`#${item.id}`}
-            class="toc-link block py-0.5 text-apple-gray-500 dark:text-apple-gray-400 hover:text-apple-blue dark:hover:text-apple-blue-dark transition-colors line-clamp-1"
+            class={`toc-link block py-1 transition-all line-clamp-1 rounded-sm focus-visible:outline-apple-blue ${
+              item.depth === 3
+                ? 'text-[11px] text-apple-gray-400 dark:text-apple-gray-500 hover:text-apple-gray-900 dark:hover:text-white'
+                : 'text-xs text-apple-gray-600 dark:text-apple-gray-400 hover:text-apple-blue dark:hover:text-apple-blue-dark font-medium'
+            }`}
             data-target={item.id}
           >
             {item.text}
@@ -35,35 +42,51 @@ const { toc } = Astro.props;
     const links = document.querySelectorAll('.toc-link');
     if (links.length === 0) return;
 
-    const headingMap = new Map();
-    links.forEach(link => {
+    const targets = Array.from(links).map(link => {
       const id = link.getAttribute('data-target');
-      if (id) {
-        const el = document.getElementById(id);
-        if (el) headingMap.set(el, link);
-      }
-    });
+      return {
+        id,
+        link,
+        element: id ? document.getElementById(id) : null
+      };
+    }).filter(t => t.element !== null);
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const activeLink = headingMap.get(entry.target);
-          if (activeLink) {
-            links.forEach(l => {
-              l.classList.remove('text-apple-blue', 'dark:text-apple-blue-dark', 'font-semibold');
-              l.classList.add('text-apple-gray-500', 'dark:text-apple-gray-400');
-            });
-            activeLink.classList.remove('text-apple-gray-500', 'dark:text-apple-gray-400');
-            activeLink.classList.add('text-apple-blue', 'dark:text-apple-blue-dark', 'font-semibold');
-          }
+    if (targets.length === 0) return;
+
+    let ticking = false;
+
+    function updateActiveTOC() {
+      const scrollPos = window.scrollY + 140; // 140px offset below sticky header
+      let currentTarget = targets[0];
+
+      for (let i = 0; i < targets.length; i++) {
+        const top = targets[i].element.getBoundingClientRect().top + window.scrollY;
+        if (top <= scrollPos) {
+          currentTarget = targets[i];
+        } else {
+          break;
         }
-      });
-    }, {
-      rootMargin: '-80px 0px -70% 0px'
-    });
+      }
 
-    headingMap.forEach((_, headingEl) => {
-      observer.observe(headingEl);
-    });
+      links.forEach(l => {
+        l.classList.remove('text-apple-blue', 'dark:text-apple-blue-dark', 'font-semibold');
+      });
+
+      if (currentTarget && currentTarget.link) {
+        currentTarget.link.classList.add('text-apple-blue', 'dark:text-apple-blue-dark', 'font-semibold');
+      }
+
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveTOC);
+        ticking = true;
+      }
+    }, { passive: true });
+
+    // Initial check
+    setTimeout(updateActiveTOC, 100);
   })();
 </script>
