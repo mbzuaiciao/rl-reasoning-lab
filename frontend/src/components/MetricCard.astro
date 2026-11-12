@@ -22,12 +22,12 @@ const {
   variant = 'neutral'
 } = Astro.props;
 
-const borderColors = {
-  blue: 'border-apple-blue/20 dark:border-apple-blue-dark/30 hover:border-apple-blue/40',
-  green: 'border-apple-green/20 dark:border-apple-green-dark/30 hover:border-apple-green/40',
-  red: 'border-apple-red/20 dark:border-apple-red-dark/30 hover:border-apple-red/40',
-  purple: 'border-apple-purple/20 dark:border-apple-purple-dark/30 hover:border-apple-purple/40',
-  neutral: 'border-black/[0.08] dark:border-white/[0.1] hover:border-black/20 dark:hover:border-white/25'
+const badgeStyles = {
+  blue: 'bg-apple-blue/10 text-apple-blue dark:bg-apple-blue-dark/15 dark:text-apple-blue-dark',
+  green: 'bg-apple-green/10 text-apple-green dark:bg-apple-green-dark/15 dark:text-apple-green-dark',
+  red: 'bg-apple-red/10 text-apple-red dark:bg-apple-red-dark/15 dark:text-apple-red-dark',
+  purple: 'bg-apple-purple/10 text-apple-purple dark:bg-apple-purple-dark/15 dark:text-apple-purple-dark',
+  neutral: 'bg-black/5 dark:bg-white/10 text-apple-gray-600 dark:text-apple-gray-300'
 };
 
 const valueColors = {
@@ -39,23 +39,23 @@ const valueColors = {
 };
 ---
 
-<div class={`rounded-2xl p-5 bg-white/80 dark:bg-apple-gray-900/80 backdrop-blur-sm border ${borderColors[variant]} shadow-xs hover:shadow-card transition-all duration-200 flex flex-col justify-between`}>
+<div class="rounded-2xl p-5 bg-white dark:bg-apple-gray-900/90 border border-black/[0.06] dark:border-white/[0.08] shadow-subtle hover:shadow-card hover:border-black/[0.12] dark:hover:border-white/[0.16] transition-all duration-200 flex flex-col justify-between">
   <div>
-    <div class="flex items-center justify-between mb-2">
-      <span class="text-xs font-medium text-apple-gray-500 dark:text-apple-gray-400">
+    <div class="flex items-center justify-between mb-2 gap-2">
+      <span class="text-xs font-medium text-apple-gray-500 dark:text-apple-gray-400 truncate">
         {label}
       </span>
       {badge && (
-        <span class="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/5 dark:bg-white/10 text-apple-gray-600 dark:text-apple-gray-300">
+        <span class={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${badgeStyles[variant]}`}>
           {badge}
         </span>
       )}
     </div>
-    <div class={`text-2xl sm:text-3xl font-bold tracking-tight ${valueColors[variant]} mb-1 font-mono`}>
+    <div class={`text-2xl sm:text-3xl font-bold tracking-tight ${valueColors[variant]} mb-1.5 font-mono tabular-nums`}>
       {value}
     </div>
     {sublabel && (
-      <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 leading-normal">
+      <p class="text-xs text-apple-gray-500 dark:text-apple-gray-400 leading-relaxed">
         {sublabel}
       </p>
     )}

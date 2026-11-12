@@ -2,11 +2,11 @@
 // GraphReasoningDemo.astro
 ---
 
-<div class="rounded-3xl border border-black/[0.08] dark:border-white/[0.1] bg-white/80 dark:bg-apple-gray-900/80 p-6 sm:p-8 backdrop-blur-sm shadow-card">
+<div class="rounded-3xl border border-black/[0.06] dark:border-white/[0.08] bg-white/90 dark:bg-apple-gray-900/90 p-6 sm:p-8 backdrop-blur-sm shadow-subtle hover:shadow-card transition-all">
   <!-- Header -->
   <div class="mb-6">
     <div class="flex items-center gap-2 mb-1.5">
-      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-apple-purple/10 text-apple-purple dark:text-apple-purple-dark">
+      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-semibold uppercase tracking-wider bg-apple-purple/10 text-apple-purple dark:bg-apple-purple-dark/15 dark:text-apple-purple-dark">
         Interactive Demo 1
       </span>
       <span class="text-xs text-apple-gray-400">• Pedagogical Model</span>
@@ -14,14 +14,14 @@
     <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-apple-gray-900 dark:text-white">
       Multi-Step Causal Path vs Shortcut Exploitation
     </h3>
-    <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 mt-1">
+    <p class="text-xs sm:text-sm text-apple-gray-500 dark:text-apple-gray-400 mt-1 leading-relaxed">
       Observe how outcome-only RL learns to satisfy terminal answer verifiers via invalid shortcut edges, and how counterfactual premise mutations instantly expose procedural failure.
     </p>
   </div>
 
   <!-- Illustrative Callout -->
-  <div class="mb-6 px-4 py-2.5 rounded-xl bg-apple-orange/10 dark:bg-apple-orange-dark/10 border border-apple-orange/20 dark:border-apple-orange-dark/20 text-[11px] text-apple-orange-dark flex items-start gap-2">
-    <span class="font-bold shrink-0">NOTICE:</span>
+  <div class="mb-6 px-4 py-2.5 rounded-xl bg-apple-gray-100/80 dark:bg-apple-gray-800/60 border border-black/[0.04] dark:border-white/[0.06] text-[11px] text-apple-gray-600 dark:text-apple-gray-400 flex items-start gap-2 shadow-subtle">
+    <span class="font-bold text-apple-gray-900 dark:text-apple-gray-200 shrink-0">NOTICE:</span>
     <span>Illustrative Teaching Demonstration — Designed for conceptual intuition. Quantitative measurements are recorded separately in the Results Explorer.</span>
   </div>
 
@@ -36,7 +36,7 @@
         <button
           type="button"
           id="btn-process-regime"
-          class="px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-white dark:bg-apple-gray-700 text-apple-gray-900 dark:text-white shadow-xs"
+          class="px-3 py-2 rounded-lg text-xs font-semibold transition-all bg-white dark:bg-apple-gray-700 text-apple-gray-900 dark:text-white shadow-subtle"
         >
           Process Supervision
         </button>

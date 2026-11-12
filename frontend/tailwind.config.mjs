@@ -49,9 +49,9 @@ export default {
             'subtle-dark': 'rgba(255, 69, 58, 0.12)'
           },
           purple: {
-            DEFAULT: '#5856d6',
+            DEFAULT: '#af52de',
             dark: '#bf5af2',
-            subtle: 'rgba(88, 86, 214, 0.08)',
+            subtle: 'rgba(175, 82, 222, 0.08)',
             'subtle-dark': 'rgba(191, 90, 242, 0.12)'
           },
           gray: {
@@ -65,20 +65,21 @@ export default {
             700: '#333336',
             800: '#1d1d1f',
             900: '#161618',
-            950: '#000000'
+            950: '#0a0a0c'
           }
         }
       },
       borderRadius: {
+        'xl': '12px',
         '2xl': '16px',
         '3xl': '22px',
         '4xl': '28px'
       },
       boxShadow: {
-        'subtle': '0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.02)',
-        'card': '0 2px 8px rgba(0, 0, 0, 0.04), 0 12px 32px rgba(0, 0, 0, 0.04)',
-        'elevated': '0 8px 30px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04)',
-        'dark-card': '0 2px 8px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.3)'
+        'subtle': '0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02)',
+        'card': '0 2px 8px rgba(0, 0, 0, 0.03), 0 10px 24px rgba(0, 0, 0, 0.03)',
+        'elevated': '0 4px 14px rgba(0, 0, 0, 0.06), 0 14px 40px rgba(0, 0, 0, 0.06)',
+        'dark-card': '0 2px 8px rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.3)'
       }
     }
   },

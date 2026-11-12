@@ -60,5 +60,39 @@ const path = currentPath || Astro.url.pathname;
 
     <!-- Search Modal Dialog -->
     <SearchModal />
+
+    <!-- Interactive Code Block Copy Enhancement -->
+    <script is:inline>
+      (function () {
+        document.querySelectorAll('.prose-lab pre').forEach(pre => {
+          if (pre.querySelector('.copy-code-btn')) return;
+          pre.style.position = 'relative';
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'copy-code-btn absolute top-3 right-3 px-2 py-1 rounded-md text-[10px] font-mono font-medium text-apple-gray-400 dark:text-apple-gray-400 bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 transition-all opacity-80 hover:opacity-100';
+          btn.textContent = 'Copy';
+          btn.setAttribute('aria-label', 'Copy code to clipboard');
+
+          btn.addEventListener('click', async () => {
+            const code = pre.querySelector('code');
+            const text = code ? code.innerText : pre.innerText;
+            try {
+              await navigator.clipboard.writeText(text);
+              btn.textContent = 'Copied!';
+              btn.classList.add('text-apple-green', 'dark:text-apple-green-dark');
+              setTimeout(() => {
+                btn.textContent = 'Copy';
+                btn.classList.remove('text-apple-green', 'dark:text-apple-green-dark');
+              }, 2000);
+            } catch (err) {
+              btn.textContent = 'Error';
+            }
+          });
+
+          pre.appendChild(btn);
+        });
+      })();
+    </script>
   </body>
 </html>
