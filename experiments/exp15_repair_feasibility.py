@@ -20,7 +20,7 @@ else:
 
 ROOT = Path(__file__).with_name("exp15")
 FROZEN = {
-    "public.json": "a075035a5f6f0453f5c58938877aa1b32597032a0a1cdd9a1cdd9e167ace29dfc",
+    "public.json": "a075035a5f6f0453f5c58938877aa1b32597032a0a1dd9a1cdd9e167ace29dfc",
     "hidden.json": "7af7783d3fc0438b2aa45dfa3371c0033092bc1373db5b603d32da375144bd8a",
     "prompt.txt": "3c58345891e2663e3f7d0822c227b068819c17de4d14ae42fcbbbe01f7c95d04",
 }
