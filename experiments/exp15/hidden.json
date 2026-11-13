@@ -1,0 +1,505 @@
+{
+  "parse_fields": {
+    "reference": "def parse_fields(text):\n    result, field = [], []\n    escaped = False\n    for char in text:\n        if escaped:\n            field.append(char)\n            escaped = False\n        elif char == \"\\\\\":\n            escaped = True\n        elif char == \",\":\n            result.append(\"\".join(field))\n            field = []\n        else:\n            field.append(char)\n    if escaped:\n        field.append(\"\\\\\")\n    return result + [\"\".join(field)]\n",
+    "cases": [
+      {
+        "args": [
+          ""
+        ],
+        "expected": [
+          ""
+        ]
+      },
+      {
+        "args": [
+          "x\\"
+        ],
+        "expected": [
+          "x\\"
+        ]
+      },
+      {
+        "args": [
+          "a\\\\,b"
+        ],
+        "expected": [
+          "a\\",
+          "b"
+        ]
+      },
+      {
+        "args": [
+          "\\x,\\,,"
+        ],
+        "expected": [
+          "x",
+          ",",
+          ""
+        ]
+      }
+    ]
+  },
+  "latest_records": {
+    "reference": "def latest_records(records, cutoff):\n    latest = {}\n    for key, timestamp, value in records:\n        if timestamp <= cutoff and (key not in latest or timestamp >= latest[key][0]):\n            latest[key] = (timestamp, value)\n    return {key: value for key, (_, value) in latest.items() if value is not None}\n",
+    "cases": [
+      {
+        "args": [
+          [
+            [
+              "b",
+              1,
+              0
+            ],
+            [
+              "b",
+              1,
+              null
+            ]
+          ],
+          1
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          [
+            [
+              "a",
+              5,
+              null
+            ],
+            [
+              "a",
+              2,
+              "old"
+            ]
+          ],
+          6
+        ],
+        "expected": {}
+      },
+      {
+        "args": [
+          [
+            [
+              "a",
+              3,
+              null
+            ],
+            [
+              "a",
+              4,
+              0
+            ],
+            [
+              "b",
+              2,
+              "b"
+            ]
+          ],
+          4
+        ],
+        "expected": {
+          "a": 0,
+          "b": "b"
+        }
+      },
+      {
+        "args": [
+          [
+            [
+              "a",
+              2,
+              "a"
+            ],
+            [
+              "a",
+              2,
+              "b"
+            ],
+            [
+              "a",
+              4,
+              null
+            ]
+          ],
+          3
+        ],
+        "expected": {
+          "a": "b"
+        }
+      }
+    ]
+  },
+  "allocate_units": {
+    "reference": "def allocate_units(weights, units):\n    total = sum(weights)\n    if not total:\n        return [0] * len(weights)\n    parts = [divmod(weight * units, total) for weight in weights]\n    order = sorted(range(len(weights)), key=lambda i: (-parts[i][1], i))\n    result = [whole for whole, remainder in parts]\n    for i in order[:units - sum(result)]:\n        result[i] += 1\n    return result\n",
+    "cases": [
+      {
+        "args": [
+          [
+            0,
+            0
+          ],
+          3
+        ],
+        "expected": [
+          0,
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            1,
+            1
+          ],
+          2
+        ],
+        "expected": [
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            0,
+            3,
+            1
+          ],
+          2
+        ],
+        "expected": [
+          0,
+          2,
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            9007199254740992,
+            9007199254740993
+          ],
+          1
+        ],
+        "expected": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "dependency_order": {
+    "reference": "def dependency_order(graph):\n    pending = {k: set(v) for k, v in graph.items()}\n    for dependencies in graph.values():\n        for name in dependencies:\n            pending.setdefault(name, set())\n    result = []\n    while pending:\n        ready = [name for name, deps in pending.items() if not deps]\n        if not ready:\n            return []\n        name = min(ready)\n        result.append(name)\n        del pending[name]\n        for deps in pending.values():\n            deps.discard(name)\n    return result\n",
+    "cases": [
+      {
+        "args": [
+          {
+            "a": [
+              "b",
+              "b"
+            ],
+            "z": [],
+            "b": []
+          }
+        ],
+        "expected": [
+          "b",
+          "a",
+          "z"
+        ]
+      },
+      {
+        "args": [
+          {
+            "t": [
+              "t"
+            ]
+          }
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          {}
+        ],
+        "expected": []
+      },
+      {
+        "args": [
+          {
+            "z": [
+              "x"
+            ],
+            "x": [
+              "a"
+            ],
+            "b": []
+          }
+        ],
+        "expected": [
+          "a",
+          "b",
+          "x",
+          "z"
+        ]
+      }
+    ]
+  },
+  "water_peak": {
+    "reference": "def water_peak(events):\n    deltas = {}\n    for start, end, load in events:\n        deltas[start] = deltas.get(start, 0) + load\n        deltas[end] = deltas.get(end, 0) - load\n    time, peak, active = None, 0, 0\n    for point in sorted(deltas):\n        active += deltas[point]\n        if active > peak:\n            time, peak = point, active\n    return [time, peak]\n",
+    "cases": [
+      {
+        "args": [
+          [
+            [
+              2,
+              2,
+              99
+            ],
+            [
+              -3,
+              -1,
+              4
+            ]
+          ]
+        ],
+        "expected": [
+          -3,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              5,
+              0
+            ],
+            [
+              2,
+              2,
+              8
+            ]
+          ]
+        ],
+        "expected": [
+          null,
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              8,
+              9,
+              2
+            ],
+            [
+              3,
+              4,
+              2
+            ]
+          ]
+        ],
+        "expected": [
+          3,
+          2
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              2,
+              6,
+              2
+            ],
+            [
+              2,
+              3,
+              1
+            ],
+            [
+              3,
+              6,
+              4
+            ]
+          ]
+        ],
+        "expected": [
+          3,
+          6
+        ]
+      }
+    ]
+  },
+  "expand_alias": {
+    "reference": "def expand_alias(text, aliases):\n    def expand(word, path):\n        if word not in aliases or word in path:\n            return [word]\n        return [part for child in aliases[word].split()\n                for part in expand(child, path | {word})]\n    return \" \".join(part for word in text.split() for part in expand(word, set()))\n",
+    "cases": [
+      {
+        "args": [
+          "a a",
+          {
+            "a": "b b",
+            "b": "ok"
+          }
+        ],
+        "expected": "ok ok ok ok"
+      },
+      {
+        "args": [
+          "a y",
+          {
+            "a": "  ",
+            "y": "one   two"
+          }
+        ],
+        "expected": "one two"
+      },
+      {
+        "args": [
+          "a b",
+          {
+            "a": "b",
+            "b": "a"
+          }
+        ],
+        "expected": "a b"
+      },
+      {
+        "args": [
+          "  z",
+          {
+            "z": "z x"
+          }
+        ],
+        "expected": "z x"
+      }
+    ]
+  },
+  "best_segment": {
+    "reference": "def best_segment(values):\n    best, segment = None, None\n    for start in range(len(values)):\n        total = 0\n        for end in range(start + 1, len(values) + 1):\n            total += values[end - 1]\n            rank = (total, start - end, -start)\n            if best is None or rank > best:\n                best, segment = rank, [start, end]\n    return segment\n",
+    "cases": [
+      {
+        "args": [
+          []
+        ],
+        "expected": null
+      },
+      {
+        "args": [
+          [
+            0,
+            3,
+            0
+          ]
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "args": [
+          [
+            0,
+            0
+          ]
+        ],
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "args": [
+          [
+            2,
+            -2,
+            2,
+            1
+          ]
+        ],
+        "expected": [
+          2,
+          4
+        ]
+      }
+    ]
+  },
+  "next_slot": {
+    "reference": "def next_slot(busy, start, duration):\n    if not duration:\n        return start\n    for low, high in sorted(busy):\n        if low < high and low < start + duration and start < high:\n            start = high\n    return start\n",
+    "cases": [
+      {
+        "args": [
+          [
+            [
+              0,
+              5
+            ]
+          ],
+          1,
+          0
+        ],
+        "expected": 1
+      },
+      {
+        "args": [
+          [
+            [
+              3,
+              3
+            ]
+          ],
+          2,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          [
+            [
+              1,
+              5
+            ],
+            [
+              2,
+              3
+            ],
+            [
+              6,
+              7
+            ]
+          ],
+          0,
+          2
+        ],
+        "expected": 7
+      },
+      {
+        "args": [
+          [
+            [
+              -4,
+              -2
+            ],
+            [
+              0,
+              2
+            ]
+          ],
+          -2,
+          2
+        ],
+        "expected": -2
+      }
+    ]
+  }
+}

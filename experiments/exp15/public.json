@@ -1,0 +1,404 @@
+{
+  "parse_fields": {
+    "params": [
+      "text"
+    ],
+    "spec": "Split on unescaped commas. A backslash quotes the next character, whatever it is. Preserve empty fields including the last. A trailing backslash is literal.",
+    "buggy": "def parse_fields(text):\n    return [part.replace(r\"\\,\", \",\") for part in text.split(\",\") if part]\n",
+    "cases": [
+      {
+        "args": [
+          "a,b"
+        ],
+        "expected": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "args": [
+          "a\\,b,c"
+        ],
+        "expected": [
+          "a,b",
+          "c"
+        ]
+      },
+      {
+        "args": [
+          "a,,"
+        ],
+        "expected": [
+          "a",
+          "",
+          ""
+        ]
+      }
+    ]
+  },
+  "latest_records": {
+    "params": [
+      "records",
+      "cutoff"
+    ],
+    "spec": "Each record is [key, timestamp, value]. Return a dictionary of values at the greatest timestamp at or before cutoff for each key. At the same timestamp prefer the later input. A winning null (None) deletes that key.",
+    "buggy": "def latest_records(records, cutoff):\n    result = {}\n    for key, timestamp, value in records:\n        if timestamp < cutoff and value is not None:\n            result[key] = value\n    return result\n",
+    "cases": [
+      {
+        "args": [
+          [
+            [
+              "a",
+              1,
+              "x"
+            ]
+          ],
+          2
+        ],
+        "expected": {
+          "a": "x"
+        }
+      },
+      {
+        "args": [
+          [
+            [
+              "a",
+              2,
+              "x"
+            ],
+            [
+              "a",
+              3,
+              "y"
+            ]
+          ],
+          2
+        ],
+        "expected": {
+          "a": "x"
+        }
+      },
+      {
+        "args": [
+          [
+            [
+              "a",
+              4,
+              "x"
+            ],
+            [
+              "a",
+              1,
+              "y"
+            ]
+          ],
+          5
+        ],
+        "expected": {
+          "a": "x"
+        }
+      }
+    ]
+  },
+  "allocate_units": {
+    "params": [
+      "weights",
+      "units"
+    ],
+    "spec": "Allocate a nonnegative integer number of units proportionally to nonnegative integer weights. Start with floors, then assign remaining units by descending fractional remainder, breaking ties by lower index. All-zero weights return all zeros.",
+    "buggy": "def allocate_units(weights, units):\n    total = sum(weights)\n    return [round(weight * units / total) for weight in weights]\n",
+    "cases": [
+      {
+        "args": [
+          [
+            1,
+            3
+          ],
+          4
+        ],
+        "expected": [
+          1,
+          3
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            1
+          ],
+          1
+        ],
+        "expected": [
+          1,
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            1,
+            2,
+            4
+          ],
+          4
+        ],
+        "expected": [
+          1,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "dependency_order": {
+    "params": [
+      "graph"
+    ],
+    "spec": "Map job names to prerequisite lists. Include prerequisite-only names. Return the lexicographically smallest topological order, or an empty list if any cycle exists. Repeated prerequisites count once.",
+    "buggy": "def dependency_order(graph):\n    order = []\n    while graph:\n        ready = sorted(name for name in graph if not graph[name])\n        if not ready:\n            return order\n        order.extend(ready)\n        graph = {k: [p for p in v if p not in ready] for k, v in graph.items() if k not in ready}\n    return order\n",
+    "cases": [
+      {
+        "args": [
+          {
+            "b": [
+              "a"
+            ],
+            "a": []
+          }
+        ],
+        "expected": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "args": [
+          {
+            "b": [
+              "a"
+            ]
+          }
+        ],
+        "expected": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "args": [
+          {
+            "a": [
+              "b"
+            ],
+            "b": [
+              "a"
+            ],
+            "z": []
+          }
+        ],
+        "expected": []
+      }
+    ]
+  },
+  "water_peak": {
+    "params": [
+      "events"
+    ],
+    "spec": "Each interval is [start, end, nonnegative load], active on start <= time < end. Return [earliest time of maximum total load, maximum load]. If the maximum is zero, return [None, 0]. Empty intervals contribute nothing.",
+    "buggy": "def water_peak(events):\n    if not events:\n        return [None, 0]\n    points = sorted({t for start, end, _ in events for t in (start, end)})\n    totals = [(sum(w for s, e, w in events if s <= t <= e), t) for t in points]\n    load, time = max(totals)\n    return [time, load]\n",
+    "cases": [
+      {
+        "args": [
+          []
+        ],
+        "expected": [
+          null,
+          0
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              0,
+              2,
+              4
+            ],
+            [
+              2,
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": [
+          0,
+          4
+        ]
+      },
+      {
+        "args": [
+          [
+            [
+              0,
+              5,
+              2
+            ],
+            [
+              1,
+              3,
+              4
+            ]
+          ]
+        ],
+        "expected": [
+          1,
+          6
+        ]
+      }
+    ]
+  },
+  "expand_alias": {
+    "params": [
+      "text",
+      "aliases"
+    ],
+    "spec": "Words are separated by whitespace. Expand words found in aliases recursively. Alias values are strings of zero or more words. For a cycle, emit the word that repeats on the current expansion path and stop that branch. Join output words with one space.",
+    "buggy": "def expand_alias(text, aliases):\n    return \" \".join(aliases.get(word, word) for word in text.split())\n",
+    "cases": [
+      {
+        "args": [
+          "a x",
+          {
+            "a": "one"
+          }
+        ],
+        "expected": "one x"
+      },
+      {
+        "args": [
+          "a",
+          {
+            "a": "b",
+            "b": "one two"
+          }
+        ],
+        "expected": "one two"
+      },
+      {
+        "args": [
+          "a x",
+          {
+            "a": "b",
+            "b": "a"
+          }
+        ],
+        "expected": "a x"
+      }
+    ]
+  },
+  "best_segment": {
+    "params": [
+      "values"
+    ],
+    "spec": "Return [start, end] for a nonempty contiguous segment with maximum sum, using an exclusive end. Break ties by shorter length, then lower start. Empty input returns None. Values may all be negative.",
+    "buggy": "def best_segment(values):\n    best = (0, None)\n    for start in range(len(values)):\n        total = 0\n        for end in range(start + 1, len(values) + 1):\n            total += values[end - 1]\n            if total >= best[0]:\n                best = (total, [start, end])\n    return best[1]\n",
+    "cases": [
+      {
+        "args": [
+          [
+            1,
+            2,
+            -5
+          ]
+        ],
+        "expected": [
+          0,
+          2
+        ]
+      },
+      {
+        "args": [
+          [
+            -3,
+            -1,
+            -2
+          ]
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "args": [
+          [
+            3,
+            -5,
+            3
+          ]
+        ],
+        "expected": [
+          0,
+          1
+        ]
+      }
+    ]
+  },
+  "next_slot": {
+    "params": [
+      "busy",
+      "start",
+      "duration"
+    ],
+    "spec": "Return the earliest integer time at or after start for a slot of duration that does not overlap any busy interval. Busy intervals are unsorted, may overlap, and use half-open endpoints. Ignore empty intervals. Duration zero returns start.",
+    "buggy": "def next_slot(busy, start, duration):\n    for low, high in busy:\n        if low <= start + duration and start < high:\n            start = high\n    return start\n",
+    "cases": [
+      {
+        "args": [
+          [
+            [
+              1,
+              4
+            ]
+          ],
+          2,
+          2
+        ],
+        "expected": 4
+      },
+      {
+        "args": [
+          [
+            [
+              4,
+              8
+            ]
+          ],
+          2,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "args": [
+          [
+            [
+              6,
+              9
+            ],
+            [
+              3,
+              7
+            ]
+          ],
+          2,
+          2
+        ],
+        "expected": 9
+      }
+    ]
+  }
+}
