@@ -1,0 +1,3207 @@
+{
+  "phase": "comparison_complete",
+  "model": "unsloth/Qwen3.5-4B-GGUF",
+  "revision": "e87f176479d0855a907a41277aca2f8ee7a09523",
+  "gguf_sha256": "b252c5610a42ca82d20fe2a12813e9d069eed89292907e26c783eeb0bc961bc7",
+  "sampling": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 0,
+    "samplers": [
+      "temperature",
+      "top_p"
+    ],
+    "cache_prompt": false,
+    "return_tokens": true
+  },
+  "fixtures": {
+    "public.json": "c93f9814e884bde59146f61fb12acace3e3616d9e99696650860deb806e65c50",
+    "hidden.json": "e8054f6b4299f66e3607723ae9d00c5686aeae0eb85f78364ef3e14bb33b066d",
+    "prompt.txt": "3c58345891e2663e3f7d0822c227b068819c17de4d14ae42fcbbbe01f7c95d04"
+  },
+  "candidates": [
+    {
+      "task": "clamp",
+      "sample": 1,
+      "seed": 13001,
+      "completion": "def clamp(value, low, high):\n    if value < low:\n        return low\n    if value > high:\n        return high\n    return value",
+      "token_ids": [
+        727,
+        40523,
+        3553,
+        11,
+        3238,
+        11,
+        1496,
+        1590,
+        198,
+        262,
+        413,
+        869,
+        361,
+        3238,
+        25,
+        198,
+        285,
+        460,
+        3238,
+        198,
+        262,
+        413,
+        869,
+        835,
+        1496,
+        25,
+        198,
+        285,
+        460,
+        1496,
+        198,
+        262,
+        460,
+        869,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 173,
+        "prompt_ms": 2838.033,
+        "prompt_per_token_ms": 16.404815028901734,
+        "prompt_per_second": 60.95771261292593,
+        "predicted_n": 35,
+        "predicted_ms": 2030.1,
+        "predicted_per_token_ms": 59.70882352941176,
+        "predicted_per_second": 16.747943451061523
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "e8ea25c7dc71ad34682e2fbc29b0c441aadce55184a239407eacc94b3f128b8d",
+      "patch_sha256": "e8ea25c7dc71ad34682e2fbc29b0c441aadce55184a239407eacc94b3f128b8d"
+    },
+    {
+      "task": "clamp",
+      "sample": 2,
+      "seed": 13002,
+      "completion": "```python\ndef clamp(value, low, high):\n    if value < low:\n        return low\n    if value > high:\n        return high\n    return value\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        40523,
+        3553,
+        11,
+        3238,
+        11,
+        1496,
+        1590,
+        198,
+        262,
+        413,
+        869,
+        361,
+        3238,
+        25,
+        198,
+        285,
+        460,
+        3238,
+        198,
+        262,
+        413,
+        869,
+        835,
+        1496,
+        25,
+        198,
+        285,
+        460,
+        1496,
+        198,
+        262,
+        460,
+        869,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 173,
+        "prompt_ms": 2610.194,
+        "prompt_per_token_ms": 15.087826589595375,
+        "prompt_per_second": 66.27859844900418,
+        "predicted_n": 40,
+        "predicted_ms": 2651.143,
+        "predicted_per_token_ms": 67.97802564102564,
+        "predicted_per_second": 14.710636129397772
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "e72ea8deb1a63192cda3b5c01b544cf3c3d426a943b9f8e051a4355ba29093e4",
+      "patch_sha256": "e8ea25c7dc71ad34682e2fbc29b0c441aadce55184a239407eacc94b3f128b8d"
+    },
+    {
+      "task": "clamp",
+      "sample": 3,
+      "seed": 13003,
+      "completion": "def clamp(value, low, high):\n    if value < low:\n        return low\n    if value > high:\n        return high\n    return value",
+      "token_ids": [
+        727,
+        40523,
+        3553,
+        11,
+        3238,
+        11,
+        1496,
+        1590,
+        198,
+        262,
+        413,
+        869,
+        361,
+        3238,
+        25,
+        198,
+        285,
+        460,
+        3238,
+        198,
+        262,
+        413,
+        869,
+        835,
+        1496,
+        25,
+        198,
+        285,
+        460,
+        1496,
+        198,
+        262,
+        460,
+        869,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 173,
+        "prompt_ms": 2723.071,
+        "prompt_per_token_ms": 15.740294797687861,
+        "prompt_per_second": 63.53121163568633,
+        "predicted_n": 35,
+        "predicted_ms": 2021.073,
+        "predicted_per_token_ms": 59.44332352941177,
+        "predicted_per_second": 16.822747124918298
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "e8ea25c7dc71ad34682e2fbc29b0c441aadce55184a239407eacc94b3f128b8d",
+      "patch_sha256": "e8ea25c7dc71ad34682e2fbc29b0c441aadce55184a239407eacc94b3f128b8d"
+    },
+    {
+      "task": "chunk",
+      "sample": 1,
+      "seed": 13004,
+      "completion": "```python\ndef chunk(items, size):\n    if size <= 0:\n        raise ValueError(\"size must be a positive integer\")\n    if not items:\n        return []\n    result = []\n    for i in range(0, len(items), size):\n        result.append(items[i:i + size])\n    return result\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        11540,
+        23573,
+        11,
+        1331,
+        1590,
+        198,
+        262,
+        413,
+        1331,
+        2564,
+        220,
+        15,
+        25,
+        198,
+        285,
+        4673,
+        14953,
+        437,
+        2073,
+        1902,
+        381,
+        264,
+        6572,
+        7308,
+        871,
+        198,
+        262,
+        413,
+        524,
+        3470,
+        25,
+        198,
+        285,
+        460,
+        2958,
+        198,
+        262,
+        1067,
+        283,
+        2958,
+        198,
+        262,
+        364,
+        585,
+        303,
+        2020,
+        7,
+        15,
+        11,
+        2343,
+        23573,
+        681,
+        1331,
+        1590,
+        198,
+        285,
+        1067,
+        1989,
+        23573,
+        957,
+        14244,
+        478,
+        1331,
+        2387,
+        198,
+        262,
+        460,
+        1067,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 217,
+        "prompt_ms": 3613.876,
+        "prompt_per_token_ms": 16.653806451612905,
+        "prompt_per_second": 60.04633252496765,
+        "predicted_n": 75,
+        "predicted_ms": 4999.686,
+        "predicted_per_token_ms": 67.56332432432433,
+        "predicted_per_second": 14.800929498372499
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "ad5924e31a9c3ef6029f777549266076b3c2886835f429020c2be1f42b20ad31",
+      "patch_sha256": "71bff617c2f2f7142b8ae2f3653bf1bd20e8cc55baacc01d207df067cf840c07"
+    },
+    {
+      "task": "chunk",
+      "sample": 2,
+      "seed": 13005,
+      "completion": "```python\ndef chunk(items, size):\n    if size <= 0:\n        raise ValueError(\"Size must be a positive integer\")\n    result = []\n    for i in range(0, len(items), size):\n        result.append(items[i:i + size])\n    return result\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        11540,
+        23573,
+        11,
+        1331,
+        1590,
+        198,
+        262,
+        413,
+        1331,
+        2564,
+        220,
+        15,
+        25,
+        198,
+        285,
+        4673,
+        14953,
+        437,
+        1635,
+        1902,
+        381,
+        264,
+        6572,
+        7308,
+        871,
+        198,
+        262,
+        1067,
+        283,
+        2958,
+        198,
+        262,
+        364,
+        585,
+        303,
+        2020,
+        7,
+        15,
+        11,
+        2343,
+        23573,
+        681,
+        1331,
+        1590,
+        198,
+        285,
+        1067,
+        1989,
+        23573,
+        957,
+        14244,
+        478,
+        1331,
+        2387,
+        198,
+        262,
+        460,
+        1067,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 217,
+        "prompt_ms": 4934.821,
+        "prompt_per_token_ms": 22.74111059907834,
+        "prompt_per_second": 43.97322618186151,
+        "predicted_n": 65,
+        "predicted_ms": 5621.179,
+        "predicted_per_token_ms": 87.830921875,
+        "predicted_per_second": 11.385511829457842
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "837b113adf8085c2df6f8373e1bb80f0a3935be3dafec85e815da59334602991",
+      "patch_sha256": "8d4694c1cbec6e62431f8fa0ec001946921d7fb16c4f3e61b9799fdc62f1cf4f"
+    },
+    {
+      "task": "chunk",
+      "sample": 3,
+      "seed": 13006,
+      "completion": "```python\ndef chunk(items, size):\n    result = []\n    for i in range(0, len(items), size):\n        result.append(items[i:i + size])\n    return result\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        11540,
+        23573,
+        11,
+        1331,
+        1590,
+        198,
+        262,
+        1067,
+        283,
+        2958,
+        198,
+        262,
+        364,
+        585,
+        303,
+        2020,
+        7,
+        15,
+        11,
+        2343,
+        23573,
+        681,
+        1331,
+        1590,
+        198,
+        285,
+        1067,
+        1989,
+        23573,
+        957,
+        14244,
+        478,
+        1331,
+        2387,
+        198,
+        262,
+        460,
+        1067,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 217,
+        "prompt_ms": 5187.015,
+        "prompt_per_token_ms": 23.903294930875578,
+        "prompt_per_second": 41.83523664381151,
+        "predicted_n": 45,
+        "predicted_ms": 3906.03,
+        "predicted_per_token_ms": 88.7734090909091,
+        "predicted_per_second": 11.264634424210772
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "dd98c98f0668941ec42f28055652a3a0ad36f6fc193080a16ab3c8da9c69a0df",
+      "patch_sha256": "214467cc1797211f95d84f9198a3949518bd1b26273ec90898cb3fbab344510d"
+    },
+    {
+      "task": "dedupe",
+      "sample": 1,
+      "seed": 13007,
+      "completion": "def dedupe(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result",
+      "token_ids": [
+        727,
+        7438,
+        82525,
+        23573,
+        1590,
+        198,
+        262,
+        3753,
+        283,
+        716,
+        363,
+        198,
+        262,
+        1067,
+        283,
+        2958,
+        198,
+        262,
+        364,
+        1455,
+        303,
+        3470,
+        25,
+        198,
+        285,
+        413,
+        1455,
+        524,
+        303,
+        3753,
+        25,
+        198,
+        309,
+        3753,
+        1316,
+        5225,
+        8,
+        198,
+        309,
+        1067,
+        1989,
+        5225,
+        8,
+        198,
+        262,
+        460,
+        1067,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 193,
+        "prompt_ms": 3201.489,
+        "prompt_per_token_ms": 16.58802590673575,
+        "prompt_per_second": 60.28444889237476,
+        "predicted_n": 48,
+        "predicted_ms": 3510.906,
+        "predicted_per_token_ms": 74.70012765957446,
+        "predicted_per_second": 13.386857979108527
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "14fe9090b3d59aaa13aed417f63be960405e10f8499377cecbcacc7438531473",
+      "patch_sha256": "14fe9090b3d59aaa13aed417f63be960405e10f8499377cecbcacc7438531473"
+    },
+    {
+      "task": "dedupe",
+      "sample": 2,
+      "seed": 13008,
+      "completion": "```python\ndef dedupe(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        7438,
+        82525,
+        23573,
+        1590,
+        198,
+        262,
+        3753,
+        283,
+        716,
+        363,
+        198,
+        262,
+        1067,
+        283,
+        2958,
+        198,
+        262,
+        364,
+        1455,
+        303,
+        3470,
+        25,
+        198,
+        285,
+        413,
+        1455,
+        524,
+        303,
+        3753,
+        25,
+        198,
+        309,
+        3753,
+        1316,
+        5225,
+        8,
+        198,
+        309,
+        1067,
+        1989,
+        5225,
+        8,
+        198,
+        262,
+        460,
+        1067,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 193,
+        "prompt_ms": 3725.907,
+        "prompt_per_token_ms": 19.30521761658031,
+        "prompt_per_second": 51.799467887953185,
+        "predicted_n": 53,
+        "predicted_ms": 3952.553,
+        "predicted_per_token_ms": 76.01063461538462,
+        "predicted_per_second": 13.156053821416185
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "29fc6fafa39fdd6413019b3827eec4b6b6a1fb02e3750cc822f572f105abab1a",
+      "patch_sha256": "14fe9090b3d59aaa13aed417f63be960405e10f8499377cecbcacc7438531473"
+    },
+    {
+      "task": "dedupe",
+      "sample": 3,
+      "seed": 13009,
+      "completion": "```python\ndef dedupe(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        7438,
+        82525,
+        23573,
+        1590,
+        198,
+        262,
+        3753,
+        283,
+        716,
+        363,
+        198,
+        262,
+        1067,
+        283,
+        2958,
+        198,
+        262,
+        364,
+        1455,
+        303,
+        3470,
+        25,
+        198,
+        285,
+        413,
+        1455,
+        524,
+        303,
+        3753,
+        25,
+        198,
+        309,
+        3753,
+        1316,
+        5225,
+        8,
+        198,
+        309,
+        1067,
+        1989,
+        5225,
+        8,
+        198,
+        262,
+        460,
+        1067,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 193,
+        "prompt_ms": 3974.32,
+        "prompt_per_token_ms": 20.592331606217616,
+        "prompt_per_second": 48.561766541194466,
+        "predicted_n": 53,
+        "predicted_ms": 3503.534,
+        "predicted_per_token_ms": 67.37565384615385,
+        "predicted_per_second": 14.842156519674134
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "29fc6fafa39fdd6413019b3827eec4b6b6a1fb02e3750cc822f572f105abab1a",
+      "patch_sha256": "14fe9090b3d59aaa13aed417f63be960405e10f8499377cecbcacc7438531473"
+    },
+    {
+      "task": "overlap",
+      "sample": 1,
+      "seed": 13010,
+      "completion": "```python\ndef overlap(first, second):\n    start = max(first[0], second[0])\n    stop = min(first[1], second[1])\n    return max(0, stop - start)\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        26370,
+        17445,
+        11,
+        2018,
+        1590,
+        198,
+        262,
+        1151,
+        283,
+        1866,
+        17445,
+        58,
+        15,
+        1089,
+        2018,
+        58,
+        15,
+        2387,
+        198,
+        262,
+        2842,
+        283,
+        1262,
+        17445,
+        58,
+        16,
+        1089,
+        2018,
+        58,
+        16,
+        2387,
+        198,
+        262,
+        460,
+        1866,
+        7,
+        15,
+        11,
+        2842,
+        471,
+        1151,
+        8,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 204,
+        "prompt_ms": 3949.096,
+        "prompt_per_token_ms": 19.358313725490195,
+        "prompt_per_second": 51.65739197021293,
+        "predicted_n": 49,
+        "predicted_ms": 4444.216,
+        "predicted_per_token_ms": 92.58783333333334,
+        "predicted_per_second": 10.800555148534634
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "ccb9549cab75174aab3778f227b46f86b4416a374ba71da8564be37797709b8e",
+      "patch_sha256": "37971ffbcac2d296059f1033e87f4c51300bbe97c8ae7d313efac3ab67781fd9"
+    },
+    {
+      "task": "overlap",
+      "sample": 2,
+      "seed": 13011,
+      "completion": "```python\ndef overlap(first, second):\n    start = max(first[0], second[0])\n    stop = min(first[1], second[1])\n    return max(0, stop - start)\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        26370,
+        17445,
+        11,
+        2018,
+        1590,
+        198,
+        262,
+        1151,
+        283,
+        1866,
+        17445,
+        58,
+        15,
+        1089,
+        2018,
+        58,
+        15,
+        2387,
+        198,
+        262,
+        2842,
+        283,
+        1262,
+        17445,
+        58,
+        16,
+        1089,
+        2018,
+        58,
+        16,
+        2387,
+        198,
+        262,
+        460,
+        1866,
+        7,
+        15,
+        11,
+        2842,
+        471,
+        1151,
+        8,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 204,
+        "prompt_ms": 9448.017,
+        "prompt_per_token_ms": 46.31380882352941,
+        "prompt_per_second": 21.591832444840012,
+        "predicted_n": 49,
+        "predicted_ms": 3760.716,
+        "predicted_per_token_ms": 78.34825,
+        "predicted_per_second": 12.763526945400823
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "ccb9549cab75174aab3778f227b46f86b4416a374ba71da8564be37797709b8e",
+      "patch_sha256": "37971ffbcac2d296059f1033e87f4c51300bbe97c8ae7d313efac3ab67781fd9"
+    },
+    {
+      "task": "overlap",
+      "sample": 3,
+      "seed": 13012,
+      "completion": "```python\ndef overlap(first, second):\n    start = max(first[0], second[0])\n    stop = min(first[1], second[1])\n    if start >= stop:\n        return 0\n    return stop - start\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        26370,
+        17445,
+        11,
+        2018,
+        1590,
+        198,
+        262,
+        1151,
+        283,
+        1866,
+        17445,
+        58,
+        15,
+        1089,
+        2018,
+        58,
+        15,
+        2387,
+        198,
+        262,
+        2842,
+        283,
+        1262,
+        17445,
+        58,
+        16,
+        1089,
+        2018,
+        58,
+        16,
+        2387,
+        198,
+        262,
+        413,
+        1151,
+        2518,
+        2842,
+        25,
+        198,
+        285,
+        460,
+        220,
+        15,
+        198,
+        262,
+        460,
+        2842,
+        471,
+        1151,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 204,
+        "prompt_ms": 5796.192,
+        "prompt_per_token_ms": 28.41270588235294,
+        "prompt_per_second": 35.195521473408746,
+        "predicted_n": 56,
+        "predicted_ms": 5768.712,
+        "predicted_per_token_ms": 104.88567272727273,
+        "predicted_per_second": 9.534190647756379
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "cbd720dc38834098a02145a65853182539347eb2f0305c850ce9ed5fe6dbf7d4",
+      "patch_sha256": "5110a65f4872eb2fe7fc7af87b57f94323596dd92f9cf10d432eaa60b2d9eff4"
+    },
+    {
+      "task": "label",
+      "sample": 1,
+      "seed": 13013,
+      "completion": "```python\ndef label(text):\n    words = text.split()\n    if not words:\n        return ''\n    cleaned_words = [word.lower() for word in words if any(c.isalpha() for c in word)]\n    return '-'.join(cleaned_words)\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        2306,
+        7008,
+        1590,
+        198,
+        262,
+        4105,
+        283,
+        1414,
+        5121,
+        363,
+        198,
+        262,
+        413,
+        524,
+        4105,
+        25,
+        198,
+        285,
+        460,
+        3246,
+        198,
+        262,
+        26824,
+        18408,
+        283,
+        498,
+        1119,
+        17534,
+        363,
+        364,
+        3299,
+        303,
+        4105,
+        413,
+        866,
+        1290,
+        2011,
+        6918,
+        363,
+        364,
+        272,
+        303,
+        3299,
+        7025,
+        198,
+        262,
+        460,
+        7542,
+        4282,
+        5799,
+        80365,
+        290,
+        18408,
+        8,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 165,
+        "prompt_ms": 4016.522,
+        "prompt_per_token_ms": 24.342557575757574,
+        "prompt_per_second": 41.08031774754377,
+        "predicted_n": 61,
+        "predicted_ms": 4261.316,
+        "predicted_per_token_ms": 71.02193333333334,
+        "predicted_per_second": 14.080157397386161
+      },
+      "applicable": true,
+      "hidden_success": false,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": false,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "d215f0e9869b27410c1a547d97e2fb05dc1b4c06c7205c5354e70116df5d2abc",
+      "patch_sha256": "8934b2501894599e852af77b732c759ff5db7ddd82fc0fddc685f5208077cf46"
+    },
+    {
+      "task": "label",
+      "sample": 2,
+      "seed": 13014,
+      "completion": "```python\ndef label(text):\n    words = text.split()\n    if not words:\n        return ''\n    return '-'.join(word.lower() for word in words)\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        2306,
+        7008,
+        1590,
+        198,
+        262,
+        4105,
+        283,
+        1414,
+        5121,
+        363,
+        198,
+        262,
+        413,
+        524,
+        4105,
+        25,
+        198,
+        285,
+        460,
+        3246,
+        198,
+        262,
+        460,
+        7542,
+        4282,
+        5799,
+        16510,
+        17534,
+        363,
+        364,
+        3299,
+        303,
+        4105,
+        8,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 165,
+        "prompt_ms": 5561.744,
+        "prompt_per_token_ms": 33.70753939393939,
+        "prompt_per_second": 29.666953387282838,
+        "predicted_n": 41,
+        "predicted_ms": 4299.966,
+        "predicted_per_token_ms": 107.49915000000001,
+        "predicted_per_second": 9.302399135248976
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "e33a26f9a25cb20758420f6df761ffb5dc7922a1e07b4b7af34196a06752da49",
+      "patch_sha256": "b080d235d2fff20104a2df6f5b78e4f8b660a4bf7675fa765085214ca7778b38"
+    },
+    {
+      "task": "label",
+      "sample": 3,
+      "seed": 13015,
+      "completion": "```python\ndef label(text):\n    words = text.split()\n    return '-'.join(word.lower() for word in words)\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        2306,
+        7008,
+        1590,
+        198,
+        262,
+        4105,
+        283,
+        1414,
+        5121,
+        363,
+        198,
+        262,
+        460,
+        7542,
+        4282,
+        5799,
+        16510,
+        17534,
+        363,
+        364,
+        3299,
+        303,
+        4105,
+        8,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 165,
+        "prompt_ms": 3576.308,
+        "prompt_per_token_ms": 21.67459393939394,
+        "prompt_per_second": 46.13696583180195,
+        "predicted_n": 31,
+        "predicted_ms": 2319.676,
+        "predicted_per_token_ms": 77.32253333333333,
+        "predicted_per_second": 12.932840620845326
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "42c028e98f37e55d82ec0a40e871db27a132c96bcf4e9eef244e1df8740943e0",
+      "patch_sha256": "28848119e99ef0496b480c0d0c6cc15c8b1ce0a982e197c4afada02286cf7e9a"
+    },
+    {
+      "task": "left_index",
+      "sample": 1,
+      "seed": 13016,
+      "completion": "```python\ndef left_index(items, target):\n    for i, item in enumerate(items):\n        if item == target:\n            return i\n    return -1\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        2047,
+        3442,
+        23573,
+        11,
+        2100,
+        1590,
+        198,
+        262,
+        364,
+        585,
+        11,
+        1455,
+        303,
+        12867,
+        23573,
+        1590,
+        198,
+        285,
+        413,
+        1455,
+        606,
+        2100,
+        25,
+        198,
+        309,
+        460,
+        585,
+        198,
+        262,
+        460,
+        471,
+        16,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 191,
+        "prompt_ms": 5511.82,
+        "prompt_per_token_ms": 28.857696335078533,
+        "prompt_per_second": 34.65280070829599,
+        "predicted_n": 39,
+        "predicted_ms": 4108.239,
+        "predicted_per_token_ms": 108.11155263157893,
+        "predicted_per_second": 9.249705287350615
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "aa51be4e6e80510b5dcea3d90d5516024bc7b2e5cbbd1c17b4a294576a6aa504",
+      "patch_sha256": "db32c841befd9d97aa480076dc0b849beb1842f06083148625504b0e1a52da8e"
+    },
+    {
+      "task": "left_index",
+      "sample": 2,
+      "seed": 13017,
+      "completion": "```python\ndef left_index(items, target):\n    for i, item in enumerate(items):\n        if item == target:\n            return i\n    return -1\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        2047,
+        3442,
+        23573,
+        11,
+        2100,
+        1590,
+        198,
+        262,
+        364,
+        585,
+        11,
+        1455,
+        303,
+        12867,
+        23573,
+        1590,
+        198,
+        285,
+        413,
+        1455,
+        606,
+        2100,
+        25,
+        198,
+        309,
+        460,
+        585,
+        198,
+        262,
+        460,
+        471,
+        16,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 191,
+        "prompt_ms": 5923.156,
+        "prompt_per_token_ms": 31.011287958115183,
+        "prompt_per_second": 32.24632273740553,
+        "predicted_n": 39,
+        "predicted_ms": 5713.815,
+        "predicted_per_token_ms": 150.36355263157893,
+        "predicted_per_second": 6.650547838878228
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "aa51be4e6e80510b5dcea3d90d5516024bc7b2e5cbbd1c17b4a294576a6aa504",
+      "patch_sha256": "db32c841befd9d97aa480076dc0b849beb1842f06083148625504b0e1a52da8e"
+    },
+    {
+      "task": "left_index",
+      "sample": 3,
+      "seed": 13018,
+      "completion": "```python\ndef left_index(items, target):\n    for i, item in enumerate(items):\n        if item == target:\n            return i\n    return -1\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        2047,
+        3442,
+        23573,
+        11,
+        2100,
+        1590,
+        198,
+        262,
+        364,
+        585,
+        11,
+        1455,
+        303,
+        12867,
+        23573,
+        1590,
+        198,
+        285,
+        413,
+        1455,
+        606,
+        2100,
+        25,
+        198,
+        309,
+        460,
+        585,
+        198,
+        262,
+        460,
+        471,
+        16,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 191,
+        "prompt_ms": 8026.92,
+        "prompt_per_token_ms": 42.025759162303665,
+        "prompt_per_second": 23.794930060346932,
+        "predicted_n": 39,
+        "predicted_ms": 4309.927,
+        "predicted_per_token_ms": 113.41913157894736,
+        "predicted_per_second": 8.816854670624352
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "aa51be4e6e80510b5dcea3d90d5516024bc7b2e5cbbd1c17b4a294576a6aa504",
+      "patch_sha256": "db32c841befd9d97aa480076dc0b849beb1842f06083148625504b0e1a52da8e"
+    },
+    {
+      "task": "rotate",
+      "sample": 1,
+      "seed": 13019,
+      "completion": "```python\ndef rotate(items, offset):\n    if not items:\n        return []\n    n = len(items)\n    offset = offset % n\n    return items[-offset:] + items[:-offset] if offset != 0 else items\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        16424,
+        23573,
+        11,
+        4206,
+        1590,
+        198,
+        262,
+        413,
+        524,
+        3470,
+        25,
+        198,
+        285,
+        460,
+        2958,
+        198,
+        262,
+        307,
+        283,
+        2343,
+        23573,
+        8,
+        198,
+        262,
+        4206,
+        283,
+        4206,
+        984,
+        307,
+        198,
+        262,
+        460,
+        3470,
+        7368,
+        3075,
+        27365,
+        478,
+        3470,
+        25216,
+        3075,
+        60,
+        413,
+        4206,
+        931,
+        220,
+        15,
+        745,
+        3470,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 190,
+        "prompt_ms": 5903.229,
+        "prompt_per_token_ms": 31.069626315789474,
+        "prompt_per_second": 32.18577493775017,
+        "predicted_n": 55,
+        "predicted_ms": 6623.92,
+        "predicted_per_token_ms": 122.66518518518518,
+        "predicted_per_second": 8.152272370439256
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "b537deabf1b9d2bd0d374b365c2fb3d66a6df8b99fcd5471110096eb580dd851",
+      "patch_sha256": "26e79af7a0121fe5f02ba0ac98b0a9b442b77d024b863cb33557e2d43428b39b"
+    },
+    {
+      "task": "rotate",
+      "sample": 2,
+      "seed": 13020,
+      "completion": "```python\ndef rotate(items, offset):\n    if not items:\n        return []\n    offset = offset % len(items)\n    return items[-offset:] + items[:-offset] if offset != 0 else items\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        16424,
+        23573,
+        11,
+        4206,
+        1590,
+        198,
+        262,
+        413,
+        524,
+        3470,
+        25,
+        198,
+        285,
+        460,
+        2958,
+        198,
+        262,
+        4206,
+        283,
+        4206,
+        984,
+        2343,
+        23573,
+        8,
+        198,
+        262,
+        460,
+        3470,
+        7368,
+        3075,
+        27365,
+        478,
+        3470,
+        25216,
+        3075,
+        60,
+        413,
+        4206,
+        931,
+        220,
+        15,
+        745,
+        3470,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 190,
+        "prompt_ms": 7071.66,
+        "prompt_per_token_ms": 37.21926315789474,
+        "prompt_per_second": 26.867807558621312,
+        "predicted_n": 50,
+        "predicted_ms": 6918.311,
+        "predicted_per_token_ms": 141.19002040816326,
+        "predicted_per_second": 7.082653555181316
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "14a22f4ff1ec40d78a84e35cffbf724d8120e276d102b5b01d061f157cdae3c8",
+      "patch_sha256": "457a01731cc04e4b73e3243e52d8a4ff71c4055e522508746fa7e685e508f8ad"
+    },
+    {
+      "task": "rotate",
+      "sample": 3,
+      "seed": 13021,
+      "completion": "```python\ndef rotate(items, offset):\n    if not items:\n        return []\n    n = len(items)\n    offset = offset % n\n    return items[offset:] + items[:offset]\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        16424,
+        23573,
+        11,
+        4206,
+        1590,
+        198,
+        262,
+        413,
+        524,
+        3470,
+        25,
+        198,
+        285,
+        460,
+        2958,
+        198,
+        262,
+        307,
+        283,
+        2343,
+        23573,
+        8,
+        198,
+        262,
+        4206,
+        283,
+        4206,
+        984,
+        307,
+        198,
+        262,
+        460,
+        3470,
+        34620,
+        27365,
+        478,
+        3470,
+        3337,
+        3075,
+        60,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 190,
+        "prompt_ms": 5938.812,
+        "prompt_per_token_ms": 31.256905263157893,
+        "prompt_per_second": 31.992930572646515,
+        "predicted_n": 47,
+        "predicted_ms": 4898.384,
+        "predicted_per_token_ms": 106.48660869565218,
+        "predicted_per_second": 9.390852166755403
+      },
+      "applicable": true,
+      "hidden_success": false,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": false,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": false,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": false,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 0.3333333333333333,
+      "public_delta": 0.0,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "5b0bb56097bb27c4863efca27487f6a4c1a92b1351e405e0363307d1fe13519e",
+      "patch_sha256": "50f4756cd2638f738c72f8fdfbd2bee9ae58790b42ee6348cf2b93b83bd93bc2"
+    },
+    {
+      "task": "totals",
+      "sample": 1,
+      "seed": 13022,
+      "completion": "```python\ndef totals(entries):\n    result = {}\n    for key, amount in entries:\n        total = result.get(key, 0) + amount\n        result[key] = total\n    return result\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        42199,
+        69563,
+        1590,
+        198,
+        262,
+        1067,
+        283,
+        4535,
+        198,
+        262,
+        364,
+        1328,
+        11,
+        3202,
+        303,
+        10379,
+        25,
+        198,
+        285,
+        2702,
+        283,
+        1067,
+        652,
+        4702,
+        11,
+        220,
+        15,
+        8,
+        478,
+        3202,
+        198,
+        285,
+        1067,
+        7900,
+        60,
+        283,
+        2702,
+        198,
+        262,
+        460,
+        1067,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 217,
+        "prompt_ms": 5923.57,
+        "prompt_per_token_ms": 27.297557603686634,
+        "prompt_per_second": 36.63331403190981,
+        "predicted_n": 48,
+        "predicted_ms": 5251.127,
+        "predicted_per_token_ms": 111.72610638297873,
+        "predicted_per_second": 8.950459587056264
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "9b3c2d78f0e35a15e1fa906877de29d02a3d5e7adb2ba371d7830e9455dcb152",
+      "patch_sha256": "3f3a45fd4a8db3c9509d5cb5b5754383a01264e970823814511b4f0366313ed5"
+    },
+    {
+      "task": "totals",
+      "sample": 2,
+      "seed": 13023,
+      "completion": "```python\ndef totals(entries):\n    result = {}\n    for key, amount in entries:\n        result[key] = result.get(key, 0) + amount\n    return result\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        42199,
+        69563,
+        1590,
+        198,
+        262,
+        1067,
+        283,
+        4535,
+        198,
+        262,
+        364,
+        1328,
+        11,
+        3202,
+        303,
+        10379,
+        25,
+        198,
+        285,
+        1067,
+        7900,
+        60,
+        283,
+        1067,
+        652,
+        4702,
+        11,
+        220,
+        15,
+        8,
+        478,
+        3202,
+        198,
+        262,
+        460,
+        1067,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 217,
+        "prompt_ms": 5694.1,
+        "prompt_per_token_ms": 26.24009216589862,
+        "prompt_per_second": 38.109622240564796,
+        "predicted_n": 43,
+        "predicted_ms": 4109.763,
+        "predicted_per_token_ms": 97.8515,
+        "predicted_per_second": 10.219567405711716
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "3adcdc155154102396e921e207bf071c724c3bcf36dd609d0359bc963423b25e",
+      "patch_sha256": "eee646ddc44ada721cfb4c1725325f517a3d46542de2dc235b37f0c2273bc086"
+    },
+    {
+      "task": "totals",
+      "sample": 3,
+      "seed": 13024,
+      "completion": "```python\ndef totals(entries):\n    result = {}\n    for key, amount in entries:\n        result[key] = result.get(key, 0) + amount\n    return result\n```",
+      "token_ids": [
+        71093,
+        12305,
+        198,
+        727,
+        42199,
+        69563,
+        1590,
+        198,
+        262,
+        1067,
+        283,
+        4535,
+        198,
+        262,
+        364,
+        1328,
+        11,
+        3202,
+        303,
+        10379,
+        25,
+        198,
+        285,
+        1067,
+        7900,
+        60,
+        283,
+        1067,
+        652,
+        4702,
+        11,
+        220,
+        15,
+        8,
+        478,
+        3202,
+        198,
+        262,
+        460,
+        1067,
+        198,
+        71093,
+        248046
+      ],
+      "stop": "eos",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 217,
+        "prompt_ms": 6575.671,
+        "prompt_per_token_ms": 30.302631336405533,
+        "prompt_per_second": 33.0004344803747,
+        "predicted_n": 43,
+        "predicted_ms": 3894.212,
+        "predicted_per_token_ms": 92.71933333333334,
+        "predicted_per_second": 10.78523716736531
+      },
+      "applicable": true,
+      "hidden_success": true,
+      "public": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "hidden": [
+        {
+          "case": 1,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 2,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 3,
+          "passed": true,
+          "status": "ok"
+        },
+        {
+          "case": 4,
+          "passed": true,
+          "status": "ok"
+        }
+      ],
+      "public_fraction": 1.0,
+      "public_delta": 0.6666666666666666,
+      "regressions": {
+        "public": [],
+        "hidden": []
+      },
+      "completion_sha256": "3adcdc155154102396e921e207bf071c724c3bcf36dd609d0359bc963423b25e",
+      "patch_sha256": "eee646ddc44ada721cfb4c1725325f517a3d46542de2dc235b37f0c2273bc086"
+    }
+  ],
+  "budget_seconds": 592,
+  "preflight": {
+    "docker_server": "29.9.3",
+    "container_python": "3.13.18",
+    "isolation": "passed",
+    "cpu_probe": "exit_137",
+    "output_probe": "output_limit",
+    "wall_probe": "wall_limit",
+    "fixture_controls": "passed",
+    "smoke": "```python\ndef add_one(n):\n    return n + 1\n```",
+    "smoke_timings": {
+      "cache_n": 0,
+      "prompt_n": 23,
+      "prompt_ms": 598.115,
+      "prompt_per_token_ms": 26.005,
+      "prompt_per_second": 38.45414343395501,
+      "predicted_n": 18,
+      "predicted_ms": 1145.524,
+      "predicted_per_token_ms": 67.38376470588234,
+      "predicted_per_second": 14.840369996612905
+    }
+  },
+  "backend": "version: 0.7.0-dev (build 1, commit 2a66703)\nbuilt with AppleClang 15.0.0.15000309 for Darwin arm64",
+  "server_flags": [
+    "--offline",
+    "--threads",
+    "4",
+    "--gpu-layers",
+    "0",
+    "--no-op-offload",
+    "--ctx-size",
+    "1024",
+    "--parallel",
+    "1",
+    "--no-ui",
+    "--no-agent",
+    "--reasoning",
+    "off"
+  ],
+  "server_wall_seconds": 281.194,
+  "child_peak_rss_bytes": 6050496512,
+  "total_wall_seconds": 315.617,
+  "summary": {
+    "samples": 24,
+    "applicable": 24,
+    "hidden_successes": 22,
+    "mixed_tasks": [
+      "label",
+      "rotate"
+    ],
+    "improving_hidden_failures": 1,
+    "full_public_hidden_failures": 1,
+    "hidden_success_public_failures": 0,
+    "pairs": {
+      "concordant": 2,
+      "tied": 2,
+      "inverted": 0
+    },
+    "pairs_by_task": {
+      "clamp": {
+        "concordant": 0,
+        "tied": 0,
+        "inverted": 0
+      },
+      "chunk": {
+        "concordant": 0,
+        "tied": 0,
+        "inverted": 0
+      },
+      "dedupe": {
+        "concordant": 0,
+        "tied": 0,
+        "inverted": 0
+      },
+      "overlap": {
+        "concordant": 0,
+        "tied": 0,
+        "inverted": 0
+      },
+      "label": {
+        "concordant": 0,
+        "tied": 2,
+        "inverted": 0
+      },
+      "left_index": {
+        "concordant": 0,
+        "tied": 0,
+        "inverted": 0
+      },
+      "rotate": {
+        "concordant": 2,
+        "tied": 0,
+        "inverted": 0
+      },
+      "totals": {
+        "concordant": 0,
+        "tied": 0,
+        "inverted": 0
+      }
+    },
+    "numeric_gate": false
+  },
+  "regrade": {
+    "reason": "Docker daemon socket disappeared mid-run; the evaluator recorded connection errors as exit_1.",
+    "probes": {
+      "docker_server": "29.9.3",
+      "container_python": "3.13.18",
+      "isolation": "passed",
+      "cpu_probe": "exit_137",
+      "output_probe": "output_limit",
+      "wall_probe": "wall_limit"
+    },
+    "affected": [
+      {
+        "task": "rotate",
+        "sample": 1,
+        "original_cases": {
+          "public": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ],
+          "hidden": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 4,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ]
+        }
+      },
+      {
+        "task": "rotate",
+        "sample": 2,
+        "original_cases": {
+          "public": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ],
+          "hidden": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 4,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ]
+        }
+      },
+      {
+        "task": "rotate",
+        "sample": 3,
+        "original_cases": {
+          "public": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ],
+          "hidden": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 4,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ]
+        }
+      },
+      {
+        "task": "totals",
+        "sample": 1,
+        "original_cases": {
+          "public": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ],
+          "hidden": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 4,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ]
+        }
+      },
+      {
+        "task": "totals",
+        "sample": 2,
+        "original_cases": {
+          "public": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ],
+          "hidden": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 4,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ]
+        }
+      },
+      {
+        "task": "totals",
+        "sample": 3,
+        "original_cases": {
+          "public": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ],
+          "hidden": [
+            {
+              "case": 1,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 2,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 3,
+              "passed": false,
+              "status": "exit_1"
+            },
+            {
+              "case": 4,
+              "passed": false,
+              "status": "exit_1"
+            }
+          ]
+        }
+      }
+    ],
+    "seconds": 40.626,
+    "inference_samples": 0
+  },
+  "ungraded_applicable": 0
+}
