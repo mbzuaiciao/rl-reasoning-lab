@@ -34,6 +34,8 @@ class Sandbox(repair.Sandbox):
         status, output = super().run(script, payload)
         if status == "exit_1":
             # Docker can return 1 for a disconnected daemon or a Python exception.
+            if output.startswith(b"failed to connect to the docker API"):
+                raise RuntimeError("Docker daemon connection failed")
             subprocess.run(
                 [*self.docker, "version", "--format", "{{.Server.Version}}"],
                 check=True,
@@ -157,13 +159,16 @@ def compare(args, report, server_log):
                             sample=sample,
                             seed=seed,
                             completion=raw,
+                            completion_sha256=hashlib.sha256(raw.encode("utf-8")).hexdigest(),
                             token_ids=result["tokens"],
                             stop=result["stop_type"],
                             timings=result["timings"],
                             applicable=source is not None,
-                            hidden_success=False,
+                            hidden_success=None if source is not None else False,
                         )
+                        report["candidates"].append(row)
                         if source is not None:
+                            row["patch_sha256"] = hashlib.sha256(source.encode("utf-8")).hexdigest()
                             row.update(
                                 repair.score(
                                     sandbox.cases(name, source, task["cases"]),
@@ -171,7 +176,6 @@ def compare(args, report, server_log):
                                     baseline["baselines"][name],
                                 )
                             )
-                        report["candidates"].append(row)
                         print(f"{name} {sample}/{repair.SAMPLES} complete", flush=True)
                 report["phase"] = "comparison_complete"
             finally:
@@ -218,7 +222,10 @@ def main():
             return 1
         finally:
             report["total_wall_seconds"] = round(monotonic() - started, 3)
-            report["summary"] = repair.summarize(report["candidates"])
+            rows = report["candidates"]
+            graded = [row for row in rows if row["hidden_success"] is not None]
+            report["ungraded_applicable"] = len(rows) - len(graded)
+            report["summary"] = repair.summarize(graded)
             json.dump(report, out, indent=2)
             out.write("\n")
 

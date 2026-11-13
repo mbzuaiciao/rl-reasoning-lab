@@ -23,3 +23,12 @@ def test_docker_disconnect_is_not_a_failed_case(monkeypatch, daemon_up):
     else:
         with pytest.raises(subprocess.CalledProcessError):
             sandbox.run("pass")
+
+
+def test_connection_error_survives_daemon_recovery(monkeypatch):
+    sandbox = Sandbox.__new__(Sandbox)
+    monkeypatch.setattr(
+        repair.Sandbox, "run", lambda *args: ("exit_1", b"failed to connect to the docker API")
+    )
+    with pytest.raises(RuntimeError, match="Docker daemon connection failed"):
+        sandbox.run("pass")
