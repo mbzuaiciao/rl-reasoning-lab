@@ -127,7 +127,7 @@ def grade(sandbox, report, public, hidden, deadline):
         print(f"graded {name} {row['sample']}/{repair.SAMPLES}", flush=True)
 
 
-def sample(args, report, public, template, log):
+def sample(args, report, public, template, log, *, cap=CAP, smoke=True, after_sample=None):
     repair.verify_files(args.gguf.parent, {args.gguf.name: model.SHA256})
     version = subprocess.check_output(
         [args.server, "--version"], text=True, stderr=subprocess.STDOUT, timeout=10
@@ -150,19 +150,25 @@ def sample(args, report, public, template, log):
                     if server.poll() is not None or monotonic() >= ready_by:
                         raise RuntimeError("Local inference server failed to start")
                     sleep(0.2)
-                smoke = model.generate(
-                    socket, "Complete this Python line: def add_one(n): return", 15000, 24, ready_by
-                )
-                if not smoke["tokens"]:
-                    raise ValueError("Empty offline smoke decode")
-                report["smoke"] = smoke["content"]
+                if smoke:
+                    result = model.generate(
+                        socket,
+                        "Complete this Python line: def add_one(n): return",
+                        15000,
+                        24,
+                        ready_by,
+                    )
+                    if not result["tokens"]:
+                        raise ValueError("Empty offline smoke decode")
+                    report["smoke"] = result["content"]
                 started = monotonic()
                 deadline = started + repair.LIMIT
+                grading_seconds = 0.0
                 try:
                     for name, slot, seed in sample_plan(public):
                         check_budget(deadline)
                         prompt = repair.prompt_for(template, public[name], name)
-                        result = model.generate(socket, prompt, seed, CAP, deadline)
+                        result = model.generate(socket, prompt, seed, cap, deadline)
                         raw = result["content"]
                         source = repair.replacement(raw, name, public[name]["params"])
                         report["candidates"].append(
@@ -181,8 +187,14 @@ def sample(args, report, public, template, log):
                             )
                         )
                         print(f"sampled {name} {slot}/{repair.SAMPLES}", flush=True)
+                        if after_sample:
+                            grading_started = monotonic()
+                            try:
+                                after_sample(deadline)
+                            finally:
+                                grading_seconds += monotonic() - grading_started
                 finally:
-                    report["sampling_seconds"] = round(monotonic() - started, 3)
+                    report["sampling_seconds"] = round(monotonic() - started - grading_seconds, 3)
                     report["pilot_started"] = started
             finally:
                 if server.poll() is None:
@@ -195,8 +207,8 @@ def sample(args, report, public, template, log):
     return deadline
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
+def main(*, cap=CAP, smoke=True, grade_during_sampling=False, description=__doc__):
+    parser = argparse.ArgumentParser(description=description)
     parser.add_argument("--server", type=Path)
     parser.add_argument("--gguf", type=Path)
     parser.add_argument("--regrade", type=Path, help="grade only saved ungraded patches")
@@ -212,7 +224,7 @@ def main():
         model=model.MODEL,
         revision=model.REVISION,
         gguf_sha256=model.SHA256,
-        sampling=dict(model.SAMPLING, cap=CAP, first_seed=FIRST_SEED),
+        sampling=dict(model.SAMPLING, cap=cap, first_seed=FIRST_SEED),
         server_flags=FLAGS,
         image=repair.IMAGE,
         docker_flags=repair.FLAGS,
@@ -224,7 +236,16 @@ def main():
             public, hidden, template = fixtures()
             if args.regrade:
                 saved = json.loads(args.regrade.read_text())
-                for key in ("fixtures", "model", "revision", "gguf_sha256", "sampling", "image"):
+                for key in (
+                    "fixtures",
+                    "model",
+                    "revision",
+                    "gguf_sha256",
+                    "sampling",
+                    "image",
+                    "server_flags",
+                    "docker_flags",
+                ):
                     if saved[key] != report[key]:
                         raise ValueError(f"Saved run does not match frozen {key}")
                 rows = saved["candidates"]
@@ -241,8 +262,21 @@ def main():
             if args.regrade:
                 deadline = monotonic() + repair.LIMIT
             else:
+
+                def grade_pending(deadline):
+                    grade(sandbox, report, public, hidden, deadline)
+
                 with args.output.with_suffix(".log").open("x") as log:
-                    deadline = sample(args, report, public, template, log)
+                    deadline = sample(
+                        args,
+                        report,
+                        public,
+                        template,
+                        log,
+                        cap=cap,
+                        smoke=smoke,
+                        after_sample=grade_pending if grade_during_sampling else None,
+                    )
             grade(sandbox, report, public, hidden, deadline)
             if len(report["candidates"]) == len(list(sample_plan(public))):
                 report["phase"] = "complete"
