@@ -1,0 +1,8 @@
+Repair this Python function to satisfy the specification. Keep the function name and parameters. Return only one complete replacement function in Python, optionally in a single Python code fence. Do not write tests or include examples in your answer. Generalize beyond the diagnostic examples.
+
+Specification: {spec}
+
+Buggy function:
+{buggy}
+Public diagnostics (calls and expected results):
+{diagnostics}
