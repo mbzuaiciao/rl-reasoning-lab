@@ -1,0 +1,2334 @@
+{
+  "episodes_sha256": "18ce5ddba522e5cfe40b41f7b78f21c5e96a908d0509cb1954dc99b0799d08b4",
+  "model": "unsloth/Qwen3.5-4B-GGUF",
+  "revision": "e87f176479d0855a907a41277aca2f8ee7a09523",
+  "gguf_sha256": "b252c5610a42ca82d20fe2a12813e9d069eed89292907e26c783eeb0bc961bc7",
+  "sampling": {
+    "temperature": 0.8,
+    "top_p": 0.95,
+    "top_k": 0,
+    "samplers": [
+      "temperature",
+      "top_p"
+    ],
+    "cache_prompt": false,
+    "return_tokens": true,
+    "cap": 8
+  },
+  "server_flags": [
+    "--offline",
+    "--threads",
+    "4",
+    "--gpu-layers",
+    "0",
+    "--no-op-offload",
+    "--ctx-size",
+    "1024",
+    "--parallel",
+    "1",
+    "--no-ui",
+    "--no-agent",
+    "--reasoning",
+    "off"
+  ],
+  "budget_seconds": 600,
+  "rows": [
+    {
+      "episode": "g01",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: A\nLegal next nodes: Y, Q, O\nRemaining steps: 5\n",
+          "seed": 180011,
+          "completion": "Q",
+          "token_ids": [
+            48,
+            248046
+          ],
+          "prompt_tokens": 121,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Q",
+          "valid": true,
+          "before": "A",
+          "after": "Q",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: Q\nLegal next nodes: A, Y\nRemaining steps: 4\n",
+          "seed": 180012,
+          "completion": "Y",
+          "token_ids": [
+            56,
+            248046
+          ],
+          "prompt_tokens": 119,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Y",
+          "valid": true,
+          "before": "Q",
+          "after": "Y",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: Y\nLegal next nodes: Q, O\nRemaining steps: 3\n",
+          "seed": 180013,
+          "completion": "Q",
+          "token_ids": [
+            48,
+            248046
+          ],
+          "prompt_tokens": 119,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Q",
+          "valid": true,
+          "before": "Y",
+          "after": "Q",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: Q\nLegal next nodes: A, Y\nRemaining steps: 2\n",
+          "seed": 180014,
+          "completion": "A",
+          "token_ids": [
+            32,
+            248046
+          ],
+          "prompt_tokens": 119,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "A",
+          "valid": true,
+          "before": "Q",
+          "after": "A",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: A\nLegal next nodes: Y, Q, O\nRemaining steps: 1\n",
+          "seed": 180015,
+          "completion": "Y",
+          "token_ids": [
+            56,
+            248046
+          ],
+          "prompt_tokens": 121,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Y",
+          "valid": true,
+          "before": "A",
+          "after": "Y",
+          "distance_before": 4,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g01",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: A\nLegal next nodes: Y, Q, O\nRemaining steps: 5\n",
+          "seed": 180011,
+          "completion": "Q",
+          "token_ids": [
+            48,
+            248046
+          ],
+          "prompt_tokens": 121,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Q",
+          "valid": true,
+          "before": "A",
+          "after": "Q",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: Q\nLegal next nodes: A, Y\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal increased.\n",
+          "seed": 180012,
+          "completion": "Y",
+          "token_ids": [
+            56,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Y",
+          "valid": true,
+          "before": "Q",
+          "after": "Y",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: Y\nLegal next nodes: Q, O\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180013,
+          "completion": "Q",
+          "token_ids": [
+            48,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Q",
+          "valid": true,
+          "before": "Y",
+          "after": "Q",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: Q\nLegal next nodes: A, Y\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal increased.\n",
+          "seed": 180014,
+          "completion": "A",
+          "token_ids": [
+            32,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "A",
+          "valid": true,
+          "before": "Q",
+          "after": "A",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nA -> Y, Q, O\nG -> I, Q\nY -> Q, O\nX -> (none)\nQ -> A, Y\nI -> G, X\nO -> G, A\nGoal: X\nCurrent node: A\nLegal next nodes: Y, Q, O\nRemaining steps: 1\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180015,
+          "completion": "Q",
+          "token_ids": [
+            48,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Q",
+          "valid": true,
+          "before": "A",
+          "after": "Q",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g02",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: B\nLegal next nodes: V, Y\nRemaining steps: 5\n",
+          "seed": 180021,
+          "completion": "V",
+          "token_ids": [
+            53,
+            248046
+          ],
+          "prompt_tokens": 119,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "V",
+          "valid": true,
+          "before": "B",
+          "after": "V",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: V\nLegal next nodes: B, S\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180022,
+          "completion": "B",
+          "token_ids": [
+            33,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "B",
+          "valid": true,
+          "before": "V",
+          "after": "B",
+          "distance_before": 3,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: B\nLegal next nodes: V, Y\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal increased.\n",
+          "seed": 180023,
+          "completion": "Y",
+          "token_ids": [
+            56,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Y",
+          "valid": true,
+          "before": "B",
+          "after": "Y",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: Y\nLegal next nodes: Z, B\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180024,
+          "completion": "Z",
+          "token_ids": [
+            57,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Z",
+          "valid": true,
+          "before": "Y",
+          "after": "Z",
+          "distance_before": 3,
+          "distance_after": 2,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: Z\nLegal next nodes: S, E, Y\nRemaining steps: 1\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180025,
+          "completion": "E",
+          "token_ids": [
+            36,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "E",
+          "valid": true,
+          "before": "Z",
+          "after": "E",
+          "distance_before": 2,
+          "distance_after": 1,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g02",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: B\nLegal next nodes: V, Y\nRemaining steps: 5\n",
+          "seed": 180021,
+          "completion": "V",
+          "token_ids": [
+            53,
+            248046
+          ],
+          "prompt_tokens": 119,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "V",
+          "valid": true,
+          "before": "B",
+          "after": "V",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: V\nLegal next nodes: B, S\nRemaining steps: 4\n",
+          "seed": 180022,
+          "completion": "B",
+          "token_ids": [
+            33,
+            248046
+          ],
+          "prompt_tokens": 119,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "B",
+          "valid": true,
+          "before": "V",
+          "after": "B",
+          "distance_before": 3,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: B\nLegal next nodes: V, Y\nRemaining steps: 3\n",
+          "seed": 180023,
+          "completion": "V",
+          "token_ids": [
+            53,
+            248046
+          ],
+          "prompt_tokens": 119,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "V",
+          "valid": true,
+          "before": "B",
+          "after": "V",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: V\nLegal next nodes: B, S\nRemaining steps: 2\n",
+          "seed": 180024,
+          "completion": "B",
+          "token_ids": [
+            33,
+            248046
+          ],
+          "prompt_tokens": 119,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "B",
+          "valid": true,
+          "before": "V",
+          "after": "B",
+          "distance_before": 3,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nE -> I, S\nS -> E, V\nI -> (none)\nZ -> S, E, Y\nY -> Z, B\nB -> V, Y\nV -> B, S\nGoal: I\nCurrent node: B\nLegal next nodes: V, Y\nRemaining steps: 1\n",
+          "seed": 180025,
+          "completion": "V",
+          "token_ids": [
+            53,
+            248046
+          ],
+          "prompt_tokens": 119,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "V",
+          "valid": true,
+          "before": "B",
+          "after": "V",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g03",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: L\nLegal next nodes: G, W\nRemaining steps: 6\n",
+          "seed": 180031,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 123,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "L",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: G\nLegal next nodes: M, R\nRemaining steps: 5\n",
+          "seed": 180032,
+          "completion": "M",
+          "token_ids": [
+            44,
+            248046
+          ],
+          "prompt_tokens": 123,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "M",
+          "valid": true,
+          "before": "G",
+          "after": "M",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: M\nLegal next nodes: Z, W\nRemaining steps: 4\n",
+          "seed": 180033,
+          "completion": "W",
+          "token_ids": [
+            54,
+            248046
+          ],
+          "prompt_tokens": 123,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "W",
+          "valid": true,
+          "before": "M",
+          "after": "W",
+          "distance_before": 3,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: W\nLegal next nodes: L, R\nRemaining steps: 3\n",
+          "seed": 180034,
+          "completion": "L",
+          "token_ids": [
+            43,
+            248046
+          ],
+          "prompt_tokens": 123,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "L",
+          "valid": true,
+          "before": "W",
+          "after": "L",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: L\nLegal next nodes: G, W\nRemaining steps: 2\n",
+          "seed": 180035,
+          "completion": "W",
+          "token_ids": [
+            54,
+            248046
+          ],
+          "prompt_tokens": 123,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "W",
+          "valid": true,
+          "before": "L",
+          "after": "W",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: W\nLegal next nodes: L, R\nRemaining steps: 1\n",
+          "seed": 180036,
+          "completion": "L",
+          "token_ids": [
+            43,
+            248046
+          ],
+          "prompt_tokens": 123,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "L",
+          "valid": true,
+          "before": "W",
+          "after": "L",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g03",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: L\nLegal next nodes: G, W\nRemaining steps: 6\n",
+          "seed": 180031,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 123,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "L",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: G\nLegal next nodes: M, R\nRemaining steps: 5\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180032,
+          "completion": "M",
+          "token_ids": [
+            44,
+            248046
+          ],
+          "prompt_tokens": 135,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "M",
+          "valid": true,
+          "before": "G",
+          "after": "M",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: M\nLegal next nodes: Z, W\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180033,
+          "completion": "W",
+          "token_ids": [
+            54,
+            248046
+          ],
+          "prompt_tokens": 135,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "W",
+          "valid": true,
+          "before": "M",
+          "after": "W",
+          "distance_before": 3,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: W\nLegal next nodes: L, R\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal increased.\n",
+          "seed": 180034,
+          "completion": "L",
+          "token_ids": [
+            43,
+            248046
+          ],
+          "prompt_tokens": 135,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "L",
+          "valid": true,
+          "before": "W",
+          "after": "L",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: L\nLegal next nodes: G, W\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal stayed the same.\n",
+          "seed": 180035,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 137,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "L",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nG -> M, R\nZ -> R, F\nR -> W, M\nM -> Z, W\nF -> S, Z\nW -> L, R\nS -> (none)\nL -> G, W\nGoal: S\nCurrent node: G\nLegal next nodes: M, R\nRemaining steps: 1\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180036,
+          "completion": "R",
+          "token_ids": [
+            49,
+            248046
+          ],
+          "prompt_tokens": 135,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "R",
+          "valid": true,
+          "before": "G",
+          "after": "R",
+          "distance_before": 4,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g04",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nQ -> (none)\nN -> W, B, F\nA -> D, U\nW -> F, U\nD -> F, Q\nU -> B, W\nB -> A, U\nF -> D, N\nGoal: Q\nCurrent node: N\nLegal next nodes: W, B, F\nRemaining steps: 5\n",
+          "seed": 180041,
+          "completion": "B",
+          "token_ids": [
+            33,
+            248046
+          ],
+          "prompt_tokens": 127,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "B",
+          "valid": true,
+          "before": "N",
+          "after": "B",
+          "distance_before": 3,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nQ -> (none)\nN -> W, B, F\nA -> D, U\nW -> F, U\nD -> F, Q\nU -> B, W\nB -> A, U\nF -> D, N\nGoal: Q\nCurrent node: B\nLegal next nodes: A, U\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal stayed the same.\n",
+          "seed": 180042,
+          "completion": "A",
+          "token_ids": [
+            32,
+            248046
+          ],
+          "prompt_tokens": 139,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "A",
+          "valid": true,
+          "before": "B",
+          "after": "A",
+          "distance_before": 3,
+          "distance_after": 2,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nQ -> (none)\nN -> W, B, F\nA -> D, U\nW -> F, U\nD -> F, Q\nU -> B, W\nB -> A, U\nF -> D, N\nGoal: Q\nCurrent node: A\nLegal next nodes: D, U\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180043,
+          "completion": "D",
+          "token_ids": [
+            35,
+            248046
+          ],
+          "prompt_tokens": 137,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "D",
+          "valid": true,
+          "before": "A",
+          "after": "D",
+          "distance_before": 2,
+          "distance_after": 1,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nQ -> (none)\nN -> W, B, F\nA -> D, U\nW -> F, U\nD -> F, Q\nU -> B, W\nB -> A, U\nF -> D, N\nGoal: Q\nCurrent node: D\nLegal next nodes: F, Q\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180044,
+          "completion": "Q",
+          "token_ids": [
+            48,
+            248046
+          ],
+          "prompt_tokens": 137,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Q",
+          "valid": true,
+          "before": "D",
+          "after": "Q",
+          "distance_before": 1,
+          "distance_after": 0,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "goal"
+    },
+    {
+      "episode": "g04",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nQ -> (none)\nN -> W, B, F\nA -> D, U\nW -> F, U\nD -> F, Q\nU -> B, W\nB -> A, U\nF -> D, N\nGoal: Q\nCurrent node: N\nLegal next nodes: W, B, F\nRemaining steps: 5\n",
+          "seed": 180041,
+          "completion": "B",
+          "token_ids": [
+            33,
+            248046
+          ],
+          "prompt_tokens": 127,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "B",
+          "valid": true,
+          "before": "N",
+          "after": "B",
+          "distance_before": 3,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nQ -> (none)\nN -> W, B, F\nA -> D, U\nW -> F, U\nD -> F, Q\nU -> B, W\nB -> A, U\nF -> D, N\nGoal: Q\nCurrent node: B\nLegal next nodes: A, U\nRemaining steps: 4\n",
+          "seed": 180042,
+          "completion": "A",
+          "token_ids": [
+            32,
+            248046
+          ],
+          "prompt_tokens": 125,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "A",
+          "valid": true,
+          "before": "B",
+          "after": "A",
+          "distance_before": 3,
+          "distance_after": 2,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nQ -> (none)\nN -> W, B, F\nA -> D, U\nW -> F, U\nD -> F, Q\nU -> B, W\nB -> A, U\nF -> D, N\nGoal: Q\nCurrent node: A\nLegal next nodes: D, U\nRemaining steps: 3\n",
+          "seed": 180043,
+          "completion": "D",
+          "token_ids": [
+            35,
+            248046
+          ],
+          "prompt_tokens": 125,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "D",
+          "valid": true,
+          "before": "A",
+          "after": "D",
+          "distance_before": 2,
+          "distance_after": 1,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nQ -> (none)\nN -> W, B, F\nA -> D, U\nW -> F, U\nD -> F, Q\nU -> B, W\nB -> A, U\nF -> D, N\nGoal: Q\nCurrent node: D\nLegal next nodes: F, Q\nRemaining steps: 2\n",
+          "seed": 180044,
+          "completion": "Q",
+          "token_ids": [
+            48,
+            248046
+          ],
+          "prompt_tokens": 125,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Q",
+          "valid": true,
+          "before": "D",
+          "after": "Q",
+          "distance_before": 1,
+          "distance_after": 0,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "goal"
+    },
+    {
+      "episode": "g05",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: P\nLegal next nodes: L, V\nRemaining steps: 6\n",
+          "seed": 180051,
+          "completion": "L",
+          "token_ids": [
+            43,
+            248046
+          ],
+          "prompt_tokens": 129,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "L",
+          "valid": true,
+          "before": "P",
+          "after": "L",
+          "distance_before": 6,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: L\nLegal next nodes: T, P\nRemaining steps: 5\n",
+          "seed": 180052,
+          "completion": "T",
+          "token_ids": [
+            51,
+            248046
+          ],
+          "prompt_tokens": 129,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "T",
+          "valid": true,
+          "before": "L",
+          "after": "T",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: T\nLegal next nodes: S, X\nRemaining steps: 4\n",
+          "seed": 180053,
+          "completion": "S",
+          "token_ids": [
+            50,
+            248046
+          ],
+          "prompt_tokens": 129,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "S",
+          "valid": true,
+          "before": "T",
+          "after": "S",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: S\nLegal next nodes: P, T\nRemaining steps: 3\n",
+          "seed": 180054,
+          "completion": "P",
+          "token_ids": [
+            47,
+            248046
+          ],
+          "prompt_tokens": 129,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "P",
+          "valid": true,
+          "before": "S",
+          "after": "P",
+          "distance_before": 5,
+          "distance_after": 6,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: P\nLegal next nodes: L, V\nRemaining steps: 2\n",
+          "seed": 180055,
+          "completion": "L",
+          "token_ids": [
+            43,
+            248046
+          ],
+          "prompt_tokens": 129,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "L",
+          "valid": true,
+          "before": "P",
+          "after": "L",
+          "distance_before": 6,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: L\nLegal next nodes: T, P\nRemaining steps: 1\n",
+          "seed": 180056,
+          "completion": "T",
+          "token_ids": [
+            51,
+            248046
+          ],
+          "prompt_tokens": 129,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "T",
+          "valid": true,
+          "before": "L",
+          "after": "T",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g05",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: P\nLegal next nodes: L, V\nRemaining steps: 6\n",
+          "seed": 180051,
+          "completion": "L",
+          "token_ids": [
+            43,
+            248046
+          ],
+          "prompt_tokens": 129,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "L",
+          "valid": true,
+          "before": "P",
+          "after": "L",
+          "distance_before": 6,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: L\nLegal next nodes: T, P\nRemaining steps: 5\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180052,
+          "completion": "T",
+          "token_ids": [
+            51,
+            248046
+          ],
+          "prompt_tokens": 141,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "T",
+          "valid": true,
+          "before": "L",
+          "after": "T",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: T\nLegal next nodes: S, X\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180053,
+          "completion": "S",
+          "token_ids": [
+            50,
+            248046
+          ],
+          "prompt_tokens": 141,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "S",
+          "valid": true,
+          "before": "T",
+          "after": "S",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: S\nLegal next nodes: P, T\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal increased.\n",
+          "seed": 180054,
+          "completion": "T",
+          "token_ids": [
+            51,
+            248046
+          ],
+          "prompt_tokens": 141,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "T",
+          "valid": true,
+          "before": "S",
+          "after": "T",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: T\nLegal next nodes: S, X\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180055,
+          "completion": "S",
+          "token_ids": [
+            50,
+            248046
+          ],
+          "prompt_tokens": 141,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "S",
+          "valid": true,
+          "before": "T",
+          "after": "S",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nS -> P, T\nV -> S, L\nM -> (none)\nI -> S, E\nL -> T, P\nX -> T, I\nP -> L, V\nE -> M, X\nT -> S, X\nGoal: M\nCurrent node: S\nLegal next nodes: P, T\nRemaining steps: 1\nPrevious action: shortest-path distance to the goal increased.\n",
+          "seed": 180056,
+          "completion": "P",
+          "token_ids": [
+            47,
+            248046
+          ],
+          "prompt_tokens": 141,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "P",
+          "valid": true,
+          "before": "S",
+          "after": "P",
+          "distance_before": 5,
+          "distance_after": 6,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g06",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: F\nLegal next nodes: R, C, K\nRemaining steps: 6\n",
+          "seed": 180061,
+          "completion": "R",
+          "token_ids": [
+            49,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "R",
+          "valid": true,
+          "before": "F",
+          "after": "R",
+          "distance_before": 4,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: R\nLegal next nodes: K, H\nRemaining steps: 5\nPrevious action: shortest-path distance to the goal stayed the same.\n",
+          "seed": 180062,
+          "completion": "H",
+          "token_ids": [
+            39,
+            248046
+          ],
+          "prompt_tokens": 145,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "H",
+          "valid": true,
+          "before": "R",
+          "after": "H",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: H\nLegal next nodes: K, Z\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180063,
+          "completion": "K",
+          "token_ids": [
+            42,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "K",
+          "valid": true,
+          "before": "H",
+          "after": "K",
+          "distance_before": 3,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: K\nLegal next nodes: F, R\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal increased.\n",
+          "seed": 180064,
+          "completion": "F",
+          "token_ids": [
+            37,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "F",
+          "valid": true,
+          "before": "K",
+          "after": "F",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: F\nLegal next nodes: R, C, K\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180065,
+          "completion": "K",
+          "token_ids": [
+            42,
+            248046
+          ],
+          "prompt_tokens": 145,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "K",
+          "valid": true,
+          "before": "F",
+          "after": "K",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: K\nLegal next nodes: F, R\nRemaining steps: 1\nPrevious action: shortest-path distance to the goal increased.\n",
+          "seed": 180066,
+          "completion": "F",
+          "token_ids": [
+            37,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "F",
+          "valid": true,
+          "before": "K",
+          "after": "F",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g06",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: F\nLegal next nodes: R, C, K\nRemaining steps: 6\n",
+          "seed": 180061,
+          "completion": "R",
+          "token_ids": [
+            49,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "R",
+          "valid": true,
+          "before": "F",
+          "after": "R",
+          "distance_before": 4,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: R\nLegal next nodes: K, H\nRemaining steps: 5\n",
+          "seed": 180062,
+          "completion": "K",
+          "token_ids": [
+            42,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "K",
+          "valid": true,
+          "before": "R",
+          "after": "K",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: K\nLegal next nodes: F, R\nRemaining steps: 4\n",
+          "seed": 180063,
+          "completion": "F",
+          "token_ids": [
+            37,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "F",
+          "valid": true,
+          "before": "K",
+          "after": "F",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: F\nLegal next nodes: R, C, K\nRemaining steps: 3\n",
+          "seed": 180064,
+          "completion": "C",
+          "token_ids": [
+            34,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "C",
+          "valid": true,
+          "before": "F",
+          "after": "C",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: C\nLegal next nodes: R, D\nRemaining steps: 2\n",
+          "seed": 180065,
+          "completion": "R",
+          "token_ids": [
+            49,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "R",
+          "valid": true,
+          "before": "C",
+          "after": "R",
+          "distance_before": 3,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nD -> E, C\nU -> (none)\nC -> R, D\nE -> U, H\nR -> K, H\nH -> K, Z\nF -> R, C, K\nK -> F, R\nZ -> D, E\nGoal: U\nCurrent node: R\nLegal next nodes: K, H\nRemaining steps: 1\n",
+          "seed": 180066,
+          "completion": "K",
+          "token_ids": [
+            42,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "K",
+          "valid": true,
+          "before": "R",
+          "after": "K",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g07",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nL -> (none)\nV -> Y, X, F\nS -> E, V\nF -> S, X\nE -> Y, L\nY -> M, S\nM -> F, E\nX -> M, Y\nGoal: L\nCurrent node: V\nLegal next nodes: Y, X, F\nRemaining steps: 5\n",
+          "seed": 180071,
+          "completion": "X",
+          "token_ids": [
+            55,
+            248046
+          ],
+          "prompt_tokens": 127,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "X",
+          "valid": true,
+          "before": "V",
+          "after": "X",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nL -> (none)\nV -> Y, X, F\nS -> E, V\nF -> S, X\nE -> Y, L\nY -> M, S\nM -> F, E\nX -> M, Y\nGoal: L\nCurrent node: X\nLegal next nodes: M, Y\nRemaining steps: 4\n",
+          "seed": 180072,
+          "completion": "M",
+          "token_ids": [
+            44,
+            248046
+          ],
+          "prompt_tokens": 125,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "M",
+          "valid": true,
+          "before": "X",
+          "after": "M",
+          "distance_before": 3,
+          "distance_after": 2,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nL -> (none)\nV -> Y, X, F\nS -> E, V\nF -> S, X\nE -> Y, L\nY -> M, S\nM -> F, E\nX -> M, Y\nGoal: L\nCurrent node: M\nLegal next nodes: F, E\nRemaining steps: 3\n",
+          "seed": 180073,
+          "completion": "E",
+          "token_ids": [
+            36,
+            248046
+          ],
+          "prompt_tokens": 125,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "E",
+          "valid": true,
+          "before": "M",
+          "after": "E",
+          "distance_before": 2,
+          "distance_after": 1,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nL -> (none)\nV -> Y, X, F\nS -> E, V\nF -> S, X\nE -> Y, L\nY -> M, S\nM -> F, E\nX -> M, Y\nGoal: L\nCurrent node: E\nLegal next nodes: Y, L\nRemaining steps: 2\n",
+          "seed": 180074,
+          "completion": "L",
+          "token_ids": [
+            43,
+            248046
+          ],
+          "prompt_tokens": 125,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "L",
+          "valid": true,
+          "before": "E",
+          "after": "L",
+          "distance_before": 1,
+          "distance_after": 0,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "goal"
+    },
+    {
+      "episode": "g07",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nL -> (none)\nV -> Y, X, F\nS -> E, V\nF -> S, X\nE -> Y, L\nY -> M, S\nM -> F, E\nX -> M, Y\nGoal: L\nCurrent node: V\nLegal next nodes: Y, X, F\nRemaining steps: 5\n",
+          "seed": 180071,
+          "completion": "X",
+          "token_ids": [
+            55,
+            248046
+          ],
+          "prompt_tokens": 127,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "X",
+          "valid": true,
+          "before": "V",
+          "after": "X",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nL -> (none)\nV -> Y, X, F\nS -> E, V\nF -> S, X\nE -> Y, L\nY -> M, S\nM -> F, E\nX -> M, Y\nGoal: L\nCurrent node: X\nLegal next nodes: M, Y\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180072,
+          "completion": "M",
+          "token_ids": [
+            44,
+            248046
+          ],
+          "prompt_tokens": 137,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "M",
+          "valid": true,
+          "before": "X",
+          "after": "M",
+          "distance_before": 3,
+          "distance_after": 2,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nL -> (none)\nV -> Y, X, F\nS -> E, V\nF -> S, X\nE -> Y, L\nY -> M, S\nM -> F, E\nX -> M, Y\nGoal: L\nCurrent node: M\nLegal next nodes: F, E\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180073,
+          "completion": "E",
+          "token_ids": [
+            36,
+            248046
+          ],
+          "prompt_tokens": 137,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "E",
+          "valid": true,
+          "before": "M",
+          "after": "E",
+          "distance_before": 2,
+          "distance_after": 1,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nL -> (none)\nV -> Y, X, F\nS -> E, V\nF -> S, X\nE -> Y, L\nY -> M, S\nM -> F, E\nX -> M, Y\nGoal: L\nCurrent node: E\nLegal next nodes: Y, L\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180074,
+          "completion": "L",
+          "token_ids": [
+            43,
+            248046
+          ],
+          "prompt_tokens": 137,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "L",
+          "valid": true,
+          "before": "E",
+          "after": "L",
+          "distance_before": 1,
+          "distance_after": 0,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "goal"
+    },
+    {
+      "episode": "g08",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: V\nLegal next nodes: F, S\nRemaining steps: 6\n",
+          "seed": 180081,
+          "completion": "S",
+          "token_ids": [
+            50,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "S",
+          "valid": true,
+          "before": "V",
+          "after": "S",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: S\nLegal next nodes: V, O\nRemaining steps: 5\nPrevious action: shortest-path distance to the goal stayed the same.\n",
+          "seed": 180082,
+          "completion": "O",
+          "token_ids": [
+            46,
+            248046
+          ],
+          "prompt_tokens": 145,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "O",
+          "valid": true,
+          "before": "S",
+          "after": "O",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: O\nLegal next nodes: N, E\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180083,
+          "completion": "N",
+          "token_ids": [
+            45,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "N",
+          "valid": true,
+          "before": "O",
+          "after": "N",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: N\nLegal next nodes: F, O, X\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180084,
+          "completion": "F",
+          "token_ids": [
+            37,
+            248046
+          ],
+          "prompt_tokens": 145,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "F",
+          "valid": true,
+          "before": "N",
+          "after": "F",
+          "distance_before": 3,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: F\nLegal next nodes: S, N\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal increased.\n",
+          "seed": 180085,
+          "completion": "N",
+          "token_ids": [
+            45,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "N",
+          "valid": true,
+          "before": "F",
+          "after": "N",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: N\nLegal next nodes: F, O, X\nRemaining steps: 1\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180086,
+          "completion": "I",
+          "token_ids": [
+            40,
+            248046
+          ],
+          "prompt_tokens": 145,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "I",
+          "valid": false,
+          "before": "N",
+          "after": "N",
+          "distance_before": 3,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g08",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: V\nLegal next nodes: F, S\nRemaining steps: 6\n",
+          "seed": 180081,
+          "completion": "S",
+          "token_ids": [
+            50,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "S",
+          "valid": true,
+          "before": "V",
+          "after": "S",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: S\nLegal next nodes: V, O\nRemaining steps: 5\n",
+          "seed": 180082,
+          "completion": "O",
+          "token_ids": [
+            46,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "O",
+          "valid": true,
+          "before": "S",
+          "after": "O",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: O\nLegal next nodes: N, E\nRemaining steps: 4\n",
+          "seed": 180083,
+          "completion": "N",
+          "token_ids": [
+            45,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "N",
+          "valid": true,
+          "before": "O",
+          "after": "N",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: N\nLegal next nodes: F, O, X\nRemaining steps: 3\n",
+          "seed": 180084,
+          "completion": "F",
+          "token_ids": [
+            37,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "F",
+          "valid": true,
+          "before": "N",
+          "after": "F",
+          "distance_before": 3,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: F\nLegal next nodes: S, N\nRemaining steps: 2\n",
+          "seed": 180085,
+          "completion": "N",
+          "token_ids": [
+            45,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "N",
+          "valid": true,
+          "before": "F",
+          "after": "N",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nO -> N, E\nF -> S, N\nI -> (none)\nX -> S, H\nE -> O, S\nH -> X, I\nS -> V, O\nV -> F, S\nN -> F, O, X\nGoal: I\nCurrent node: N\nLegal next nodes: F, O, X\nRemaining steps: 1\n",
+          "seed": 180086,
+          "completion": "X",
+          "token_ids": [
+            55,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "X",
+          "valid": true,
+          "before": "N",
+          "after": "X",
+          "distance_before": 3,
+          "distance_after": 2,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g09",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: Y\nLegal next nodes: Z, H, G\nRemaining steps: 6\n",
+          "seed": 180091,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "Y",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: G\nLegal next nodes: H, Y\nRemaining steps: 5\n",
+          "seed": 180092,
+          "completion": "Y",
+          "token_ids": [
+            56,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Y",
+          "valid": true,
+          "before": "G",
+          "after": "Y",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: Y\nLegal next nodes: Z, H, G\nRemaining steps: 4\n",
+          "seed": 180093,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "Y",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: G\nLegal next nodes: H, Y\nRemaining steps: 3\n",
+          "seed": 180094,
+          "completion": "H",
+          "token_ids": [
+            39,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "H",
+          "valid": true,
+          "before": "G",
+          "after": "H",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: H\nLegal next nodes: Z, X\nRemaining steps: 2\n",
+          "seed": 180095,
+          "completion": "X",
+          "token_ids": [
+            55,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "X",
+          "valid": true,
+          "before": "H",
+          "after": "X",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: X\nLegal next nodes: V, G\nRemaining steps: 1\n",
+          "seed": 180096,
+          "completion": "V",
+          "token_ids": [
+            53,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "V",
+          "valid": true,
+          "before": "X",
+          "after": "V",
+          "distance_before": 3,
+          "distance_after": 2,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g09",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: Y\nLegal next nodes: Z, H, G\nRemaining steps: 6\n",
+          "seed": 180091,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "Y",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: G\nLegal next nodes: H, Y\nRemaining steps: 5\nPrevious action: shortest-path distance to the goal stayed the same.\n",
+          "seed": 180092,
+          "completion": "Y",
+          "token_ids": [
+            56,
+            248046
+          ],
+          "prompt_tokens": 145,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "Y",
+          "valid": true,
+          "before": "G",
+          "after": "Y",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: Y\nLegal next nodes: Z, H, G\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal stayed the same.\n",
+          "seed": 180093,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 147,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "Y",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: G\nLegal next nodes: H, Y\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal stayed the same.\n",
+          "seed": 180094,
+          "completion": "H",
+          "token_ids": [
+            39,
+            248046
+          ],
+          "prompt_tokens": 145,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "H",
+          "valid": true,
+          "before": "G",
+          "after": "H",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: H\nLegal next nodes: Z, X\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180095,
+          "completion": "X",
+          "token_ids": [
+            55,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "X",
+          "valid": true,
+          "before": "H",
+          "after": "X",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nV -> R, L\nZ -> G, L\nL -> Z, X\nH -> Z, X\nY -> Z, H, G\nR -> W, V\nW -> (none)\nG -> H, Y\nX -> V, G\nGoal: W\nCurrent node: X\nLegal next nodes: V, G\nRemaining steps: 1\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180096,
+          "completion": "V",
+          "token_ids": [
+            53,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "V",
+          "valid": true,
+          "before": "X",
+          "after": "V",
+          "distance_before": 3,
+          "distance_after": 2,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g10",
+      "arm": "feedback",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: G\nLegal next nodes: B, U, D\nRemaining steps: 6\n",
+          "seed": 180101,
+          "completion": "B",
+          "token_ids": [
+            33,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "B",
+          "valid": true,
+          "before": "G",
+          "after": "B",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: B\nLegal next nodes: G, U\nRemaining steps: 5\nPrevious action: shortest-path distance to the goal stayed the same.\n",
+          "seed": 180102,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 145,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "B",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: G\nLegal next nodes: B, U, D\nRemaining steps: 4\nPrevious action: shortest-path distance to the goal stayed the same.\n",
+          "seed": 180103,
+          "completion": "U",
+          "token_ids": [
+            52,
+            248046
+          ],
+          "prompt_tokens": 147,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "U",
+          "valid": true,
+          "before": "G",
+          "after": "U",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: U\nLegal next nodes: D, P\nRemaining steps: 3\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180104,
+          "completion": "P",
+          "token_ids": [
+            47,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "P",
+          "valid": true,
+          "before": "U",
+          "after": "P",
+          "distance_before": 4,
+          "distance_after": 3,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: P\nLegal next nodes: K, T\nRemaining steps: 2\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180105,
+          "completion": "K",
+          "token_ids": [
+            42,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "K",
+          "valid": true,
+          "before": "P",
+          "after": "K",
+          "distance_before": 3,
+          "distance_after": 2,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: K\nLegal next nodes: S, P\nRemaining steps: 1\nPrevious action: shortest-path distance to the goal decreased.\n",
+          "seed": 180106,
+          "completion": "S",
+          "token_ids": [
+            50,
+            248046
+          ],
+          "prompt_tokens": 143,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "S",
+          "valid": true,
+          "before": "K",
+          "after": "S",
+          "distance_before": 2,
+          "distance_after": 1,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        }
+      ],
+      "stop_reason": "step_limit"
+    },
+    {
+      "episode": "g10",
+      "arm": "state_only",
+      "turns": [
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: G\nLegal next nodes: B, U, D\nRemaining steps: 6\n",
+          "seed": 180101,
+          "completion": "B",
+          "token_ids": [
+            33,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "B",
+          "valid": true,
+          "before": "G",
+          "after": "B",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: B\nLegal next nodes: G, U\nRemaining steps: 5\n",
+          "seed": 180102,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "B",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: G\nLegal next nodes: B, U, D\nRemaining steps: 4\n",
+          "seed": 180103,
+          "completion": "U",
+          "token_ids": [
+            52,
+            248046
+          ],
+          "prompt_tokens": 133,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "U",
+          "valid": true,
+          "before": "G",
+          "after": "U",
+          "distance_before": 5,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal decreased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: U\nLegal next nodes: D, P\nRemaining steps: 3\n",
+          "seed": 180104,
+          "completion": "D",
+          "token_ids": [
+            35,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "D",
+          "valid": true,
+          "before": "U",
+          "after": "D",
+          "distance_before": 4,
+          "distance_after": 4,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: D\nLegal next nodes: B, T\nRemaining steps: 2\n",
+          "seed": 180105,
+          "completion": "B",
+          "token_ids": [
+            33,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "B",
+          "valid": true,
+          "before": "D",
+          "after": "B",
+          "distance_before": 4,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal increased."
+        },
+        {
+          "observation": "Navigate the directed graph to reach the goal within the step limit. Each row lists the outgoing neighbors of that node. Choose one legal next node. Reply with its single uppercase letter only.\n\nGraph:\nU -> D, P\nB -> G, U\nG -> B, U, D\nT -> K, U\nR -> (none)\nK -> S, P\nD -> B, T\nS -> K, R\nP -> K, T\nGoal: R\nCurrent node: B\nLegal next nodes: G, U\nRemaining steps: 1\n",
+          "seed": 180106,
+          "completion": "G",
+          "token_ids": [
+            38,
+            248046
+          ],
+          "prompt_tokens": 131,
+          "completion_tokens": 2,
+          "model_stop": "eos",
+          "action": "G",
+          "valid": true,
+          "before": "B",
+          "after": "G",
+          "distance_before": 5,
+          "distance_after": 5,
+          "feedback": "Previous action: shortest-path distance to the goal stayed the same."
+        }
+      ],
+      "stop_reason": "step_limit"
+    }
+  ],
+  "stop_reason": "complete",
+  "preflight": {
+    "g01": {
+      "oracle_steps": 4,
+      "fixed_first_success": false,
+      "fixed_first_steps": 5,
+      "transitions_checked": 19
+    },
+    "g02": {
+      "oracle_steps": 4,
+      "fixed_first_success": false,
+      "fixed_first_steps": 5,
+      "transitions_checked": 19
+    },
+    "g03": {
+      "oracle_steps": 5,
+      "fixed_first_success": false,
+      "fixed_first_steps": 6,
+      "transitions_checked": 21
+    },
+    "g04": {
+      "oracle_steps": 3,
+      "fixed_first_success": false,
+      "fixed_first_steps": 5,
+      "transitions_checked": 22
+    },
+    "g05": {
+      "oracle_steps": 6,
+      "fixed_first_success": false,
+      "fixed_first_steps": 6,
+      "transitions_checked": 24
+    },
+    "g06": {
+      "oracle_steps": 4,
+      "fixed_first_success": false,
+      "fixed_first_steps": 6,
+      "transitions_checked": 25
+    },
+    "g07": {
+      "oracle_steps": 4,
+      "fixed_first_success": false,
+      "fixed_first_steps": 5,
+      "transitions_checked": 22
+    },
+    "g08": {
+      "oracle_steps": 5,
+      "fixed_first_success": false,
+      "fixed_first_steps": 6,
+      "transitions_checked": 25
+    },
+    "g09": {
+      "oracle_steps": 5,
+      "fixed_first_success": false,
+      "fixed_first_steps": 6,
+      "transitions_checked": 25
+    },
+    "g10": {
+      "oracle_steps": 5,
+      "fixed_first_success": false,
+      "fixed_first_steps": 6,
+      "transitions_checked": 25
+    }
+  },
+  "backend": "version: 0.7.0-dev (build 1, commit 2a66703)\nbuilt with AppleClang 15.0.0.15000309 for Darwin arm64",
+  "smoke": "K",
+  "preflight_seconds": 6.449,
+  "pilot_seconds": 272.966,
+  "summary": {
+    "complete_pairs": 10,
+    "arms": {
+      "state_only": {
+        "successes": 2,
+        "steps": 54,
+        "steps_to_goal": [
+          4,
+          4
+        ],
+        "invalid_actions": 0
+      },
+      "feedback": {
+        "successes": 2,
+        "steps": 54,
+        "steps_to_goal": [
+          4,
+          4
+        ],
+        "invalid_actions": 1
+      }
+    },
+    "helpful": [],
+    "harmful": [],
+    "tied": [
+      "g01",
+      "g02",
+      "g03",
+      "g04",
+      "g05",
+      "g06",
+      "g07",
+      "g08",
+      "g09",
+      "g10"
+    ],
+    "go": false
+  }
+}
