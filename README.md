@@ -36,6 +36,7 @@ Modern foundation models show dramatic accuracy gains on benchmark suites when f
 | [`docs/exp14_model_selection_report.md`](docs/exp14_model_selection_report.md) | **Experiment 14**: Cached-model inventory and bounded local Python repair comparison. | ~4 min |
 | [`docs/exp15_repair_report.md`](docs/exp15_repair_report.md) | **Experiment 15**: Frozen local pilot for code-repair difficulty and public-test feedback. | ~3 min |
 | [`docs/exp16_token_cap_report.md`](docs/exp16_token_cap_report.md) | **Experiment 16**: Paired diagnostic of the output-token cap for Qwen3.5-4B code repair. | ~3 min |
+| [`docs/exp17_public_feedback_report.md`](docs/exp17_public_feedback_report.md) | **Experiment 17**: Paired code-repair revisions with and without public-test feedback. | ~3 min |
 
 ---
 
