@@ -1,0 +1,82 @@
+{
+  "clamp": {
+    "params": ["value", "low", "high"],
+    "spec": "Clamp an integer to the inclusive bounds low and high, where low <= high.",
+    "buggy": "def clamp(value, low, high):\n    if value < low:\n        return high\n    if value > high:\n        return low\n    return value\n",
+    "cases": [
+      {"args": [2, 0, 5], "expected": 2},
+      {"args": [-3, 0, 5], "expected": 0},
+      {"args": [8, 0, 5], "expected": 5}
+    ]
+  },
+  "chunk": {
+    "params": ["items", "size"],
+    "spec": "Split a list into consecutive lists of size (a positive integer). Keep the final short chunk; an empty list produces no chunks.",
+    "buggy": "def chunk(items, size):\n    result = []\n    for i in range(0, len(items) - size + 1, size):\n        result.append(items[i:i + size])\n    return result or [[]]\n",
+    "cases": [
+      {"args": [[1, 2, 3, 4], 2], "expected": [[1, 2], [3, 4]]},
+      {"args": [[1, 2, 3], 2], "expected": [[1, 2], [3]]},
+      {"args": [[], 2], "expected": []}
+    ]
+  },
+  "dedupe": {
+    "params": ["items"],
+    "spec": "Return the distinct strings from items in order of first occurrence. String comparison is case sensitive.",
+    "buggy": "def dedupe(items):\n    result = []\n    for item in items:\n        if item.lower() not in result:\n            result.append(item.lower())\n    return sorted(result)\n",
+    "cases": [
+      {"args": [["a", "a", "b"]], "expected": ["a", "b"]},
+      {"args": [["b", "a", "b"]], "expected": ["b", "a"]},
+      {"args": [["a", "A"]], "expected": ["a", "A"]}
+    ]
+  },
+  "overlap": {
+    "params": ["first", "second"],
+    "spec": "Each interval is a two-element list [start, stop] with integer endpoints and start <= stop, interpreted as half-open. Return the nonnegative length of their intersection.",
+    "buggy": "def overlap(first, second):\n    start = min(first[0], second[0])\n    stop = min(first[1], second[1])\n    return stop - start\n",
+    "cases": [
+      {"args": [[1, 5], [1, 3]], "expected": 2},
+      {"args": [[1, 4], [3, 6]], "expected": 1},
+      {"args": [[0, 2], [4, 6]], "expected": 0}
+    ]
+  },
+  "label": {
+    "params": ["text"],
+    "spec": "Create a label from an ASCII string: split on runs of whitespace, lowercase each word, and join with single hyphens. Leave punctuation alone. No words yields the empty string.",
+    "buggy": "def label(text):\n    return text.strip(' ').replace(' ', '-')\n",
+    "cases": [
+      {"args": [" red "], "expected": "red"},
+      {"args": ["Red Blue"], "expected": "red-blue"},
+      {"args": ["red  blue"], "expected": "red-blue"}
+    ]
+  },
+  "left_index": {
+    "params": ["items", "target"],
+    "spec": "Return the zero-based index of the first occurrence of target in a list of integers, or -1 if absent.",
+    "buggy": "def left_index(items, target):\n    index = 0\n    for i, item in enumerate(items):\n        if item == target:\n            index = i\n    return index\n",
+    "cases": [
+      {"args": [[5, 8], 8], "expected": 1},
+      {"args": [[9, 2, 2], 2], "expected": 1},
+      {"args": [[5, 8], 7], "expected": -1}
+    ]
+  },
+  "rotate": {
+    "params": ["items", "offset"],
+    "spec": "Return a list rotated right by offset positions. A negative offset rotates left, offsets wrap, and empty input returns an empty list.",
+    "buggy": "def rotate(items, offset):\n    if not items:\n        return []\n    return items[offset:] + items[:offset]\n",
+    "cases": [
+      {"args": [[], 2], "expected": []},
+      {"args": [[1, 2, 3], 1], "expected": [3, 1, 2]},
+      {"args": [[1, 2, 3], 4], "expected": [3, 1, 2]}
+    ]
+  },
+  "totals": {
+    "params": ["entries"],
+    "spec": "Each entry is [string key, integer amount]. Return a dictionary of the sum per key, including zero totals. Keys are case sensitive.",
+    "buggy": "def totals(entries):\n    result = {}\n    for key, amount in entries:\n        result[key.lower()] = amount\n    return result\n",
+    "cases": [
+      {"args": [[["a", 2], ["b", 3]]], "expected": {"a": 2, "b": 3}},
+      {"args": [[["a", 2], ["a", 3]]], "expected": {"a": 5}},
+      {"args": [[["A", 2], ["a", 3]]], "expected": {"A": 2, "a": 3}}
+    ]
+  }
+}
