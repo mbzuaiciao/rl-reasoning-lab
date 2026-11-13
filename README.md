@@ -34,6 +34,7 @@ Modern foundation models show dramatic accuracy gains on benchmark suites when f
 | [`docs/follow_on_research.md`](docs/follow_on_research.md) | **Follow-On Research Agenda**: Evaluation of candidate directions and concrete protocol for the Compute Frontier of reasoning. | ~8 min |
 | [`docs/exp13_code_repair_report.md`](docs/exp13_code_repair_report.md) | **Experiment 13**: Training-free feasibility pilot for public test feedback in Python code repair. | ~3 min |
 | [`docs/exp14_model_selection_report.md`](docs/exp14_model_selection_report.md) | **Experiment 14**: Cached-model inventory and bounded local Python repair comparison. | ~4 min |
+| [`docs/exp15_repair_report.md`](docs/exp15_repair_report.md) | **Experiment 15**: Frozen local pilot for code-repair difficulty and public-test feedback. | ~3 min |
 
 ---
 
