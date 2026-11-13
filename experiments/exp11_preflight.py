@@ -10,6 +10,8 @@ import re
 import resource
 import string
 import sys
+from collections import Counter
+from collections.abc import Callable
 from dataclasses import dataclass, replace
 from time import perf_counter
 
@@ -32,6 +34,17 @@ SPLITS = {
 EDGE = r"[A-Z][ \t]*->[ \t]*[A-Z]"
 TRACE = re.compile(rf"R:[ \t]*({EDGE}(?:[ \t]*;[ \t]*{EDGE})*)")
 ANSWER = re.compile(r"A:[ \t]*([A-Z])")
+DEMONSTRATIONS = {
+    "numeric": "Example: edges 1->2; 0->1; 3->4, start 0.\nR: 0->1; 1->2\nA: 2\n",
+    "letters": "Example: edges Y->Z; X->Y; W->V, start X.\nR: X->Y; Y->Z\nA: Z\n",
+    "instruction_only": "",
+}
+DIAGNOSTIC_ANSWER = re.compile(
+    r"(?:(?:final (?:answer|node)|answer|a)\s*(?::|is)\s*)?"
+    r"([A-Z0-9])[.!]?",
+    re.IGNORECASE,
+)
+DIAGNOSTIC_EDGE = re.compile(r"\b([A-Z0-9])\s*(?:->|→)\s*([A-Z0-9])\b", re.IGNORECASE)
 
 
 def graph_example(depth: int, rng: random.Random) -> ReasoningExample:
@@ -72,7 +85,7 @@ def make_splits() -> dict[str, list[ReasoningExample]]:
     return splits
 
 
-def messages(ex: ReasoningExample) -> list[dict[str, str]]:
+def messages(ex: ReasoningExample, variant: str = "numeric") -> list[dict[str, str]]:
     premises, _ = ex.prompt.rsplit("; Q:", 1)
     return [
         {"role": "system", "content": "You solve directed graph puzzles."},
@@ -82,9 +95,7 @@ def messages(ex: ReasoningExample) -> list[dict[str, str]]:
                 "Follow the directed arrows from the start until there is no outgoing arrow. "
                 "Ignore disconnected edges. Output only two lines: R: with the traversed "
                 "edges in order, separated by semicolons, then A: with the final node.\n"
-                "Example: edges 1->2; 0->1; 3->4, start 0.\n"
-                "R: 0->1; 1->2\nA: 2\n"
-                f"Edges: {premises}\nStart: {ex.start_node}"
+                f"{DEMONSTRATIONS[variant]}Edges: {premises}\nStart: {ex.start_node}"
             ),
         },
     ]
@@ -155,12 +166,78 @@ def check_verifier() -> None:
     print(f"Verifier: {len(cases)} controls passed", flush=True)
 
 
-def run_model(splits: dict[str, list[ReasoningExample]], local_snapshot: str | None) -> None:
-    import torch
-    from peft import LoraConfig, get_peft_model
-    from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
+def inspect_completion(text: str, ex: ReasoningExample) -> tuple[str | None, int]:
+    """Read the final answer and transition prefix independently of the reward grammar."""
+    lines = text.strip().translate(str.maketrans("", "", "*`")).splitlines()
+    answer = DIAGNOSTIC_ANSWER.fullmatch(lines[-1].strip()) if lines else None
+    # Use the first explicit trace line, or the first line for an unlabeled trace.
+    trace = next(
+        (line for line in lines if line.strip().upper().startswith("R:")), lines[0] if lines else ""
+    )
+    steps = DIAGNOSTIC_EDGE.findall(trace.upper())
+    prefix = 0
+    for actual, expected in zip(steps, ex.edges, strict=False):
+        if actual != expected:
+            break
+        prefix += 1
+    return (answer[1].upper() if answer else None), prefix
 
-    from rl_reasoning_lab.algorithms.ppo import compute_ppo_policy_loss
+
+def diagnose_prompts(
+    splits: dict[str, list[ReasoningExample]],
+    decode: Callable[[ReasoningExample, str, bool], tuple[str, int]],
+) -> None:
+    def evaluate(
+        name: str, examples: list[ReasoningExample], variant: str, sample: bool = False
+    ) -> tuple[int, int, int, int]:
+        reports = []
+        answers = prefixes = prefix_steps = full_prefixes = capped = 0
+        failures = {}
+        outcomes: Counter[float] = Counter()
+        hybrids: Counter[float] = Counter()
+        for ex in examples:
+            text, tokens = decode(ex, variant, sample)
+            report = score(text, ex)
+            answer, prefix = inspect_completion(text, ex)
+            reports.append(report)
+            answers += answer == ex.answer
+            prefixes += prefix > 0
+            prefix_steps += prefix
+            full_prefixes += prefix == ex.depth
+            capped += tokens == MAX_NEW_TOKENS
+            outcomes[float(report.answer)] += 1
+            hybrids[float(report.answer) + 0.5 * report.process] += 1
+            if not report.complete_path:
+                kind = "format-compliant failure" if report.formatted_trace else "format failure"
+                failures.setdefault(
+                    kind, (ex.prompt, text, ex.trace_target.strip(), answer, prefix)
+                )
+
+        formatted = sum(r.formatted_trace for r in reports)
+        process_nonzero = sum(r.process > 0 for r in reports)
+        print(
+            f"{variant}/{name}: n={len(reports)} format={formatted} independent_correct={answers} "
+            f"prefix_nonempty={prefixes} prefix_steps={prefix_steps}/{sum(ex.depth for ex in examples)} "
+            f"prefix_full={full_prefixes} complete={sum(r.complete_path for r in reports)} "
+            f"process_nonzero={process_nonzero} outcome_hist={dict(sorted(outcomes.items()))} "
+            f"hybrid_hist={dict(sorted(hybrids.items()))} capped={capped}",
+            flush=True,
+        )
+        for kind, details in failures.items():
+            print(f"  {kind} (prompt, output, target, answer, prefix): {details!r}", flush=True)
+        return int(len(outcomes) > 1) + int(len(hybrids) > 1), formatted, answers, prefix_steps
+
+    development = splits["dev_iid"] + splits["dev_ood"]
+    winner = max(DEMONSTRATIONS, key=lambda variant: evaluate("greedy_dev", development, variant))
+    print(f"Selected prompt: {winner}", flush=True)
+    evaluate("sampled_train", splits["train"][:16], winner, sample=True)
+
+
+def run_model(
+    splits: dict[str, list[ReasoningExample]], local_snapshot: str | None, prompt_diagnostic: bool
+) -> None:
+    import torch
+    from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
 
     torch.manual_seed(SEED)
     torch.set_num_threads(4)
@@ -173,10 +250,43 @@ def run_model(splits: dict[str, list[ReasoningExample]], local_snapshot: str | N
     ).eval()
     print(f"Loaded {MODEL}@{REVISION} on CPU in {perf_counter() - started:.2f}s", flush=True)
 
-    def encode(ex: ReasoningExample) -> torch.Tensor:
+    def encode(ex: ReasoningExample, variant: str = "numeric") -> torch.Tensor:
         return tokenizer.apply_chat_template(
-            messages(ex), add_generation_prompt=True, tokenize=True, return_tensors="pt"
+            messages(ex, variant), add_generation_prompt=True, tokenize=True, return_tensors="pt"
         )
+
+    def generate(prompt: torch.Tensor, sample: bool, record_scores: bool = False):
+        with torch.no_grad():
+            return model.generate(
+                prompt,
+                attention_mask=torch.ones_like(prompt),
+                return_dict_in_generate=True,
+                output_scores=record_scores,
+                generation_config=GenerationConfig(
+                    max_new_tokens=MAX_NEW_TOKENS,
+                    do_sample=sample,
+                    temperature=1.0,
+                    top_k=0 if sample else 50,
+                    eos_token_id=model.generation_config.eos_token_id,
+                    pad_token_id=tokenizer.pad_token_id,
+                ),
+            )
+
+    if prompt_diagnostic:
+
+        def decode(ex: ReasoningExample, variant: str, sample: bool) -> tuple[str, int]:
+            prompt = encode(ex, variant)
+            if prompt.shape[-1] + MAX_NEW_TOKENS > CONTEXT:
+                raise ValueError("Diagnostic prompt exceeds the context budget")
+            completion = generate(prompt, sample).sequences[0, prompt.shape[-1] :]
+            return tokenizer.decode(completion, skip_special_tokens=True), len(completion)
+
+        diagnose_prompts(splits, decode)
+        return
+
+    from peft import LoraConfig, get_peft_model
+
+    from rl_reasoning_lab.algorithms.ppo import compute_ppo_policy_loss
 
     longest_prompt = max(encode(ex).shape[-1] for split in splits.values() for ex in split)
     if longest_prompt + MAX_NEW_TOKENS > CONTEXT:
@@ -193,21 +303,7 @@ def run_model(splits: dict[str, list[ReasoningExample]], local_snapshot: str | N
         first_failure = None
         for ex in examples:
             prompt = encode(ex)
-            with torch.no_grad():
-                rollout = model.generate(
-                    prompt,
-                    attention_mask=torch.ones_like(prompt),
-                    return_dict_in_generate=True,
-                    output_scores=sample,
-                    generation_config=GenerationConfig(
-                        max_new_tokens=MAX_NEW_TOKENS,
-                        do_sample=sample,
-                        temperature=1.0,
-                        top_k=0 if sample else 50,
-                        eos_token_id=model.generation_config.eos_token_id,
-                        pad_token_id=tokenizer.pad_token_id,
-                    ),
-                )
+            rollout = generate(prompt, sample, record_scores=sample)
             full = rollout.sequences
             completion = full[0, prompt.shape[-1] :]
             text = tokenizer.decode(completion, skip_special_tokens=True)
@@ -273,7 +369,10 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     options = parser.add_mutually_exclusive_group()
     options.add_argument("--checks-only", action="store_true")
-    options.add_argument("--local-snapshot", help="Local copy of the exact pinned checkpoint")
+    options.add_argument(
+        "--prompt-diagnostic", action="store_true", help="Compare prompts without updates"
+    )
+    parser.add_argument("--local-snapshot", help="Local copy of the exact pinned checkpoint")
     args = parser.parse_args()
     started = perf_counter()
     splits = make_splits()
@@ -283,7 +382,7 @@ def main() -> None:
         print(f"{name}: n={len(rows)} sha256={digest}", flush=True)
     check_verifier()
     if not args.checks_only:
-        run_model(splits, args.local_snapshot)
+        run_model(splits, args.local_snapshot, args.prompt_diagnostic)
     peak_rss = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
     if sys.platform != "darwin":
         peak_rss *= 1024
