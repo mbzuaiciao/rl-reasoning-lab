@@ -7,6 +7,7 @@ import hashlib
 import json
 import os
 import subprocess
+from contextlib import contextmanager
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from time import monotonic, sleep
@@ -127,7 +128,8 @@ def grade(sandbox, report, public, hidden, deadline):
         print(f"graded {name} {row['sample']}/{repair.SAMPLES}", flush=True)
 
 
-def sample(args, report, public, template, log, *, cap=CAP, smoke=True, after_sample=None):
+@contextmanager
+def local_server(args, report, log, *, flags=FLAGS):
     repair.verify_files(args.gguf.parent, {args.gguf.name: model.SHA256})
     version = subprocess.check_output(
         [args.server, "--version"], text=True, stderr=subprocess.STDOUT, timeout=10
@@ -138,7 +140,7 @@ def sample(args, report, public, template, log, *, cap=CAP, smoke=True, after_sa
     with TemporaryDirectory(prefix="exp15-") as directory:
         socket = Path(directory) / "llama.sock"
         with subprocess.Popen(
-            [args.server, "--model", args.gguf, "--host", socket, *FLAGS],
+            [args.server, "--model", args.gguf, "--host", socket, *flags],
             stdout=log,
             stderr=subprocess.STDOUT,
         ) as server:
@@ -150,52 +152,7 @@ def sample(args, report, public, template, log, *, cap=CAP, smoke=True, after_sa
                     if server.poll() is not None or monotonic() >= ready_by:
                         raise RuntimeError("Local inference server failed to start")
                     sleep(0.2)
-                if smoke:
-                    result = model.generate(
-                        socket,
-                        "Complete this Python line: def add_one(n): return",
-                        15000,
-                        24,
-                        ready_by,
-                    )
-                    if not result["tokens"]:
-                        raise ValueError("Empty offline smoke decode")
-                    report["smoke"] = result["content"]
-                started = monotonic()
-                deadline = started + repair.LIMIT
-                grading_seconds = 0.0
-                try:
-                    for name, slot, seed in sample_plan(public):
-                        check_budget(deadline)
-                        prompt = repair.prompt_for(template, public[name], name)
-                        result = model.generate(socket, prompt, seed, cap, deadline)
-                        raw = result["content"]
-                        source = repair.replacement(raw, name, public[name]["params"])
-                        report["candidates"].append(
-                            dict(
-                                task=name,
-                                sample=slot,
-                                seed=seed,
-                                completion=raw,
-                                completion_sha256=digest(raw),
-                                patch_sha256=digest(source) if source is not None else None,
-                                token_ids=result["tokens"],
-                                stop=result["stop_type"],
-                                timings=result["timings"],
-                                applicable=source is not None,
-                                hidden_success=None if source is not None else False,
-                            )
-                        )
-                        print(f"sampled {name} {slot}/{repair.SAMPLES}", flush=True)
-                        if after_sample:
-                            grading_started = monotonic()
-                            try:
-                                after_sample(deadline)
-                            finally:
-                                grading_seconds += monotonic() - grading_started
-                finally:
-                    report["sampling_seconds"] = round(monotonic() - started - grading_seconds, 3)
-                    report["pilot_started"] = started
+                yield socket, ready_by
             finally:
                 if server.poll() is None:
                     server.terminate()
@@ -204,6 +161,56 @@ def sample(args, report, public, template, log, *, cap=CAP, smoke=True, after_sa
                     except subprocess.TimeoutExpired:
                         server.kill()
                         server.wait()
+
+
+def sample(args, report, public, template, log, *, cap=CAP, smoke=True, after_sample=None):
+    with local_server(args, report, log) as (socket, ready_by):
+        if smoke:
+            result = model.generate(
+                socket,
+                "Complete this Python line: def add_one(n): return",
+                15000,
+                24,
+                ready_by,
+            )
+            if not result["tokens"]:
+                raise ValueError("Empty offline smoke decode")
+            report["smoke"] = result["content"]
+        started = monotonic()
+        deadline = started + repair.LIMIT
+        grading_seconds = 0.0
+        try:
+            for name, slot, seed in sample_plan(public):
+                check_budget(deadline)
+                prompt = repair.prompt_for(template, public[name], name)
+                result = model.generate(socket, prompt, seed, cap, deadline)
+                raw = result["content"]
+                source = repair.replacement(raw, name, public[name]["params"])
+                report["candidates"].append(
+                    dict(
+                        task=name,
+                        sample=slot,
+                        seed=seed,
+                        completion=raw,
+                        completion_sha256=digest(raw),
+                        patch_sha256=digest(source) if source is not None else None,
+                        token_ids=result["tokens"],
+                        stop=result["stop_type"],
+                        timings=result["timings"],
+                        applicable=source is not None,
+                        hidden_success=None if source is not None else False,
+                    )
+                )
+                print(f"sampled {name} {slot}/{repair.SAMPLES}", flush=True)
+                if after_sample:
+                    grading_started = monotonic()
+                    try:
+                        after_sample(deadline)
+                    finally:
+                        grading_seconds += monotonic() - grading_started
+        finally:
+            report["sampling_seconds"] = round(monotonic() - started - grading_seconds, 3)
+            report["pilot_started"] = started
     return deadline
 
 
