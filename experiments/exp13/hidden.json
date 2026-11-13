@@ -1,0 +1,74 @@
+{
+  "clamp": {
+    "reference": "def clamp(value, low, high):\n    return max(low, min(value, high))\n",
+    "cases": [
+      {"args": [-7, -5, -2], "expected": -5},
+      {"args": [0, -5, -2], "expected": -2},
+      {"args": [4, 3, 3], "expected": 3},
+      {"args": [9, 2, 9], "expected": 9}
+    ]
+  },
+  "chunk": {
+    "reference": "def chunk(items, size):\n    return [items[i:i + size] for i in range(0, len(items), size)]\n",
+    "cases": [
+      {"args": [["a"], 4], "expected": [["a"]]},
+      {"args": [[3, 3, 1], 1], "expected": [[3], [3], [1]]},
+      {"args": [[], 1], "expected": []},
+      {"args": [[8, 1, 7, 3, 6, 5, 2], 3], "expected": [[8, 1, 7], [3, 6, 5], [2]]}
+    ]
+  },
+  "dedupe": {
+    "reference": "def dedupe(items):\n    return list(dict.fromkeys(items))\n",
+    "cases": [
+      {"args": [["Z", "z", "", "Z", "a"]], "expected": ["Z", "z", "", "a"]},
+      {"args": [[]], "expected": []},
+      {"args": [["two", "Two", "Two", "two"]], "expected": ["two", "Two"]},
+      {"args": [["q", "m", "t"]], "expected": ["q", "m", "t"]}
+    ]
+  },
+  "overlap": {
+    "reference": "def overlap(first, second):\n    return max(0, min(first[1], second[1]) - max(first[0], second[0]))\n",
+    "cases": [
+      {"args": [[6, 7], [-5, -3]], "expected": 0},
+      {"args": [[-6, -1], [-4, -2]], "expected": 2},
+      {"args": [[2, 2], [0, 5]], "expected": 0},
+      {"args": [[2, 5], [5, 8]], "expected": 0}
+    ]
+  },
+  "label": {
+    "reference": "def label(text):\n    return '-'.join(text.lower().split())\n",
+    "cases": [
+      {"args": ["\tHi!\nTHERE\r"], "expected": "hi!-there"},
+      {"args": [" \t\n "], "expected": ""},
+      {"args": ["A-b !? "], "expected": "a-b-!?"},
+      {"args": ["X\u000bY\fZ"], "expected": "x-y-z"}
+    ]
+  },
+  "left_index": {
+    "reference": "def left_index(items, target):\n    for i, item in enumerate(items):\n        if item == target:\n            return i\n    return -1\n",
+    "cases": [
+      {"args": [[], 0], "expected": -1},
+      {"args": [[0, -1, 0], 0], "expected": 0},
+      {"args": [[1, 0, -2], -2], "expected": 2},
+      {"args": [[4, 4, 4], 4], "expected": 0}
+    ]
+  },
+  "rotate": {
+    "reference": "def rotate(items, offset):\n    if not items:\n        return []\n    offset %= len(items)\n    return items[-offset:] + items[:-offset]\n",
+    "cases": [
+      {"args": [["a", "b", "c", "d"], -5], "expected": ["b", "c", "d", "a"]},
+      {"args": [[6, 7], 0], "expected": [6, 7]},
+      {"args": [[2], -9], "expected": [2]},
+      {"args": [[4, 9, 8], 6], "expected": [4, 9, 8]}
+    ]
+  },
+  "totals": {
+    "reference": "def totals(entries):\n    result = {}\n    for key, amount in entries:\n        result[key] = result.get(key, 0) + amount\n    return result\n",
+    "cases": [
+      {"args": [[]], "expected": {}},
+      {"args": [[["", 0], ["x", -4], ["x", 4]]], "expected": {"": 0, "x": 0}},
+      {"args": [[["Y", -1], ["Y", -2], ["y", 3]]], "expected": {"Y": -3, "y": 3}},
+      {"args": [[["A", 2], ["B", 1], ["A", -5]]], "expected": {"A": -3, "B": 1}}
+    ]
+  }
+}

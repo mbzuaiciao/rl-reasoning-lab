@@ -32,6 +32,7 @@ Modern foundation models show dramatic accuracy gains on benchmark suites when f
 | [`docs/phase10_failure_taxonomy.md`](docs/phase10_failure_taxonomy.md) | **Empirical Failure Taxonomy**: 10 distinct error modes with token-level examples and diagnostic probes. | ~10 min |
 | [`docs/phase10_case_studies.md`](docs/phase10_case_studies.md) | **Qualitative Case Studies**: 10 representative trajectory inspections across training regimes. | ~10 min |
 | [`docs/follow_on_research.md`](docs/follow_on_research.md) | **Follow-On Research Agenda**: Evaluation of candidate directions and concrete protocol for the Compute Frontier of reasoning. | ~8 min |
+| [`docs/exp13_code_repair_report.md`](docs/exp13_code_repair_report.md) | **Experiment 13**: Training-free feasibility pilot for public test feedback in Python code repair. | ~3 min |
 
 ---
 
