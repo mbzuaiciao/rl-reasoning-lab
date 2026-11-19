@@ -1,0 +1,10 @@
+{
+  "experiments/exp19/episodes.json": "4e4ea0ca4554d908cdb415bdb34a1eeac1f24063cd134e6b78d36a5b07d37096",
+  "experiments/exp19_partial_navigation.py": "55db68bd224b21f49318479b051f929e691afedf26cdb1cc99fd3895c252535b",
+  "docs/exp19_partial_navigation_protocol.md": "fe201d3ca5bff873f24bf76888a8f4579beb0b41e591798abd012c23845643fc",
+  "experiments/exp18_graph_navigation.py": "02c8fcd0262966089881d86826ebd6a68c953d64ee45559532cc53379828f3de",
+  "experiments/exp14_model_selection.py": "df3aae9580ec09c85c6de5e8b7913a79fb5d77473a8159c9011650842f6138f3",
+  "experiments/exp15_repair_feasibility.py": "7b329b809814ad851dec55d526fb85d0d768b99f4345913b377f82950397c7b5",
+  "experiments/exp13_code_repair.py": "438b5f55f2b36f758704e1b522000a979600afb92207bceb8535533f224f83fc",
+  "tests/test_exp19_partial_navigation.py": "540d9eaec8a1360b4bf31beedceb12bc07883963d15ac11dcf8c0e23bc3bf580"
+}
